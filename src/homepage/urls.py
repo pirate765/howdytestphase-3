@@ -1,0 +1,36 @@
+from django.conf.urls import url
+from homepage import views
+
+
+urlpatterns = [
+    url(r'^$', views.home, name='home'),
+    url(r'^searchdestination/$', views.searchdestination, name='searchdestination'),
+    url(r'^searchactivity/$', views.searchactivity, name='searchactivity'),
+    url(r'^searchdestinationpage/(?P<id>[0-9]+)/$', views.searchdestinationpage, name='searchdestinationpage'),
+    #url(r'^searchformactivity/$', views.formactivity, name='formactivity'),
+    url(r'^hotsellingquery/(?P<id>[0-9]+)/$', views.hotsellingquery, name='hotsellingquery'),
+    url(r'^hotsellingbook/(?P<id>[0-9]+)/$', views.hotsellingbook, name='hotsellingbook'),
+    url(r'^adventurepackagequery/(?P<id>[0-9]+)/$', views.adventurepackagequery, name='adventurepackagequery'),
+    url(r'^adventurepackagebook/(?P<id>[0-9]+)/$', views.adventurepackagebook, name='adventurepackagebook'),
+    url(r'^destinationpackagebook/(?P<id>[0-9]+)/$', views.destinationpackagebook, name='destinationpackagebook'),
+    url(r'^upcomingtripbook/(?P<id>[0-9]+)/$', views.upcomingtripbook, name='upcomingtripbook'),
+    url(r'^upcomingtripquery/(?P<id>[0-9]+)/$', views.upcomingtripquery, name='upcomingtripquery'),
+    url(r'^upcomingtripdetail/(?P<pk>[0-9]+)/$', views.upcomingtripdetail, name='upcomingtripdetail'),
+    url(r'^login/$', views.login_page, name='login_page'),
+    url(r'^userprofile/$', views.userprofile, name='userprofile'),
+    url(r'^searchdestinationlist/$', views.searchdestinationlist, name='searchdestinationlist'),
+    url(r'^destinationmore/(?P<id>[0-9]+)/$', views.destinationmore, name='destinationmore'),
+    url(r'^searchactivitylist/$', views.searchactivitylist, name='searchactivitylist'),
+    url(r'^activitysinglepackage/(?P<pk1>[0-9]+)/$', views.activity_singlepackage_all, name='activitysinglepackage'),
+    url(r'^destinationmore/(?P<id>[0-9]+)/$', views.destinationmore, name='destinationmore'),
+    #url(r'^destinationactivity/(?P<id>[0-9]+)/$', views.destinationactivity, name='destinationactivity'),
+    url(r'^destinationdetails/(?P<pk>[0-9]+)/$', views.destinationdetails, name='destinationdetails'),
+    url(r'^destinationabout/(?P<id>[0-9]+)/$', views.destinationabout, name='destinationabout'),
+    url(r'^gallery/$', views.gallery, name='gallery'),
+    url(r'^travelfree/$', views.travelfree, name='travelfree'),
+    url(r'^destination/$', views.destination, name='destination'),
+    url(r'^traveldiaries/$', views.traveldiaries, name='traveldiaries'),
+    url(r'^postdetail/(?P<pk>[0-9]+)/$', views.postdetail, name='postdetail'),
+    url(r'^upcomingtripform/$', views.upcomingtrip_form_upload, name='upcomingtrip_form_upload'),
+    url(r'^adventureactivitylist/$', views.adventureactivity_list, name='adventureactivity_list'),
+]

@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block body %}
+
+    <!-- FACEBOOK WIDGET -->
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- /FACEBOOK WIDGET -->
+    <div class="global-wrap">
+
+
+        <div class="container">
+            <h1 class="page-title">Travel Profile</h1>
+        </div>
+
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <aside class="user-profile-sidebar">
+                        <div class="user-profile-avatar text-center">
+                            <img src="{% static 'img/300x300.png' %}" alt="Image Alternative text" title="AMaze" />
+                            <h5>{{user.username}}</h5>
+                            <p>Member Since May 2012</p>
+                        </div>
+                        <ul class="list user-profile-nav">
+                            <li><a href="user-profile.html"><i class="fa fa-user"></i>Overview</a>
+                            </li>
+                            <li><a href="user-profile-settings.html"><i class="fa fa-cog"></i>Settings</a>
+                            </li>
+                            <li><a href="user-profile-photos.html"><i class="fa fa-camera"></i>My Travel Photos</a>
+                            </li>
+                            <li><a href="user-profile-booking-history.html"><i class="fa fa-clock-o"></i>Booking History</a>
+                            </li>
+                            <li><a href="user-profile-cards.html"><i class="fa fa-credit-card"></i>Credit/Debit Cards</a>
+                            </li>
+                            <li><a href="user-profile-wishlist.html"><i class="fa fa-heart-o"></i>Wishlist</a>
+                            </li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="col-md-9">
+                    <h4>Total Traveled</h4>
+                    <ul class="list list-inline user-profile-statictics mb30">
+                        <li><i class="fa fa-dashboard user-profile-statictics-icon"></i>
+                            <h5>12540</h5>
+                            <p>Miles</p>
+                        </li>
+                        <li><i class="fa fa-globe user-profile-statictics-icon"></i>
+                            <h5>2%</h5>
+                            <p>World</p>
+                        </li>
+                        <li><i class="fa fa-building-o user-profile-statictics-icon"></i>
+                            <h5>15</h5>
+                            <p>Cityes</p>
+                        </li>
+                        <li><i class="fa fa-flag-o user-profile-statictics-icon"></i>
+                            <h5>3</h5>
+                            <p>Countries</p>
+                        </li>
+                        <li><i class="fa fa-plane user-profile-statictics-icon"></i>
+                            <h5>20</h5>
+                            <p>Trips</p>
+                        </li>
+                    </ul>
+                    <div id="map-canvas" style="width:100%; height:400px;"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="gap"></div>
+        <footer id="main-footer">
+            <div class="container">
+                <div class="row row-wrap">
+                    <div class="col-md-3">
+                        <a class="logo" href="index.html">
+                            <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
+                        </a>
+                        <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
+                        <ul class="list list-horizontal list-space">
+                            <li>
+                                <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h4>Newsletter</h4>
+                        <form>
+                            <label>Enter your E-mail Address</label>
+                            <input type="text" class="form-control">
+                            <p class="mt5"><small>*We Never Send Spam</small>
+                            </p>
+                            <input type="submit" class="btn btn-primary" value="Subscribe">
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="list list-footer">
+                            <li><a href="#">About US</a>
+                            </li>
+                            <li><a href="#">Press Centre</a>
+                            </li>
+                            <li><a href="#">Best Price Guarantee</a>
+                            </li>
+                            <li><a href="#">Travel News</a>
+                            </li>
+                            <li><a href="#">Jobs</a>
+                            </li>
+                            <li><a href="#">Privacy Policy</a>
+                            </li>
+                            <li><a href="#">Terms of Use</a>
+                            </li>
+                            <li><a href="#">Feedback</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Have Questions?</h4>
+                        <h4 class="text-color">+1-202-555-0173</h4>
+                        <h4><a href="#" class="text-color">support@traveler.com</a></h4>
+                        <p>24/7 Dedicated Customer Support</p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/slimmenu.js' %}"></script>
+        <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+        <script src="{% static 'js/bootstrap-timepicker.js' %}"></script>
+        <script src="{% static 'js/nicescroll.js' %}"></script>
+        <script src="{% static 'js/dropit.js' %}"></script>
+        <script src="{% static 'js/ionrangeslider.js' %}"></script>
+        <script src="{% static 'js/icheck.js' %}"></script>
+        <script src="{% static 'js/fotorama.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="{% static 'js/typeahead.js' %}"></script>
+        <script src="{% static 'js/card-payment.js' %}"></script>
+        <script src="{% static 'js/magnific.js' %}"></script>
+        <script src="{% static 'js/owl-carousel.js' %}"></script>
+        <script src="{% static 'js/fitvids.js' %}"></script>
+        <script src="{% static 'js/tweet.js' %}"></script>
+        <script src="{% static 'js/countdown.js' %}"></script>
+        <script src="{% static 'js/gridrotator.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+  {% endblock %}

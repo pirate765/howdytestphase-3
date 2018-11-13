@@ -1,0 +1,45 @@
+<form method = "GET" action = "{% url 'searchactivity' %}">
+  {% csrf_token %}
+
+  <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+    <div class="ui-widget">
+      <label>Type Adventure and explore.</label>
+      <input id="adventure-search" name = "a" class="form-control" value = "{{ request.GET.a }}"  placeholder="Type in activity or adventure of your interest" type="text" required/>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-lg" type="submit">Go Thrilling</button>
+</form>
+
+
+
+<form method = "GET" action = "{% url 'searchdestination' %}">
+  {% csrf_token %}
+
+    <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+        <label for="destination">Where are you going?</label>
+        <input name = "q" id="destination" value="{{ request.GET.q }}" class="typeahead form-control" placeholder="Type in any destination name and just go" type="text" />
+
+    </div>
+      <button class="btn btn-primary btn-lg" type="submit">Go Tripping</button>
+</form>
+
+
+if request.method == 'GET':
+      query = request.GET.get('q')
+      results = Destinationpackage.objects.filter(Q(title__icontains = query))
+      count = len(results)
+      activity_related = Adventurepackage.objects.filter(title__icontains=query)
+      context = {
+          'results':results,
+          'count':count,
+          'activity_related':activity_related,
+          'query': query,
+      }
+      return render(request, "homepage/destinationpackage_list.html", context)
+  #else:
+      return render(request, "homepage/destinationpackage_list.html", {'results':results})
+
+
+
+      <div class="col-md-3"><span class="booking-item-price-from">from</span><span class="booking-item-price">Rs.{{activity.price_per_person}}</span><br><span class="btn btn-primary">Book Now</span>
+      </div>

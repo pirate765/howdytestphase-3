@@ -1,0 +1,9 @@
+{% extends 'base.html'}
+{% load staticfiles %}
+{% block body %}
+<ul>
+{% for package in filter.qs %}
+  <li>{{ package.title }} - {{ package.price }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

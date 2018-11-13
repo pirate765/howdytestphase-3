@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container" style="overflow: auto;">
+<div class="row">
+  <div class="col-sm-12">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Upload</button>
+  </form>
+</div>
+</div>
+</div>
+
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+{% endblock %}

@@ -1,0 +1,1002 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %} Howdy {% endblock %}
+{% block body %}
+
+
+            <!-- TOP AREA -->
+
+            <div class="top-area show-onload" >
+                <div class="bg-holder full" style="background-image:url({% static 'img/rajasthanbackground.jpg' %});">
+                    <div class="bg-front full-height bg-front-mob-rel"  >
+
+                        <div class="container full-height">
+                          <div class="rel full-height">
+                              <div class="tagline visible-lg" id="tagline"><span>It's time to</span>
+                                  <ul>
+                                      <li class="active">Go Tripping..</li>
+                                      <li>find Adventure.</li>
+                                      <li>just search & go.</li>
+                                      <li>have thrill.</li>
+                                      <li>explore.</li>
+                                      <li>run away.</li>
+                                      <li>go...</li>
+                                      <li>find new friends</li>
+                                  </ul>
+                              </div>
+                            <div class="search-tabs search-tabs-bg search-tabs-bottom mb50">
+
+                                <div class="tabbable" style="color: orange;">
+                                    <ul class="nav nav-tabs" id="myTab">
+                                        <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-building-o"></i>Destinations<span> </span></a>
+                                          <div class="form-group col-sm-4 col-md-3">
+
+                                          </div>
+
+                                        </li>
+                                        <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-bolt"></i>Activities <span></span></a>
+
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade in active" id="tab-1">
+                                            <h2>E'X'plore Destination Packages</h2>
+
+                                            <form method = "GET" action = "{% url 'searchdestinationlist' %}" autocomplete="off">
+                                              {% csrf_token %}
+
+                                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+                                                    <label for="searchdestination" style="font-size: 20px;">Where are you going?</label>
+
+
+                                            <input type="text" class="form-control" id="searchdestination" name="searchdestination"  placeholder="Type in destination name" value="{{request.GET.searchdestination}}" style="background-color:#ffffff;"/>
+                                            <ul id = "search-results">
+                                            </ul>
+
+                                        </div>
+                                        <button class="btn btn-primary btn-lg" type="submit">Go Tripping</button>
+                                          </form>
+                                      </div>
+
+
+                                        <div class="tab-pane fade" id="tab-2">
+                                            <h2>Search for Activities</h2>
+
+                                            <form method = "GET" action = "{% url 'searchactivitylist' %}" autocomplete="off">
+                                                            {% csrf_token %}
+
+                                                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+
+                                                                <label for="searchactivity" style="font-size: 20px;">Type Adventure and explore.</label>
+                                                                <input  type="text" id="searchactivity" name = "searchactivity" class="form-control" value = "{{request.GET.searchactivity}}"  placeholder="Type in activity or adventure of your interest"  style="background-color:#ffffff;" required/>
+                                                                <ul id="search-resultsactivity">
+                                                                </ul>
+                                                            </div>
+                                                            <button class="btn btn-primary btn-lg" type="submit">Go Thrilling</button>
+                                            </form>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="owl-carousel owl-slider owl-carousel-area visible-lg" id="owl-carousel-slider">
+                        <div class="bg-holder full">
+                            <div class="bg-mask"></div>
+                            <div class="bg-blur" style="background-image:url({% static 'img/front_background.jpg' %});"></div>
+                            <div class="bg-content">
+                                <div class="container">
+                                    <div class="loc-info text-right hidden-xs hidden-sm">
+                                        <h3 class="loc-info-title">Upcoming Trips - Leh, Ladakh</h3>
+                                        <p class="loc-info-weather"><span class="loc-info-weather-num">+25</span><i class="im im-cloudy loc-info-weather-icon"></i>
+                                        </p>
+                                        <ul class="loc-info-list">
+                                            <li><a href="#"><i class="fa fa-building-o"></i>7Days/ 6Nights</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-home"></i>Breakfast and Dinner</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-car"></i>2 Adventure Activities</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-bolt"></i>Current Price: 15000/-</a>
+                                            </li>
+                                        </ul><a class="btn btn-white btn-ghost mt10" href="#"><i class="fa fa-angle-right"></i> Book And Bid</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-holder full">
+                            <div class="bg-mask"></div>
+                            <div class="bg-blur" style="background-image:url({% static 'img/rajasthanbackground.jpg' %});"></div>
+                            <div class="bg-content">
+                                <div class="container">
+                                    <div class="loc-info text-right hidden-xs hidden-sm">
+                                        <h3 class="loc-info-title">Exlpore The Royal State</h3>
+                                        <p class="loc-info-weather"><span class="loc-info-weather-num">+31</span><i class="im im-cloudy loc-info-weather-icon"></i>
+                                        </p>
+                                        <ul class="loc-info-list">
+                                            <li><a href="#"><i class="fa fa-building-o"></i> 256 Hotels from $49/night</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-home"></i> 190 Rentals from $58/night</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-car"></i> 193 Car Offers from $52/day</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-bolt"></i> 170 Activities this Week</a>
+                                            </li>
+                                        </ul><a class="btn btn-white btn-ghost mt10" href="#"><i class="fa fa-angle-right"></i> Explore</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-holder full">
+                            <div class="bg-mask"></div>
+                            <div class="bg-blur" style="background-image:url({% static 'img/background_three.jpg' %});"></div>
+                            <div class="bg-content">
+                                <div class="container">
+                                    <div class="loc-info text-right hidden-xs hidden-sm">
+                                        <h3 class="loc-info-title">Spiti , Chandratal</h3>
+                                        <p class="loc-info-weather"><span class="loc-info-weather-num">-6</span><i class="im im-rain loc-info-weather-icon"></i>
+                                        </p>
+                                        <ul class="loc-info-list">
+                                            <li><a href="#"><i class="fa fa-building-o"></i> 206 Hotels from $53/night</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-home"></i> 281 Rentals from $54/night</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-car"></i> 290 Car Offers from $31/day</a>
+                                            </li>
+                                            <li><a href="#"><i class="fa fa-bolt"></i> 160 Activities this Week</a>
+                                            </li>
+                                        </ul><a class="btn btn-white btn-ghost mt10" href="#"><i class="fa fa-angle-right"></i> Explore</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-img hidden-lg" style="background-image:url(img/2048x1365.png);"></div>
+                    <div class="bg-mask hidden-lg"></div>
+                </div>
+            </div>
+
+            <!-- END TOP AREA  -->
+
+            <div class="gap gap-small"></div>
+
+
+            <h3 style="text-align: center;">Our Upcoming Group Trips</h3>
+            <div class="container">
+              <div class="row row-wrap">
+              {% for trips in upcoming_trips %}
+              <div class="col-md-4 mt-4">
+              <div class="card profile-card-5">
+                  <div class="card-img-block" style="margin-bottom: 0px;">
+                      <img class="card-img-top" src="{{trips.logo.url}}" alt="Card image cap" style="max-height: 220px; margin-bottom: 0px;">
+                      <p style="color: white; text-align: center; padding: 5px 5px 5px 5px; margin-bottom: 0px; font-family: 'Spicy Rice', cursive; font-size: 20px;"><i class="fa fa-clock-o" style="margin-right: 5px;"></i>  {{trips.start_date|date:"d M"}} - {{trips.end_date|date:"d M Y"}}</p>
+                  </div>
+                      <div class="card-body pt-0" style="text-align:center;">
+                      <p style="color: #2F2727; font-size: 15px; font-family: 'Roboto', sans-serif;"> <i class="fa fa-map-marker input-icon"></i> Departure: {{trips.departure}}  -  <b>{% if user.is_authenticated %} ₹ {{trips.discount_price}} <strike>₹ {{trips.price}}</strike> {% else %} ₹ {{trips.price}} {% endif %}</b></p>
+                      <p style="margin-top: 0px; font-size: 20px;">{{trips.title}}</p>
+
+                      <p class="card-text">
+                        <p class="">
+
+
+                        </p>
+                      <a href="{% url 'upcomingtripdetail' pk=trips.id %}" class="btn btn-primary btn-md" style="margin-right: 5px;">View Details<i class="fa fa-info-circle"></i></a>
+                      <a href="#" class="btn btn-primary btn-md" style="background-color:#345c70; border-color: #345c70;" data-toggle="modal" data-target="#myModal42{{trips.id}}">Send Enquiry<i class="fa fa-send-o"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <!-- ModalForm upcomingtripSendenquiry-->
+
+                <div class="modal fade" id="myModal42{{trips.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Enquire for {{trips.title}}
+
+
+                        </h4>
+                      </div>
+                      <div class="modal-body">
+                        <h4>Just fill in the following details and we'll get back to you.</h4>
+                        <form method= "POST" action="{% url 'upcomingtripquery' id=trips.id %}">
+                          {% csrf_token %}
+                            <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                <label>Full Name</label>
+                                <input class="form-control" name="user_upcomingtrip" placeholder="e.g. John Doe" type="text" required/>
+                            </div>
+                            <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                <label>Email</label>
+                                <input class="form-control" name="email_upcomingtrip" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                            </div>
+                            <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                <label>Phone Number</label>
+                                <input class="form-control" name="phone_upcomingtrip" placeholder="e.g. 88888885555-" type="text"/>
+                            </div>
+                            <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                <label>Number of People</label>
+                                <input class="form-control" name="numpeople_upcomingtrip" placeholder="e.g. 8" type="text"/>
+                            </div>
+
+                            <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                <label>Your Query</label>
+
+                                <textarea class="form-control" name ="query_activity" rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                </textarea>
+                            </div>
+                            <input class="btn btn-primary" type="submit" value="Submit Query" />
+                        </form>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- ModalForm -->
+            {% endfor %}
+
+          </div>
+
+
+
+            <h2 class="text-center mb20">Adventure Activities Around You</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+<button class="accordion" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1.5px; font-size: 22px;">Landbased Activities</button>
+<div class="panelhome2">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <div class="row row-wrap">
+  {% for activity in adventure_landbased %}
+  <div class="col-md-4">
+      <div class="thumb">
+          <header class="thumb-header">
+              <a href="{% url 'activitysinglepackage' pk1=activity.id %}" class="hover-img" >
+                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;"> {{activity.title|title}}</h4>
+                  <h5 class="hover-title-center">Explore More</h5>
+              </a>
+
+          </header>
+
+      </div>
+  </div>
+  {% endfor %}
+</div>
+  </div>
+
+<button class="accordion" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1px; font-size: 22px; background-color:#ed8323;">Waterbased Activities</button>
+<div class="panelhome2">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <div class="row row-wrap">
+  {% for activity in adventure_waterbased %}
+  <div class="col-md-4">
+      <div class="thumb">
+          <header class="thumb-header">
+              <a class="hover-img" href="{% url 'activitysinglepackage' pk1=activity.id %}">
+                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;"> {{activity.title|title}}</h4>
+                  <h5 class="hover-title-center">Explore All</h5>
+              </a>
+          </header>
+
+      </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+<button class="accordion" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1px; font-size: 22px;">Airbased Activities</button>
+<div class="panelhome2">
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+  <div class="row row-wrap">
+  {% for activity in adventure_airbased %}
+  <div class="col-md-4">
+      <div class="thumb">
+          <header class="thumb-header">
+              <a class="hover-img" href="{% url 'activitysinglepackage' pk1=activity.id %}">
+                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;">{{activity.title|title}}</h4>
+                  <h5 class="hover-title-center">Explore More</h5>
+              </a>
+          </header>
+
+      </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
+          <div class="gap gap-small"></div>
+
+<div class="row">
+  <div class="col-md-4">
+
+    <h3>Hot Selling Packages <small ><a href="#">view all</a></small></h3>
+<div class="container2" style="padding:20px; margin-top:0px;">
+    {% for trip in best_destinations %}
+  <div class="mySlides">
+
+    <div class="card profile-card-5" style="border:2px solid orange; border-color: #345c70;">
+        <div class="card-img-block" style="margin-bottom: 0px;">
+            <img class="card-img-top" src="{{trip.logo}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
+
+        </div>
+            <div class="card-body pt-0" style="text-align:center;">
+            <p style="margin-top: 0px; font-family: 'Anton', sans-serif; letter-spacing:1px; font-size: 20px; color:#345c70;">{{trip.title}} <small><a href="{% url 'searchdestinationpage' id=trip.destination.id %}">view all</a></small></p>
+            <p><small>Starting from </small> ₹ {{trip.price_for_one}}
+            </p>
+            <a href="#" class="btn btn-primary btn-sm" style="margin-right: 5px; margin-bottom:5px;" data-toggle="modal" data-target="#myModal3{{trip.id}}">Book Now<i class="fa fa-shopping-cart"></i></a>
+            <a href="#" class="btn btn-primary btn-sm" style="background-color:#345c70; border-color: #345c70;" data-toggle="modal" data-target="#myModal2{{trip.id}}">Send Enquiry<i class="fa fa-send-o"></i></a>
+          </div>
+    </div>
+  </div>
+
+      <!-- ModalForm Sendenquiry-->
+
+      <div class="modal fade" id="myModal2{{trip.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Enquire for {{trip.title|title}}
+              </h4>
+            </div>
+            <div class="modal-body">
+              <h4>Just fill in the following details and we'll get back to you.</h4>
+              <form method= "POST" action="{% url 'hotsellingquery' id=trip.id %}">
+                {% csrf_token %}
+                  <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                      <label>Full Name</label>
+                      <input class="form-control" name="user_hotsell" placeholder="e.g. John Doe" type="text" required/>
+                  </div>
+                  <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                      <label>Email</label>
+                      <input class="form-control" name="email_hotsell" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                  </div>
+                  <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                      <label>Phone Number</label>
+                      <input class="form-control" name="phone_hotsellbook" placeholder="e.g. 88888885555-" type="text"/>
+                  </div>
+
+
+                    <div class="input-daterange" data-date-format="MM d, D">
+                        <div class="row">
+                            <div class="col-xs-6">
+
+                                <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                    <label>Check In</label>
+                                    <input class="form-control" name="start" type="text" />
+                                </div>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                    <label>Check Out</label>
+                                    <input class="form-control" name="end" type="text" />
+                                </div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                          <label>Number of People</label>
+                          <input class="form-control" name="num_people_hotselling" placeholder="e.g. 8" type="text"/>
+                      </div>
+                  <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                      <label>Your Query</label>
+
+                      <textarea class="form-control" name ="query_hotsell"rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                      </textarea>
+                  </div>
+                  <input class="btn btn-primary" type="submit" value="Submit Query" />
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ModalForm -->
+
+
+      <!-- ModalForm booknow-->
+
+      <div class="modal fade" id="myModal3{{trip.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Submit Booking Query for {{trip.title|title}}
+
+
+              </h4>
+            </div>
+            <div class="modal-body">
+              <h4>Just fill in the following details and we'll get back to you.</h4>
+              <form method= "POST" action="{% url 'hotsellingbook' id=trip.id %}">
+                {% csrf_token %}
+                  <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                      <label>Full Name</label>
+                      <input class="form-control" name="user_hotsellbook" placeholder="e.g. John Doe" type="text" required/>
+                  </div>
+                  <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                      <label>Email</label>
+                      <input class="form-control" name="email_hotsellbook" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                  </div>
+                  <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                      <label>Phone Number</label>
+                      <input class="form-control" name="phone_hotsellbook" placeholder="e.g. 88888885555-" type="text" required/>
+                  </div>
+                  <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                      <label>Number of People</label>
+                      <input class="form-control" name="num_people_hotselling" placeholder="e.g. 8" type="text" required/>
+                  </div>
+                  <div class="input-daterange" data-date-format="MM d, D">
+                      <div class="row">
+                          <div class="col-xs-6">
+
+                              <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                  <label>Check In</label>
+                                  <input class="form-control" name="start" type="text" required/>
+                              </div>
+                          </div>
+
+                          <div class="col-xs-6">
+                              <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                  <label>Check Out</label>
+                                  <input class="form-control" name="end" type="text" required/>
+
+                          </div>
+                        </div>
+                      </div>
+
+                  </div>
+                  <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                      <label>Your Query</label>
+
+                      <textarea class="form-control" name ="query_hotsellbook"rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                      </textarea>
+                  </div>
+                  <input class="btn btn-primary" type="submit" value="Submit Query" />
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ModalFormbooknow -->
+  {% endfor %}
+
+  <a class="prev" onclick="plusSlides(-1)">❮</a>
+  <a class="next" onclick="plusSlides(1)">❯</a>
+
+  <div class="row">
+    {% for i in best_destinations %}
+    <div class="column">
+      <img class="demo cursor" src="{{i.logo}}"style="max-height: 55px; max-width:auto%; font-family: 'Anton', sans-serif;" onclick="currentSlide({{forloop.counter}})" alt="{{i.title}}">
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</div>
+
+<div class="col-md-4">
+
+  <h3>Adventure Packages<small><a href="{%  url 'adventureactivity_list' %}">view all</a></small></h3>
+  <div class="container2" style="padding:20px; margin-top:0px;">
+  {% for activity in adventure_package %}
+  <div class="mySlides2">
+
+    <div class="card profile-card-5" style="border:2px solid orange; border-color: #345c70;">
+      <div class="card-img-block" style="margin-bottom: 0px;">
+          <img class="card-img-top" src="{{activity.logo}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
+
+      </div>
+          <div class="card-body pt-0" style="text-align:center;">
+          <p style="margin-top: 0px; font-family: 'Anton', sans-serif; letter-spacing:1px; font-size: 20px; color:#345c70;">{{activity.title}} <small>
+            <a href="{% url 'activitysinglepackage' pk1=activity.associated_adventure.id %}">view all</a></small></p>
+          <p><small>Starting from</small> ₹ {{activity.price_per_person}}
+          </p>
+
+
+          <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal32{{activity.id}}" style="margin-right: 5px; margin-bottom: 5px;">Book Now<i class="fa fa-shopping-cart"></i></a>
+          <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal12{{activity.id}}" style="background-color:#345c70; border-color: #345c70;">Send Enquiry<i class="fa fa-send-o"></i></a>
+        </div>
+      </div>
+    </div>
+    <!-- ModalForm adventureSendenquiry-->
+
+    <div class="modal fade" id="myModal12{{activity.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Enquire for {{activity.title}}
+
+
+            </h4>
+          </div>
+          <div class="modal-body">
+            <h4>Just fill in the following details and we'll get back to you.</h4>
+            <form method= "POST" action="{% url 'adventurepackagequery' id=activity.id %}">
+              {% csrf_token %}
+                <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                    <label>Full Name</label>
+                    <input class="form-control" name="user_activity" placeholder="e.g. John Doe" type="text" required/>
+                </div>
+                <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                    <label>Email</label>
+                    <input class="form-control" name="email_activity" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                </div>
+                <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                    <label>Phone Number</label>
+                    <input class="form-control" name="phone_activity" placeholder="e.g. 88888885555-" type="text"/>
+                </div>
+                <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                    <label>Number of People</label>
+                    <input class="form-control" name="num_people_hotselling" placeholder="e.g. 8" type="text"/>
+                </div>
+                <div class="input-daterange" data-date-format="MM d, D">
+                    <div class="row">
+                        <div class="col-xs-6">
+
+                            <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                <label>Check In</label>
+                                <input class="form-control" name="start" type="text"/>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                <label>Check Out</label>
+                                <input class="form-control" name="end" type="text"/>
+
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+                <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                    <label>Your Query</label>
+
+                    <textarea class="form-control" name ="query_activity" rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                    </textarea>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Submit Query" />
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ModalForm -->
+    <!-- ModalForm adventurebookquery-->
+
+    <div class="modal fade" id="myModal32{{activity.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Booking query for {{activity.title}}
+
+
+            </h4>
+          </div>
+          <div class="modal-body">
+            <h4>Just fill in the following details and we'll get back to you.</h4>
+            <form method= "POST" action="{% url 'adventurepackagebook' id=activity.id %}">
+              {% csrf_token %}
+                <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                    <label>Full Name</label>
+                    <input class="form-control" name="user_activity" placeholder="e.g. John Doe" type="text" required/>
+                </div>
+                <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                    <label>Email</label>
+                    <input class="form-control" name="email_activity" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                </div>
+                <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                    <label>Phone Number</label>
+                    <input class="form-control" name="phone_activity" placeholder="e.g. 88888885555-" type="text"/>
+                </div>
+                <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"> X</i>
+                    <label>Number of People</label>
+                    <input class="form-control" name="num_people_hotselling" placeholder="e.g. 8" type="text" required/>
+                </div>
+                <div class="input-daterange" data-date-format="MM d, D">
+                    <div class="row">
+                        <div class="col-xs-6">
+
+                            <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                <label>Check In</label>
+                                <input class="form-control" name="start" type="text" required/>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                <label>Check Out</label>
+                                <input class="form-control" name="end" type="text" required/>
+
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+                <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                    <label>Your Query</label>
+
+                    <textarea class="form-control" name ="query_activity" rows="4" cols="50" placeholder="Ask anything and leave your tripping on us" required>
+                    </textarea>
+                </div>
+                <input class="btn btn-primary" type="submit" value="Submit Query" />
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ModalForm -->
+{% endfor %}
+<a class="prev" onclick="plusSlides1(-1)">❮</a>
+<a class="next" onclick="plusSlides1(1)">❯</a>
+
+<div class="row">
+  {% for i in adventure_package %}
+  <div class="column">
+    <img class="demo2 cursor" src="{{i.logo}}"style="max-height: 55px; max-width:auto;  font-family: 'Anton', sans-serif;" onclick="currentSlide1({{forloop.counter}})" alt="{{i.title}}">
+  </div>
+  {% endfor %}
+</div>
+
+
+</div>
+</div>
+
+<div class="col-md-4">
+    <h3>Adventure Rentals<small ><a href="#">view all</a></small></h3>
+    <br>
+    <ul class="booking-list">
+      {% for rental_item in rental_items %}
+        <li>
+            <div class="booking-item booking-item-small">
+                <div class="row">
+                    <div class="col-md-6 col-sm-5">
+                        <img src="{{rental_item.logo}}" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO luxury suite" style="max-height: 130px; width:auto;"/>
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                      <p style="font-size:17px;">{{rental_item.title}}</p>
+                      <span class="booking-item-price-from">from</span><span class="booking-item-price">₹ {{rental_item.price_per_day}}</span>
+                      <div class="gap gap-small"></div>
+                      <a href="#" class="btn btn-primary btn-sm" style="background: #ed8323; border-color:#ed8323;"><b>Book Now</b></a>
+                    </div>
+                </div>
+            </div>
+        </li>
+      {% endfor %}
+    </ul>
+
+</div>
+</div>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("demo");
+  var captionText = document.getElementById("caption");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+<script>
+var slideIndex = 1;
+showSlides2(slideIndex);
+
+function plusSlides1(n) {
+  showSlides2(slideIndex += n);
+}
+
+function currentSlide1(n) {
+  showSlides2(slideIndex = n);
+}
+
+function showSlides2(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides2");
+  var dots = document.getElementsByClassName("demo2");
+  var captionText = document.getElementById("caption2");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+
+        </div>
+
+            <div class="gap gap-small"></div>
+            <div class="bg-holder">
+                <div class="bg-mask"></div>
+                <div class="bg-parallax" style="background-image:url(https://i0.wp.com/mtrosedrinks.com/wp-content/uploads/2016/06/camping.jpg?fit=1000%2C605);"></div>
+                <div class="bg-content">
+                    <div class="container">
+                      <div class = "row">
+                        <div class="col-md-5">
+                          <img src="https://img.sunset02.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2016/09/main/camping-expert-north-cascade-range-washington-lightweight-tent-0514.jpg?itok=u5IHDgjl" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF living room"/>
+                        </div>
+                        <div class="col-md-7" style="background-color: #04040466;">
+                          <span style="text-align: center;">
+                        <div class="gap gap text-center text-white">
+                            <h2 class="text mb20" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1px;"> <i class="fa fa-building-o"></i> Howdy Stays </h2>
+                            <ul class="icon-list list-inline-block mb0 last-minute-rating">
+                                <li><i class="fa fa-star"></i>
+                                </li>
+                                <li><i class="fa fa-star"></i>
+                                </li>
+                                </li>
+                                <li><i class="fa fa-star"></i>
+                                </li>
+                                <li><i class="fa fa-star"></i>
+                                </li>
+                            </ul>
+                            <hr>
+                            <h6 class="last-minute-title" style="font-family: 'Alex Brush', cursive;">Hatu Peak, Narkhanda</h6>
+                            <hr>
+                            <p class="last-minute-date" style="font-family: 'Open Sans', sans-serif;">We bring here the all new experience of staying at Adventure Destinations near Shimla at an altitude of 3500 metres above sea level at our own camp site.We bring here the all new experience of staying at Adventure Destinations near Shimla at an altitude of 3500 metres above sea level at our own camp site.We bring here the all new experience of staying at Adventure Destinations near Shimla at an altitude of 3500 metres above sea level at our own camp site.</p>
+                            <br>
+                            <p class="last-minute-date"><b>Rs.600 </b> / person</p>
+                            <br>
+                            <a class="btn btn-lg btn-white btn-ghost" href="#">Book Now <i class="fa fa-angle-right"></i></a>
+                        </div>
+                      </span>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-holder">
+                <div class="bg-mask"></div>
+                <div class="bg-blur" style="background-image:url{% static 'img/1280x848.png' %};"></div>
+                <div class="bg-content">
+                    <div class="container">
+                        <div class="gap"></div>
+                        <h1 class="text-center text-white mb20">Recent Reviews</h1>
+                        <div class="row row-wrap">
+                            <div class="col-md-4">
+                                <!-- START TESTIMONIAL -->
+                                <div class="testimonial text-white">
+                                    <div class="testimonial-inner">
+                                        <blockquote>
+                                            <p>For my 1st trek it was an awesome experience which I won’t forget my entire life. Mr.Anshul was a good leader. He guided us well. He was firm about the rules and at the same time, very patient and friendly. The food quality was good which really amazed me.</p>
+                                        </blockquote>
+                                    </div>
+                                    <div class="testimonial-author">
+                                        <img src="{% static 'img/profile_photo.jpg' %}" style="max-width: 40px; height: auto;" alt="Image Alternative text" title="Sevenly Shirts - June 2012  2" />
+                                        <p class="testimonial-author-name">Rahul Gautam</p><cite>on <a class="text-udl" href="#">Mcleodganj</a></cite>
+                                    </div>
+                                </div>
+                                <!-- END TESTIMONIAL -->
+                            </div>
+                            <div class="col-md-4">
+                                <!-- START TESTIMONIAL -->
+                                <div class="testimonial text-white">
+                                    <div class="testimonial-inner">
+                                        <blockquote>
+                                            <p>It was a phenomenal experience. We were three friends out there and locations and ambience arranged was such awesome. Thanks a lot Purushottam🤗</p>
+                                        </blockquote>
+                                    </div>
+                                    <div class="testimonial-author">
+                                        <img src="{% static 'img/profile_photo.jpg' %}" style="max-width: 40px; height: auto;" alt="Image Alternative text" title="Flare lens flare" />
+                                        <p class="testimonial-author-name">Cheryl Gustin</p><cite>on <a class="text-udl" href="#">Wellington</a> hotel in New York</cite>
+                                    </div>
+                                </div>
+                                <!-- END TESTIMONIAL -->
+                            </div>
+                            <div class="col-md-4">
+                                <!-- START TESTIMONIAL -->
+                                <div class="testimonial text-white">
+                                    <div class="testimonial-inner">
+                                        <blockquote>
+                                            <p>For my 1st trek it was an awesome experience which I won’t forget my entire life. Mr.Anshul was a good leader. He guided us well. He was firm about the rules and at the same time, very patient and friendly. The food quality was good which really amazed me.</p>
+                                        </blockquote>
+                                    </div>
+                                    <div class="testimonial-author">
+                                        <img src="{% static 'img/profile_photo.jpg'  %}" alt="Image Alternative text" title="Afro" style="max-width: 40px; height: auto;"/>
+                                        <p class="testimonial-author-name">Shilpa Panwar</p><cite>on <a class="text-udl" href="#">Nag Tibba</a> Trek</cite>
+                                    </div>
+                                </div>
+                                <!-- END TESTIMONIAL -->
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+              <div class= "gap gap-small"></div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="row row-wrap" data-gutter="120">
+                            <div class="col-md-6">
+                                <div class="mb30 thumb"><i class="fa fa-dollar box-icon-left round box-icon-big box-icon-border animate-icon-top-to-bottom"></i>
+                                    <div class="thumb-caption">
+                                        <h4 class="thumb-title">Activities To Do</h4>
+                                        <p class="thumb-desc">Habitant pulvinar nostra himenaeos pulvinar facilisi dui tincidunt luctus condimentum porttitor eros metus quisque scelerisque sollicitudin habitant</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb30 thumb"><i class="fa fa-briefcase box-icon-left round box-icon-big box-icon-border animate-icon-top-to-bottom"></i>
+                                    <div class="thumb-caption">
+                                        <h4 class="thumb-title">Travel Free</h4>
+                                        <p class="thumb-desc">Reach <u>out to us</u> with a group of 15 or more people whom you will lead and travel with to your own destination choice.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb30 thumb"><i class="fa fa-thumbs-o-up box-icon-left round box-icon-big box-icon-border animate-icon-top-to-bottom"></i>
+                                    <div class="thumb-caption">
+                                        <h4 class="thumb-title">Best Destinations</h4>
+                                        <p class="thumb-desc">Morbi vel nec sed imperdiet accumsan ultricies aliquet suspendisse placerat feugiat tellus platea fermentum eros in commodo</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb30 thumb"><i class="fa fa-send box-icon-left round box-icon-big box-icon-border animate-icon-top-to-bottom"></i>
+                                    <div class="thumb-caption">
+                                        <h4 class="thumb-title">Nature's Exlporer Hub</h4>
+                                        <p class="thumb-desc">Quisque porta dolor scelerisque gravida commodo in accumsan ullamcorper laoreet nam litora senectus diam sapien hac turpis</p>
+                                    </div>
+
+</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+  <div class="gap gap-small"></div>
+
+
+            <footer id="main-footer">
+                <div class="container">
+                    <div class="row row-wrap">
+                        <div class="col-md-3">
+                            <a class="logo" href="index.html">
+                                <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
+                            </a>
+                            <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
+                            <ul class="list list-horizontal list-space">
+                                <li>
+                                    <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                                </li>
+                                <li>
+                                    <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-3">
+                            <h4>Newsletter</h4>
+                            <form>
+                                <label>Enter your E-mail Address</label>
+                                <input type="text" class="form-control">
+                                <p class="mt5"><small>*We Never Send Spam</small>
+                                </p>
+                                <input type="submit" class="btn btn-primary" value="Subscribe">
+                            </form>
+                        </div>
+                        <div class="col-md-2">
+                            <ul class="list list-footer">
+                                <li><a href="#">About US</a>
+                                </li>
+                                <li><a href="#">Press Centre</a>
+                                </li>
+                                <li><a href="#">Best Price Guarantee</a>
+                                </li>
+                                <li><a href="#">Travel News</a>
+                                </li>
+                                <li><a href="#">Jobs</a>
+                                </li>
+                                <li><a href="#">Privacy Policy</a>
+                                </li>
+                                <li><a href="#">Terms of Use</a>
+                                </li>
+                                <li><a href="#">Feedback</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Have Questions?</h4>
+                            <h4 class="text-color">+1-202-555-0173</h4>
+                            <h4><a href="#" class="text-color">support@traveler.com</a></h4>
+                            <p>24/7 Dedicated Customer Support</p>
+                        </div>
+
+                    </div>
+                </div>
+            </footer>
+
+
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/slimmenu.js' %}"></script>
+        <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+        <script src="{% static 'js/bootstrap-timepicker.js' %}"></script>
+        <script src="{% static 'js/nicescroll.js' %}"></script>
+        <script src="{% static 'js/dropit.js' %}"></script>
+        <script src="{% static 'js/ionrangeslider.js' %}"></script>
+        <script src="{% static 'js/icheck.js' %}"></script>
+        <script src="{% static 'js/fotorama.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="{% static 'js/typeahead.js' %}"></script>
+        <script src="{% static 'js/card-payment.js' %}"></script>
+        <script src="{% static 'js/magnific.js' %}"></script>
+        <script src="{% static 'js/owl-carousel.js' %}"></script>
+        <script src="{% static 'js/fitvids.js' %}"></script>
+        <script src="{% static 'js/tweet.js' %}"></script>
+        <script src="{% static 'js/countdown.js' %}"></script>
+        <script src="{% static 'js/gridrotator.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+
+{% endblock %}

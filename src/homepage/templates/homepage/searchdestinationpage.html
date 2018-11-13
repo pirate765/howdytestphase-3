@@ -1,0 +1,266 @@
+{% extends 'base2.html' %}
+{% load staticfiles %}
+{% block body %}
+
+
+        <div class="container" style="background-color: white;">
+          {% if messages %}
+          <div class="gap gap-small"></div>
+    <div class="alert alert-success alert-dismissible">
+          <ul class="messages">
+              {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+          </ul>
+        </div>
+          <div class="gap gap-small"></div>
+          {% endif %}
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="#">Destinations</a>
+                </li>
+                <li class="active"><a href="#">{{destinationtitle|title}}</a>
+                </li>
+
+            </ul>
+
+
+            <form method = "GET" action = "{% url 'searchdestinationlist' %}" autocomplete="off">
+                            {% csrf_token %}
+                            <div class="col-md-9">
+                            <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+
+                                <label for="searchdestination" style="font-size: 20px;">Type Destination and explore.</label>
+                                <input  type="text" id="searchdestination" name = "searchdestination" class="form-control" value = "{{request.GET.searchdestination}}"  placeholder="Type in Destination"  style="background-color:#ffffff;" required/>
+                                <ul id = "search-results">
+                                </ul>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <br>
+                            <button class="btn btn-primary btn-lg" type="submit">Go Tripping</button>
+                          </div>
+            </form>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="nav-drop booking-sort">
+                        <h5 class="booking-sort-title"><a href="#">Sort: Aviability<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
+                        <ul class="nav-drop-menu">
+                            <li><a href="#">Price (low to high)</a>
+                            </li>
+                            <li><a href="#">Price (hight to low)</a>
+                            </li>
+                            <li><a href="#">Ranking</a>
+                            </li>
+                            <li><a href="#">Distance</a>
+                            </li>
+                            <li><a href="#">Number of Reviews</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <h4 class="booking-title" style="margin-bottom: 3px;">{{ count }} package found for your destination</h4>
+                    <ul class="booking-list">
+                      {% for package in destination_search %}
+                        <li>
+                            <div class="card" style="padding: 4px; border: 1px solid #e6e5e5;">
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="booking-item-img-wrap">
+                                            <img src={{package.logo}} alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" />
+                                            <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>28</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <br>
+                                        <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif; margin-top: 5px;">{{package.title}}  <b>({{package.duration}} Days/Nights)</b></h5>
+                                        <p><span class ="booking-item-feature-title" style= "font-family: 'Open Sans', sans-serif; color: #000000d6;">{{package.head_description}}</span></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <br>
+                                      <span class="booking-item-price-from" style="margin-top:10px;">from</span><span class="booking-item-price">Rs.{{package.price_for_one}}</span>
+                                    <a href="{% url 'destinationdetails' package.id %}"> Hurry  <span class="btn btn-primary">Book Now</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                      </ul>
+              <div class="row">
+                <div class="col-md-12 col-sm-12">
+                {% if activity_related %}
+                  <h3 style="margin-left: 5px;">Things To Do near {{destinationtitle}}</h3>
+                  <ul class="booking-list">
+
+
+                      {% for items in activity_related %}
+                      <div class="col-md-4">
+                        <li>
+                            <div class="card" style="padding: 4px;">
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <div class="booking-item-img-wrap">
+                                            <img src="{{items.logo}}" alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" style="max-height: 220px;"/>
+                                            <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>28</div>
+                                        </div>
+                                    </div>
+                                  </div>
+
+                                <div class="row" style="margin-top: 5px;">
+                                    <div class="col-md-9">
+
+                                        <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif; ">{{items.title}}  <b>({{items.duration}} Days)</b></h5>
+
+
+                                    </div>
+                                    <div class="col-md-3">
+                                      <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif;">Rs.{{items.price_per_person}}</h5>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 3px;">
+                                  <div class="col-sm-8">
+                                    <p class="booking-item-address"></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
+                                  </div>
+
+                                    <div class="col-md-4">
+                                      <a href="">  <span class="btn btn-primary">Book Now</span></a>
+                                    </div>
+                                </div>
+                             </div>
+                           </li>
+                        </div>
+                      {% endfor %}
+                    </ul>
+                    {% endif %}
+                  </div>
+                </div>
+
+                {% if destinationtitle %}
+                <h3 style="margin-left: 5px;">Articles about {{destinationtitle}}</h3>
+                {% endif %}
+                {% for single_article in article_destination %}
+
+                  <div class="col-md-4">
+                    <div class="thumbnail" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-width: 0px; text-align:center;">
+                      <div class="thumb">
+                          <header class="thumb-header">
+                              <a class="hover-img" href="{% url 'postdetail' single_article.id %}">
+                                  <div class="imagepersonal" style="background-image:url('{{single_article.logo}}');"></div>
+                                  <h5 class="hover-title-bottom-left hover-hold" style= "background-color: #963c5d;">{{single_article.title}}</h5>
+                                  <h5 class="hover-title-center" style= "background-color: #963c5d;">Read More...</h5>
+                              </a>
+                          </header>
+                          <div class="thumb-caption">
+
+                              <h4 class="thumb-title" style="font-family: 'Roboto', sans-serif; text-align: center;"><a class="text-darken" href="#">{{single_article.title}}</a></h4>
+
+                              <p class="thumb-desc">{{single_article.head_description}}</p>
+
+                          </div>
+                      </div>
+
+                  </div>
+                </div>
+                  {% endfor %}
+            </div>
+            <div class="gap"></div>
+        </div>
+
+
+
+        <footer id="main-footer">
+            <div class="container">
+                <div class="row row-wrap">
+                    <div class="col-md-3">
+                        <a class="logo" href="index.html">
+                            <img src="img/logo-invert.png" alt="Image Alternative text" title="Image Title" />
+                        </a>
+                        <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
+                        <ul class="list list-horizontal list-space">
+                            <li>
+                                <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h4>Newsletter</h4>
+                        <form>
+                            <label>Enter your E-mail Address</label>
+                            <input type="text" class="form-control">
+                            <p class="mt5"><small>*We Never Send Spam</small>
+                            </p>
+                            <input type="submit" class="btn btn-primary" value="Subscribe">
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="list list-footer">
+                            <li><a href="#">About US</a>
+                            </li>
+                            <li><a href="#">Press Centre</a>
+                            </li>
+                            <li><a href="#">Best Price Guarantee</a>
+                            </li>
+                            <li><a href="#">Travel News</a>
+                            </li>
+                            <li><a href="#">Jobs</a>
+                            </li>
+                            <li><a href="#">Privacy Policy</a>
+                            </li>
+                            <li><a href="#">Terms of Use</a>
+                            </li>
+                            <li><a href="#">Feedback</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Have Questions?</h4>
+                        <h4 class="text-color">+1-202-555-0173</h4>
+                        <h4><a href="#" class="text-color">support@traveler.com</a></h4>
+                        <p>24/7 Dedicated Customer Support</p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/slimmenu.js' %}"></script>
+        <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+        <script src="{% static 'js/bootstrap-timepicker.js' %}"></script>
+        <script src="{% static 'js/nicescroll.js' %}"></script>
+        <script src="{% static 'js/dropit.js' %}"></script>
+        <script src="{% static 'js/ionrangeslider.js' %}"></script>
+        <script src="{% static 'js/icheck.js' %}"></script>
+        <script src="{% static 'js/fotorama.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="{% static 'js/typeahead.js' %}"></script>
+        <script src="{% static 'js/card-payment.js' %}"></script>
+        <script src="{% static 'js/magnific.js' %}"></script>
+        <script src="{% static 'js/owl-carousel.js' %}"></script>
+        <script src="{% static 'js/fitvids.js' %}"></script>
+        <script src="{% static 'js/tweet.js' %}"></script>
+        <script src="{% static 'js/countdown.js' %}"></script>
+        <script src="{% static 'js/gridrotator.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+    </div>
+
+
+{% endblock %}

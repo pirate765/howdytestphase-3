@@ -1,0 +1,88 @@
+{% load staticfiles %}
+<div id="fb-root"></div>
+<script>
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+<!-- /FACEBOOK WIDGET -->
+
+<div class="global-wrap">
+    <header id="main-header" style="margin-bottom: 106px;">
+      <nav class="navbar navbar-default navbar-fixed-top" style="box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-xs-3">
+                        <a class="logo" href="{% url 'home' %}">
+                            <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title"  style="max-width:100%; height:auto; text-align:center;"/>
+                        </a>
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-5 col-xs-7 col-xs-offset-2">
+                        <div class="top-user-area clearfix">
+                            <ul class="top-user-area-list list list-horizontal list-border">
+                                <li class="top-user-area-avatar">
+                                    <a href="{% url 'login_page' %}">
+                                        <img class="origin round" src="{%static 'img/40x40.png' %}" alt="Image Alternative text" title="AMaze" />Hi, John</a>
+                                </li>
+                                <li><a href="#">Sign Out</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="nav nav-fixed" >
+                <ul class="slimmenu" id="slimmenu">
+                    <li class="active"><a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li><a href="{% url 'traveldiaries' %}">Travel Diaries</a>
+                    </li>
+                    <li><a href="{% url 'gallery' %}">Gallery</a>
+                    </li>
+                    <li><a href="{% url 'destination' %}">Destinations</a>
+                    <ul>
+                      <li><a href="{% url 'adventureactivity_list' %}">Adventure Activities </a>
+                      </li>
+                      <li><a href="success-payment.html">Goa Semester Party Break</a>
+                      </li>
+                      <li><a href="user-profile.html">Kasol Kheerganga Trek</a>
+                          <ul>
+                              <li><a href="user-profile.html">Kasol Kheerganga</a>
+                              </li>
+                              <li><a href="user-profile-photos.html">Photos</a>
+                              </li>
+                          </ul>
+                        </li>
+                        <li><a href="user-profile.html">McLeodganj Triund Trek</a>
+                        </li>
+                        <li><a href="user-profile.html">Rishikesh Adventures</a>
+                          <ul>
+                              <li><a href="user-profile.html">Kasol Kheerganga</a>
+                              </li>
+                              <li><a href="user-profile-photos.html">Photos</a>
+                              </li>
+                          </ul>
+                        </li>
+                        </ul>
+                        </li>
+                        <li><a href="{% url 'adventureactivity_list' %}">AdventureS</a>
+
+                    </li>
+
+                    <li><a href="{% url 'travelfree' %}" style="color: white; background-color: #ed8323;">About Us </a></li>
+                </ul>
+            </div>
+        </div>
+          </nav>
+    </header>
+</div>

@@ -1,0 +1,592 @@
+{% extends 'base5.html' %}
+{% load staticfiles %}
+{% block body %}
+
+        <div class="container" >
+                <div class="row">
+
+                    <div class="col-md-12">
+                      {% if messages %}
+
+                <div class="alert alert-success alert-dismissible">
+                      <ul class="messages">
+                          {% for message in messages %}
+                          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                          {% endfor %}
+                      </ul>
+                    </div>
+                      <div class="gap gap-small"></div>
+                      {% endif %}
+
+
+                    </div>
+
+                </div>
+                <form method = "GET" action = "{% url 'searchactivitylist' %}" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="col-md-9">
+                                <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
+
+                                    <label for="searchactivity" style="font-size: 20px;">Type Adventure and explore.</label>
+                                    <input  type="text" id="searchactivity" name = "searchactivity" class="form-control" value = "{{request.GET.searchactivity}}"  placeholder="Type in activity or adventure of your interest"  style="background-color:#ffffff;" required/>
+                                    <ul id="search-resultsactivity">
+                                    </ul>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <br>
+                                <button class="btn btn-primary btn-lg" type="submit">Go Thrilling</button>
+                              </div>
+                </form>
+                <div class="gap gap-small"></div>
+            <div class="row">
+              <div class="col-md-12">
+                {% for city in result %}
+                {% if forloop.first %}<div class="row">{% endif %}
+                <div class="col-md-3">
+                    <div class="thumb">
+                        <header class="thumb-header" >
+                            <a class="hover-img curved" href="#" >
+                                <img src="{{city.logo}}" alt="Image Alternative text" title="Find More Adventures in {{city.destination}}" style="height: 200px; width:auto;" />
+                                <h5 class="hover-title-bottom-left hover-hold">{{city.destination}}</h5>
+                                <i class="fa fa-plus box-icon-white box-icon-border hover-icon-bottom-right round" data-toggle="modal" data-target="#myModal{{city.destination.id}}"></i>
+                            </a>
+                        </header>
+                        <div class="thumb-caption">
+
+                            <p class="thumb-desc">{{city.destination.about_destination}}
+
+                            </p>
+                        </div>
+                    </div>
+                    <p>
+
+                      <!-- Button trigger modal -->
+
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="myModal{{city.destination.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                              <h4 class="modal-title" id="myModalLabel">{{city.destination}},
+
+                                  {% for i in city.destination.associated_adventures.all %}
+                                    <h4>{{i}}</h4>
+                                  {% endfor %}
+                                {{city.destination.about_destination}}
+
+
+                              </h4>
+                            </div>
+                            <div class="modal-body">
+
+                              <p>
+                                <h4 class="modal-title"> Other Activities to Explore in {{city.destination}}</h4>
+                                  <ul class="booking-list">
+                                  {% for activity in city.destination.destinations.all %}
+                                    <li style="border: 1.2px solid #ed8323; border-radius: 5px; padding: 7px 7px;">
+
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="booking-item-img-wrap">
+                                                        <img src="{{activity.logo}}" alt="Image Alternative text" title="{{activity.title}} - {{activity.destination}}"/>
+                                                        <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>28</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="booking-item-rating">
+                                                        <ul class="icon-group booking-item-rating-stars">
+                                                          {% for i in "x"|rjust:activity.level_of_difficulty_on_5 %}
+                                                            <li><i class="fa fa-star"></i>
+                                                            </li>
+                                                          {% endfor %}
+
+                                                            <li><i class="fa fa-star-o"></i>
+                                                            </li>
+
+                                                        </ul><span class="booking-item-rating-number"><b >{{activity.level_of_difficulty_on_5}}</b> of 5</span><small>(1199 reviews)</small>
+                                                    </div>
+
+                                                    <h5 class="booking-item-title">{{activity.title}} </h5>
+                                                    <p class="booking-item-address">Location: <b>{{activity.destination}}</b></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
+
+                                                    <span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 24px;">Rs.{{activity.price_per_person}}</span><br><span class="btn btn-primary" data-toggle="modal" data-target="#myModal3{{activity.id}}" style="margin-bottom: 4px;">Book Now<i class="fa fa-shopping-cart"></i></span>
+                                                    <span class="btn btn-primary" data-toggle="modal" data-target="#myModal23{{activity.id}}" style="background-color:#70209e; border-color:#70209e; ">Send Enquiry<i class="fa fa-send-o"></i></span>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                  <div class="panel-group" id="accordion2{{forloop.counter}}">
+                                                    <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion2{{forloop.counter}}" href="#collapse-11{{forloop.counter}}" style="background-color:#776e66; color: white; text-decoration: bold;">Required Gear</a></h4>
+                                                </div>
+                                                <div class="panel-collapse collapse in" id="collapse-11{{forloop.counter}}">
+                                                    <div class="panel-body">There is much to bring along the hardware. Spirit is needed.</div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default" style="margin: 3px 3px 3px 3px;">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion2{{forloop.counter}}" href="#collapse-12{{forloop.counter}}"><i class="fa fa-sort-alpha-desc"></i>
+                                                      Description:</a></h4>
+                                                </div>
+                                                <div class="panel-collapse collapse" id="collapse-12{{forloop.counter}}">
+                                                    <div class="panel-body">{{activity.short_description|truncatewords:30}}</div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion2{{forloop.counter}}" href="#collapse-13{{forloop.counter}}" ><i class="fa fa-pencil-square"></i> Must Read..</a></h4>
+                                                </div>
+                                                <div class="panel-collapse collapse" id="collapse-13{{forloop.counter}}">
+                                                    <div class="panel-body">{{activity.notes_for_activity|safe|truncatewords:30}}</div>
+                                                </div>
+                                            </div>
+
+                                          </div>
+
+                                              </div>
+
+                                            </div>
+
+
+                                    </li>
+                                    <!-- ModalForm Sendenquiry-->
+
+                                    <div class="modal fade" id="myModal23{{activity.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" id="myModalLabel">Enquire for {{activity.title|title}}
+
+
+                                            </h4>
+                                          </div>
+                                          <div class="modal-body">
+                                            <h4>Just fill in the following details and we'll get back to you.</h4>
+                                            <form method= "POST" action="{% url 'adventurepackagequery' id=activity.id %}">
+                                              {% csrf_token %}
+                                                <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                                    <label>Full Name</label>
+                                                    <input class="form-control" name="user_activity" placeholder="e.g. John Doe" type="text" required/>
+                                                </div>
+                                                <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                                    <label>Email</label>
+                                                    <input class="form-control" name="email_activity" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                                                </div>
+                                                <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                                    <label>Phone Number</label>
+                                                    <input class="form-control" name="phone_activity" placeholder="e.g. 88888885555-" type="text"/>
+                                                </div>
+                                                <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                                    <label>Your Query</label>
+
+                                                    <textarea class="form-control" name ="query_activity" rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                                    </textarea>
+                                                </div>
+                                                <input class="btn btn-primary" type="submit" value="Submit Query" />
+                                            </form>
+
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- ModalForm -->
+
+
+                                                                        <!-- ModalForm booknow-->
+
+                                                                        <div class="modal fade" id="myModal32{{activity.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                          <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                              <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                                                <h4 class="modal-title" id="myModalLabel">Submit Booking Query for {{activity.title|title}}
+
+
+                                                                                </h4>
+                                                                              </div>
+                                                                              <div class="modal-body">
+                                                                                <h4>Just fill in the following details and we'll get back to you.</h4>
+                                                                                <form method= "POST" action="{% url 'adventurepackagebook' id=activity.id %}">
+                                                                                  {% csrf_token %}
+                                                                                    <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                                                                        <label>Full Name</label>
+                                                                                        <input class="form-control" name="user_hotsellbook" placeholder="e.g. John Doe" type="text" required/>
+                                                                                    </div>
+                                                                                    <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                                                                        <label>Email</label>
+                                                                                        <input class="form-control" name="email_hotsellbook" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                                                                                    </div>
+                                                                                    <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                                                                        <label>Phone Number</label>
+                                                                                        <input class="form-control" name="phone_hotsellbook" placeholder="e.g. 88888885555-" type="text" required/>
+                                                                                    </div>
+                                                                                    <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                                                                        <label>Your Query</label>
+
+                                                                                        <textarea class="form-control" name ="query_hotsellbook"rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                                                                        </textarea>
+                                                                                    </div>
+                                                                                    <input class="btn btn-primary" type="submit" value="Submit Query" />
+                                                                                </form>
+
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                        <!-- ModalFormbooknow -->
+                                    {% endfor %}
+                                </ul>
+                              </p>
+
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </p>
+                </div>
+                {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+                {% if forloop.last %}</div>{% endif %}
+                {% endfor %}
+              </div>
+            </div>
+
+
+
+            <div class="gap gap-small"></div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="nav-drop booking-sort">
+                        <h5 class="booking-sort-title"><a href="#">Sort: Aviability<i class="fa fa-angle-down"></i><i class="fa fa-angle-up"></i></a></h5>
+                        <ul class="nav-drop-menu">
+                            <li><a href="#">Price (low to high)</a>
+                            </li>
+                            <li><a href="#">Price (hight to low)</a>
+                            </li>
+                            <li><a href="#">Ranking</a>
+                            </li>
+                            <li><a href="#">Distance</a>
+                            </li>
+                            <li><a href="#">Number of Reviews</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="booking-list">
+                      {% for activity in result %}
+                        <li style="border: 1.2px solid #ed8323; border-radius: 5px; padding: 7px 7px;">
+
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="booking-item-img-wrap">
+                                            <img src="{{activity.logo}}" alt="Image Alternative text" title="{{activity.title}} - {{activity.destination}}"/>
+                                            <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>28</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="booking-item-rating">
+                                            <ul class="icon-group booking-item-rating-stars">
+                                              {% for i in "x"|rjust:activity.level_of_difficulty_on_5 %}
+                                                <li><i class="fa fa-star"></i>
+                                                </li>
+                                              {% endfor %}
+
+                                                <li><i class="fa fa-star-o"></i>
+                                                </li>
+
+                                            </ul><span class="booking-item-rating-number"><b >{{activity.level_of_difficulty_on_5}}</b> of 5</span><small>(1199 reviews)</small>
+                                        </div>
+
+                                        <h5 class="booking-item-title">{{activity.title}} </h5>
+                                        <p class="booking-item-address">Location: <b>{{activity.destination}}</b></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
+
+                                        <span class="booking-item-price-from">from</span><span class="booking-item-price"  style="font-size: 24px;">Rs.{{activity.price_per_person}}</span><br><span class="btn btn-primary" data-toggle="modal" data-target="#myModal3{{activity.id}}" style="margin-bottom: 4px;">Book Now<i class="fa fa-shopping-cart"></i></span>
+                                        <span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#70209e; border-color:#70209e;" >Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary">
+                                    </div>
+
+                                    <div class="col-md-4">
+                                      <div class="panel-group" id="accordion{{forloop.counter}}">
+                                        <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-1{{forloop.counter}}" style="background-color:#776e66; color: white; text-decoration: bold;">Required Gear</a></h4>
+                                    </div>
+                                    <div class="panel-collapse collapse in" id="collapse-1{{forloop.counter}}">
+                                        <div class="panel-body">There is much to bring along the hardware. Spirit is needed.</div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default" style="margin: 3px 3px 3px 3px;">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-2{{forloop.counter}}"><i class="fa fa-sort-alpha-desc"></i>
+                                          Description:</a></h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapse-2{{forloop.counter}}">
+                                        <div class="panel-body">{{activity.short_description}}</div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-3{{forloop.counter}}" ><i class="fa fa-pencil-square"></i> Must Read..</a></h4>
+                                    </div>
+                                    <div class="panel-collapse collapse" id="collapse-3{{forloop.counter}}">
+                                        <div class="panel-body">{{activity.notes_for_activity|safe}}</div>
+                                    </div>
+                                </div>
+
+                              </div>
+
+                                  </div>
+
+                                </div>
+
+                        </li>
+
+
+                        <!-- ModalForm Sendenquiry-->
+
+                        <div class="modal fade" id="myModal2{{activity.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Enquire for {{activity.title|title}}
+
+
+                                </h4>
+                              </div>
+                              <div class="modal-body">
+                                <h4>Just fill in the following details and we'll get back to you.</h4>
+                                <form method= "POST" action="{% url 'adventurepackagequery' id=activity.id %}">
+                                  {% csrf_token %}
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                        <label>Full Name</label>
+                                        <input class="form-control" name="user_activity" placeholder="e.g. John Doe" type="text" required/>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                        <label>Email</label>
+                                        <input class="form-control" name="email_activity" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                        <label>Phone Number</label>
+                                        <input class="form-control" name="phone_activity" placeholder="e.g. 88888885555-" type="text"/>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                        <label>Your Query</label>
+
+                                        <textarea class="form-control" name ="query_activity" rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                        </textarea>
+                                    </div>
+                                    <input class="btn btn-primary" type="submit" value="Submit Query" />
+                                </form>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- ModalForm -->
+                        <!-- ModalForm booknow-->
+
+                        <div class="modal fade" id="myModal3{{activity.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Submit Booking Query for {{activity.title|title}}
+
+
+                                </h4>
+                              </div>
+                              <div class="modal-body">
+                                <h4>Just fill in the following details and we'll get back to you.</h4>
+                                <form method= "POST" action="{% url 'hotsellingbook' id=activity.id %}">
+                                  {% csrf_token %}
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                        <label>Full Name</label>
+                                        <input class="form-control" name="user_hotsellbook" placeholder="e.g. John Doe" type="text" required/>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                        <label>Email</label>
+                                        <input class="form-control" name="email_hotsellbook" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                        <label>Phone Number</label>
+                                        <input class="form-control" name="phone_hotsellbook" placeholder="e.g. 88888885555-" type="text" required/>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                        <label>Your Query</label>
+
+                                        <textarea class="form-control" name ="query_hotsellbook"rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                        </textarea>
+                                    </div>
+                                    <input class="btn btn-primary" type="submit" value="Submit Query" />
+                                </form>
+
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- ModalFormbooknow -->
+                        {% endfor %}
+                    </ul>
+                    <h3 class="mb20">Rent Adventure related items</h3>
+                    <div class="row row-wrap">
+                      {% for rent_item in rentalitem %}
+                        <div class="col-md-3">
+                            <div class="thumb">
+                                <header class="thumb-header">
+                                    <a href="#">
+                                        <img src="{{rent_item.logo}}" alt="Image Alternative text" title="Image Title" style="height: 150px; width: auto;"/>
+                                    </a>
+                                </header>
+                                <div class="thumb-caption">
+                                    <h5 class="thumb-title"><a class="text-darken" href="#">{{rent_item.title}}</a></h5><small>Crossover</small>
+
+                                    <h4>Rs.{{rent_item.price_per_day}}<small> /day</small>
+                                    </h4>
+                                    <span class="btn btn-primary">Add To Cart</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                      </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><small>521 hotels found in New York. &nbsp;&nbsp;Showing 1 – 15</small>
+                            </p>
+                            <ul class="pagination">
+                                <li class="active"><a href="#">1</a>
+                                </li>
+                                <li><a href="#">2</a>
+                                </li>
+                                <li><a href="#">3</a>
+                                </li>
+                                <li><a href="#">4</a>
+                                </li>
+                                <li><a href="#">5</a>
+                                </li>
+                                <li><a href="#">6</a>
+                                </li>
+                                <li><a href="#">7</a>
+                                </li>
+                                <li class="dots">...</li>
+                                <li><a href="#">43</a>
+                                </li>
+                                <li class="next"><a href="#">Next Page</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <p>Not what you're looking for? <a class="popup-text" href="#search-dialog" data-effect="mfp-zoom-out">Try your search again</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gap"></div>
+        </div>
+
+
+
+        <footer id="main-footer">
+            <div class="container">
+                <div class="row row-wrap">
+                    <div class="col-md-3">
+                        <a class="logo" href="index.html">
+                            <img src="img/logo-invert.png" alt="Image Alternative text" title="Image Title" />
+                        </a>
+                        <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
+                        <ul class="list list-horizontal list-space">
+                            <li>
+                                <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h4>Newsletter</h4>
+                        <form>
+                            <label>Enter your E-mail Address</label>
+                            <input type="text" class="form-control">
+                            <p class="mt5"><small>*We Never Send Spam</small>
+                            </p>
+                            <input type="submit" class="btn btn-primary" value="Subscribe">
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <ul class="list list-footer">
+                            <li><a href="#">About US</a>
+                            </li>
+                            <li><a href="#">Press Centre</a>
+                            </li>
+                            <li><a href="#">Best Price Guarantee</a>
+                            </li>
+                            <li><a href="#">Travel News</a>
+                            </li>
+                            <li><a href="#">Jobs</a>
+                            </li>
+                            <li><a href="#">Privacy Policy</a>
+                            </li>
+                            <li><a href="#">Terms of Use</a>
+                            </li>
+                            <li><a href="#">Feedback</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h4>Have Questions?</h4>
+                        <h4 class="text-color">+1-202-555-0173</h4>
+                        <h4><a href="#" class="text-color">support@traveler.com</a></h4>
+                        <p>24/7 Dedicated Customer Support</p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/slimmenu.js' %}"></script>
+        <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+        <script src="{% static 'js/bootstrap-timepicker.js' %}"></script>
+        <script src="{% static 'js/nicescroll.js' %}"></script>
+        <script src="{% static 'js/dropit.js' %}"></script>
+        <script src="{% static 'js/ionrangeslider.js' %}"></script>
+        <script src="{% static 'js/icheck.js' %}"></script>
+        <script src="{% static 'js/fotorama.js' %}"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+        <script src="{% static 'js/typeahead.js' %}"></script>
+        <script src="{% static 'js/card-payment.js' %}"></script>
+        <script src="{% static 'js/magnific.js' %}"></script>
+        <script src="{% static 'js/owl-carousel.js' %}"></script>
+        <script src="{% static 'js/fitvids.js' %}"></script>
+        <script src="{% static 'js/tweet.js' %}"></script>
+        <script src="{% static 'js/countdown.js' %}"></script>
+        <script src="{% static 'js/gridrotator.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+    </div>
+
+
+{% endblock %}
