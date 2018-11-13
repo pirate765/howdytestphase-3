@@ -30,7 +30,7 @@ SECRET_KEY = '$6&4(i0p(!#5539g1ql7vjq1g*79=0bi7@@yu^a@on+#hdtc=5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['206.189.139.251','127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 
@@ -132,6 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 if DEBUG:
     MEDIA_URL = '/media/'
     STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static","static-only")
