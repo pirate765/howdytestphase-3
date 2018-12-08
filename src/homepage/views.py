@@ -10,7 +10,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from django.template.context_processors import csrf
 from homepage.forms import TravelFreeForm
-from .filters import PackageFilter
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
