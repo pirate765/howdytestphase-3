@@ -12,6 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- GOOGLE FONTS -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -21,6 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
     <!-- /GOOGLE FONTS -->
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -38,6 +41,7 @@
 .carousel {
 	margin: 10px auto;
 	padding: 0 5px 5px;
+  background-color: white;
 }
 .carousel .item {
 	color: #747d89;
@@ -77,7 +81,7 @@
 .carousel .item h4, .carousel .item p, .carousel .item ul {
 	margin-bottom: 5px;
 }
-.carousel .thumb-content .btn {
+.carousel .thumb-content .btn2 {
 	  color: #fe9330;
     font-size: 11px;
     text-transform: uppercase;
@@ -89,12 +93,12 @@
     line-height: 16px;
     border-radius: 5px;
 }
-.carousel .thumb-content .btn:hover, .carousel .thumb-content .btn:focus {
+.carousel .thumb-content .btn:hover, .carousel .thumb-content .btn2:focus {
 	color: #fff;
 	background: #fe9330;
 	box-shadow: none;
 }
-.carousel .thumb-content .btn i {
+.carousel .thumb-content .btn2 i {
 	font-size: 14px;
   font-weight: bold;
   margin-left: 5px;
@@ -173,7 +177,119 @@
 	font-size: 14px;
 	color: #ffc000;
 }
+.qty .count {
+    color: #000;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px
+    ;min-width: 35px;
+    text-align: center;
+}
+.qty .plus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    background-color: orange;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    }
+.qty .minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    background-color: orange;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+
+.minus:hover{
+    background-color: #717fe0 !important;
+}
+.plus:hover{
+    background-color: #717fe0 !important;
+}
+/*Prevent text selection*/
+span{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input{
+    border: 0;
+  }
+nput::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
+}
+.accordion {
+    background-color: #ffa72f;
+    color: #6a6a6a;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border-radius: 5px;
+    text-align: left;
+    outline: none;
+    font-size: 23px;
+    transition: 0.4s;
+    margin-bottom: 3px;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.active2, .accordion:hover {
+    background-color: #ed8323;
+    color: white;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.active2:after {
+    content: "\2212";
+}
+
+.panel22 {
+    padding: 0 18px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
 </style>
+<script>
+$(document).ready(function(){
+    $('.count').prop('disabled', true);
+    $(document).on('click','.plus',function(){
+    $('.count').val(parseInt($('.count').val()) + 1 );
+    });
+      $(document).on('click','.minus',function(){
+      $('.count').val(parseInt($('.count').val()) - 1 );
+        if ($('.count').val() == 0) {
+        $('.count').val(1);
+      }
+        });
+});
+</script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".wish-icon i").click(function(){
@@ -185,7 +301,7 @@
 
 
 </head>
-<body style="background-image: url({% static 'img/grey-texture-background-10.jpg' %}); background-attachment: fixed; position: center;">
+<body style="background-image: url({% static 'img/075 Clean Mirror.png' %}); background-attachment: fixed; position: center;">
   {% include 'navbar.html' %}
   <div class="container" style="background-color: white; padding: 2px auto; overflow: hidden;">
     <div class="gap gap-small"></div>
@@ -247,13 +363,8 @@
               </div>
 
               <div class="col-md-6">
+                <br><br>
 
-                  <div class="booking-item-meta">
-                        <h3 class="lh1em mt40" style="font-family: 'Acme', sans-serif;">About Property</h3>
-                    </div>
-                    <span class ="booking-item-feature-title" style= "font-family: 'Roboto', arial, helvetica, sans-serif; color: #131313d6;">
-                    {{ detail_package.property_description|safe }}
-                  </span>
 
                   <div class="row">
                   <div class="col-md-12">
@@ -309,9 +420,12 @@
                                         </div>
                                         <div class="row">
                                           <div class="col-xs-12">
-                                            <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"> X</i>
-                                                <label>Number of People</label>
-                                                <input class="form-control" name="num_people_hotselling" placeholder="e.g. 8" type="text" required/>
+
+                                            <div class="qty mt-5">
+                                              No. of persons :
+                                                <span class="minus bg-dark">-</span>
+                                                <input type="number" class="count" name="qty" value="1" style="width: 2%;">
+                                                <span class="plus bg-dark">+</span>
                                             </div>
 
                                                 <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
@@ -326,7 +440,7 @@
                                             </div>
 
 
-                                        <input class="btn btn-primary" type="submit" value="Submit Query" />
+                                        <input class="btn btn-primary" type="submit" value="Submit Query" style="max-width: 100%;"/>
 
 
                                 </div>
@@ -342,6 +456,12 @@
           <div class="row">
 
             <div class="col-md-12">
+              <div class="booking-item-meta">
+                    <h3 class="lh1em mt40" style="font-family: 'Acme', sans-serif;">About Property</h3>
+                </div>
+                <span class ="booking-item-feature-title" style= "font-family: 'Roboto', arial, helvetica, sans-serif; color: #131313d6;">
+                {{ detail_package.property_description|safe }}
+              </span>
               <div class="booking-item-meta">
                     <h3 class="lh1em mt40" style="font-family: 'Acme', sans-serif;">About {{detail_package.destination}}</h3>
                 </div>
@@ -794,9 +914,32 @@
 
             <div class="col-md-6">
               <div class="row" style="margin-right: 4px;">
-                <div class="col-md-12 col-sm-12" style="background-color: #ffb24587; ">
+                <div class="col-md-12 col-sm-12">
               <br>
                 <h3>Group Itinerary :</h3>
+                    {% for i in itinerary_day_detail %}
+                    <button class="accordion">Day {{forloop.counter}} </button>
+                    <div class="panel22">
+                      <p>{{i.day_detail | safe}}</p>
+                    </div>
+                    {% endfor %}
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active2");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
                 <span class="booking-item-feature-title" style = "font-family: 'Roboto Condensed', sans-serif; color: ; font-size: 15px;">{{detail_package.itenary.details|safe}}</span>
               </div>
               </div>
@@ -1551,7 +1694,7 @@
   <script src="{% static 'js/gridrotator.js' %}"></script>
   <script src="{% static 'js/custom.js' %}"></script>
 </div>
-  
+
 </body>
 
 </html>

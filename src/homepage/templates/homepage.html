@@ -176,7 +176,7 @@
                   </div>
                       <div class="card-body pt-0" style="text-align:center;">
                       <p style="color: #2F2727; font-size: 15px; font-family: 'Roboto', sans-serif;"> <i class="fa fa-map-marker input-icon"></i> Departure: {{trips.departure}}  -  <b>{% if user.is_authenticated %} ₹ {{trips.discount_price}} <strike>₹ {{trips.price}}</strike> {% else %} ₹ {{trips.price}} {% endif %}</b></p>
-                      <p style="margin-top: 0px; font-size: 20px;">{{trips.title}}</p>
+                      <p style="margin-top: 0px; font-family: 'Anton', sans-serif; letter-spacing:1px; font-size: 20px; color:#345c70;">{{trips.title}}</p>
 
                       <p class="card-text">
                         <p class="">
@@ -252,7 +252,7 @@
   <div class="col-md-4">
       <div class="thumb">
           <header class="thumb-header">
-              <a href="{% url 'activitysinglepackage' pk1=activity.id %}" class="hover-img" >
+              <a href="{% url 'singleadventure' pk1=activity.id %}" class="hover-img" >
                   <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;"> {{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore More</h5>
@@ -274,7 +274,7 @@
   <div class="col-md-4">
       <div class="thumb">
           <header class="thumb-header">
-              <a class="hover-img" href="{% url 'activitysinglepackage' pk1=activity.id %}">
+              <a class="hover-img" href="{% url 'singleadventure' pk1=activity.id %}">
                   <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;"> {{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore All</h5>
@@ -296,7 +296,7 @@
   <div class="col-md-4">
       <div class="thumb">
           <header class="thumb-header">
-              <a class="hover-img" href="{% url 'activitysinglepackage' pk1=activity.id %}">
+              <a class="hover-img" href="{% url 'singleadventure' pk1=activity.id %}">
                   <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;">{{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore More</h5>
@@ -333,6 +333,7 @@ for (i = 0; i < acc.length; i++) {
     <h3>Hot Selling Packages <small ><a href="#">view all</a></small></h3>
 <div class="container2" style="padding:20px; margin-top:0px;">
     {% for trip in best_destinations %}
+
   <div class="mySlides">
 
     <div class="card profile-card-5" style="border:2px solid orange; border-color: #345c70;">
@@ -661,7 +662,7 @@ for (i = 0; i < acc.length; i++) {
 <div class="row">
   {% for i in adventure_package %}
   <div class="column">
-    <img class="demo2 cursor" src="{{i.logo}}"style="max-height: 55px; max-width:auto;  font-family: 'Anton', sans-serif;" onclick="currentSlide1({{forloop.counter}})" alt="{{i.title}}">
+    <img class="demo2 cursor" src="{{i.logo}}"style="max-height: 60px; max-width:auto;  font-family: 'Anton', sans-serif;" onclick="currentSlide1({{forloop.counter}})" alt="{{i.title}}">
   </div>
   {% endfor %}
 </div>
@@ -766,14 +767,82 @@ function showSlides2(n) {
                 <div class="bg-parallax" style="background-image:url(https://i0.wp.com/mtrosedrinks.com/wp-content/uploads/2016/06/camping.jpg?fit=1000%2C605);"></div>
                 <div class="bg-content">
                     <div class="container">
+                      <div class="mySlides">
+                        <div class = "row">
+                          <div class="col-md-5">
+                            <img src="https://img.sunset02.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2016/09/main/camping-expert-north-cascade-range-washington-lightweight-tent-0514.jpg?itok=u5IHDgjl" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF living room"/>
+                          </div>
+                          <div class="col-md-7" style="background-color: #04040466;">
+                            <span style="text-align: center;">
+                          <div class="gap gap text-center text-white">
+                              <h2 class="text mb20" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1px;">
+                                <i class="fa fa-building-o"></i> Howdy Stays </h2>
+                              <ul class="icon-list list-inline-block mb0 last-minute-rating">
+                                  <li><i class="fa fa-star"></i>
+                                  </li>
+                                  <li><i class="fa fa-star"></i>
+                                  </li>
+                                  </li>
+                                  <li><i class="fa fa-star"></i>
+                                  </li>
+                                  <li><i class="fa fa-star"></i>
+                                  </li>
+                              </ul>
+                              <hr>
+                              <h6 class="last-minute-title" style="font-family: 'Alex Brush', cursive;">Hatu Peak, Narkhanda</h6>
+                              <hr>
+                              <p class="last-minute-date" style="font-family: 'Open Sans', sans-serif;">We bring here the all new experience of staying at Adventure Destinations near Shimla at an altitude of 3500 metres above sea level at our own camp site.We bring here the all new experience of staying at Adventure Destinations near Shimla at an altitude of 3500 metres above sea level at our own camp site.We bring here the all new experience of staying at Adventure Destinations near Shimla at an altitude of 3500 metres above sea level at our own camp site.</p>
+                              <br>
+                              <p class="last-minute-date"><b>Rs.600 </b> / person</p>
+                              <br>
+                              <a class="btn btn-lg btn-white btn-ghost" href="#">Book Now <i class="fa fa-angle-right"></i></a>
+                          </div>
+
+                        </span>
+                      </div>
+                        </div>
+
+                      </div>
+                      <script>
+                      var slideIndex = 1;
+                      showSlides(slideIndex);
+
+                      function plusSlides(n) {
+                        showSlides(slideIndex += n);
+                      }
+
+                      function currentSlide(n) {
+                        showSlides(slideIndex = n);
+                      }
+
+                      function showSlides(n) {
+                        var i;
+                        var slides = document.getElementsByClassName("mySlides");
+                        var dots = document.getElementsByClassName("demo");
+                        var captionText = document.getElementById("caption");
+                        if (n > slides.length) {slideIndex = 1}
+                        if (n < 1) {slideIndex = slides.length}
+                        for (i = 0; i < slides.length; i++) {
+                            slides[i].style.display = "none";
+                        }
+                        for (i = 0; i < dots.length; i++) {
+                            dots[i].className = dots[i].className.replace(" active", "");
+                        }
+                        slides[slideIndex-1].style.display = "block";
+                        dots[slideIndex-1].className += " active";
+                        captionText.innerHTML = dots[slideIndex-1].alt;
+                      }
+                      </script>
+
                       <div class = "row">
                         <div class="col-md-5">
                           <img src="https://img.sunset02.com/sites/default/files/styles/4_3_horizontal_-_1200x900/public/image/2016/09/main/camping-expert-north-cascade-range-washington-lightweight-tent-0514.jpg?itok=u5IHDgjl" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF living room"/>
                         </div>
-                        <div class="col-md-7" style="background-color: #04040466;">
+                    <div class="col-md-7" style="background-color: #04040466;">
                           <span style="text-align: center;">
                         <div class="gap gap text-center text-white">
-                            <h2 class="text mb20" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1px;"> <i class="fa fa-building-o"></i> Howdy Stays </h2>
+                            <h2 class="text mb20" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1px;">
+                              <i class="fa fa-building-o"></i> Howdy Stays </h2>
                             <ul class="icon-list list-inline-block mb0 last-minute-rating">
                                 <li><i class="fa fa-star"></i>
                                 </li>
@@ -794,8 +863,9 @@ function showSlides2(n) {
                             <br>
                             <a class="btn btn-lg btn-white btn-ghost" href="#">Book Now <i class="fa fa-angle-right"></i></a>
                         </div>
+
                       </span>
-                      </div>
+                    </div>
                     </div>
                     </div>
                 </div>

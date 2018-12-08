@@ -107,7 +107,6 @@ class Destinationpackage(models.Model):
     price_for_eighteen = models.IntegerField(null= True, blank= True)
     duration = models.IntegerField()
     best_seasons_to_visit = models.CharField(max_length = 10, choices = SEASON_CHOICES)
-    itenary = models.ForeignKey(Itenary, null=True, blank=True)
     inclusions = models.ManyToManyField(Inclusion, related_name='inclusions_packages')
 
     def __str__(self):
@@ -131,6 +130,14 @@ class UpcomingTrip(models.Model):
 
     def __str__(self):
         return self.title
+
+class UpcomingTripItinerary(models.Model):
+    upcoming_trip_package = models.ForeignKey(UpcomingTrip, related_name='upcoming_trip_itinerary')
+    day_detail = HTMLField()
+    
+class GroupPackageitenerary(models.Model):
+    destination_package = models.ForeignKey(Destinationpackage, related_name='destinationitinerary')
+    day_detail = HTMLField()
 
 
 class Destinationimage(models.Model):
@@ -186,7 +193,7 @@ class Adventurepackage(models.Model):
     destination = models.ForeignKey(Destination, blank= True, null= True, related_name='destinations')
     associated_adventure = models.ForeignKey(Adventure, blank= True, null= True, related_name='adventuresimilar')
     price_per_person = models.IntegerField(blank= True, null= True)
-    group_prices = HTMLField(blank= True, null= True)
+    group_prices = models.IntegerField(blank= True, null= True)
     notes_for_activity = HTMLField(blank= True, null= True)
     level_of_difficulty_on_5 = models.IntegerField(blank= True, null= True)
     required_gear = models.ManyToManyField(Adventuregear, blank= True)
@@ -262,3 +269,34 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Howdystays(models.Model):
+    title = models.CharField(max_length = 100)
+    location = models.OneToOneField(Destination, on_delete = models.CASCADE)
+    property_description = HTMLField(blank= True, null = True)
+    price_per_room = models.IntegerField(blank= True, null = True)
+    price_deluxe_room = models.IntegerField(blank= True, null = True)
+    price_suite_room = models.IntegerField(blank= True, null = True)
+    capacity_allowed = models.IntegerField(blank= True, null = True)
+    ep_per_person = models.IntegerField(blank= True, null= True)
+    cp_per_person = models.IntegerField(blank= True, null= True)
+    ap_per_person = models.IntegerField(blank= True, null= True)
+    mapai_per_person = models.IntegerField(blank= True, null= True)
+
+    def __str__(self):
+        return self.title
+
+
+class StayAddon(models.Model):
+    title = models.CharField(max_length = 150)
+    destination_package = models.ForeignKey(Howdystays, related_name='Howdystaysaddons')
+    price = models.IntegerField()
+
+    def __str__(self):
+        return self.title
+
+
+class Stayimage(models.Model):
+    destination = models.ForeignKey(Howdystays, related_name = 'Howdystaysimages')
+    image = models.CharField(max_length = 200)

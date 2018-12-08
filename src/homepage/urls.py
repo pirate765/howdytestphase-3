@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^destinationmore/(?P<id>[0-9]+)/$', views.destinationmore, name='destinationmore'),
     url(r'^searchactivitylist/$', views.searchactivitylist, name='searchactivitylist'),
     url(r'^activitysinglepackage/(?P<pk1>[0-9]+)/$', views.activity_singlepackage_all, name='activitysinglepackage'),
+    url(r'^singleadventure/(?P<pk1>[0-9]+)/$', views.singleadventure, name='singleadventure'),
     url(r'^destinationmore/(?P<id>[0-9]+)/$', views.destinationmore, name='destinationmore'),
     #url(r'^destinationactivity/(?P<id>[0-9]+)/$', views.destinationactivity, name='destinationactivity'),
     url(r'^destinationdetails/(?P<pk>[0-9]+)/$', views.destinationdetails, name='destinationdetails'),
@@ -33,4 +34,5 @@ urlpatterns = [
     url(r'^postdetail/(?P<pk>[0-9]+)/$', views.postdetail, name='postdetail'),
     url(r'^upcomingtripform/$', views.upcomingtrip_form_upload, name='upcomingtrip_form_upload'),
     url(r'^adventureactivitylist/$', views.adventureactivity_list, name='adventureactivity_list'),
+    url(r'^howdystays/$', views.howdystayslist, name='howdystays'),
 ]

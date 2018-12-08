@@ -56,11 +56,14 @@ background-color: #eee;
 
 </head>
 <body style="background-image: url({% static 'img/grey-texture-background-10.jpg' %}); background-attachment: fixed; position: center;">
+  <div class="container-fluid">
+
     {% include 'navbar.html' %}
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src= "{% static 'js/ajax.js' %}"></script>
     {% block body %}
 
     {% endblock %}
+  </div>
 </body>
 </html>

@@ -1,0 +1,746 @@
+{% extends 'base5.html' %}
+{% load staticfiles %}
+{% block body %}
+<div class="container">
+{% for single_item in property_list %}
+<div class="container">
+<ul class="booking-list">
+<li>
+  <div class="card" style="padding: 4px; border: 1px solid #e6e5e5; background-color: #ececea6e;">
+
+        <div class="row">
+            <div class="col-md-4">
+
+
+              <div class="tabbable booking-details-tabbable" style="font-family: 'Alegreya Sans SC', sans-serif; font-size: 16px;">
+                  <ul class="nav nav-tabs" id="myTab">
+                      <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-camera"></i><b>Photos</b></a>
+                      </li>
+                      <li><a href="#google-map-tab" data-toggle="tab"><i class="fa fa-map-marker"></i><b>On the Map</b></a>
+                      </li>
+
+                  </ul>
+                  <div class="tab-content">
+                      <div class="tab-pane fade in active" id="tab-1">
+
+                          <div class="fotorama" data-allowfullscreen="true" data-nav="thumbs">
+                            {% for item in single_item.Howdystaysimages.all %}
+                              <img src="{{item.image}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF suite" />
+                            {% endfor %}
+
+                          </div>
+                      </div>
+                      <div class="tab-pane fade" id="google-map-tab">
+                          <div id="map-canvas" style="width:100%; height:500px;"></div>
+                      </div>
+
+
+                  </div>
+              </div>
+              <div class="panel-group" id="accordion{{forloop.counter}}">
+
+
+
+      </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="row">
+                <div class="col-xs-12">
+                <h5 class="booking-item-title">{{single_item.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;" >{{single_item.price_per_room}}</span></strong> per room</h5>
+                  <p class="booking-item-address">Location: <b>{{single_item.location}}</b> <span class="btn btn-sm btn-primary"  data-toggle="modal" data-target="#myModal22{{single_item.id}}" style="background-color:#70209e; border-color:#70209e; float:right;">Send Enquiry<i class="fa fa-send-o"></i></span></p>
+                  Inclusions:<ul class="booking-item-features booking-item-features-rentals booking-item-features-sign">
+
+                      <li rel="tooltip" data-placement="top" title="Sleeps"><i class="fa fa-male"></i><span class="booking-item-feature-sign">x 2</span>
+                      </li>
+                      <li rel="tooltip" data-placement="top" title="Bedrooms"><i class="im im-bed"></i><span class="booking-item-feature-sign">x 2</span>
+                      </li>
+                      <li rel="tooltip" data-placement="top" title="Bathrooms"><i class="im im-shower"></i><span class="booking-item-feature-sign">x 1</span>
+                      </li>
+                      <li rel="tooltip" data-placement="top" title="Dj Night"><i class="fa fa-music"></i><span class="booking-item-feature-sign"></span>
+                      </li>
+                  </ul>
+
+                </div>
+
+
+                </div>
+                <div class="panel panel-default" style="margin: 3px 3px 3px 3px;">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-2{{forloop.counter}}"><i class="fa fa-sort-alpha-desc"></i>
+                          Description:</a></h4>
+                    </div>
+                    <div class="panel-collapse collapse" id="collapse-2{{forloop.counter}}">
+                        <div class="panel-body">{{single_item.property_description | safe}}</div>
+                    </div>
+                </div>
+
+
+              </div>
+              <div class="col-md-5">
+                <br>
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="booking-item-dates-change" style="padding-bottom: 1px;">
+                        <form>
+                          {% csrf_token %}
+
+                            <div class="row" >
+                                <div class="col-xs-12 col-md-6">
+                                  <h4 style="font-family: 'Acme', sans-serif;">Quick Add Ons</h4>
+                                  <div class="booking-item-price-calc">
+                                      <div class="row row-wrap">
+                                          <div class="col-xs-12" style="font-family: 'Roboto', arial, helvetica, sans-serif;">
+                                            {% for addon in single_item.Howdystaysaddons.all %}
+                                              <div class="checkbox checkbox-switch">
+                                                  <label>
+                                                  <h5 style="font-family: 'Alegreya Sans SC', sans-serif;"><input class="i-check" type="checkbox" value="{{addon.title}}" name="checks[]"/>{{addon.title}}<span class="pull-right">{{addon.price}}</span></h5>
+                                                  </label>
+                                              </div>
+                                              {% endfor %}
+                                              <ul class="list">
+                                              <li>
+                                                  <p>Equipment <span>Rs.<span id="car-equipment-total" data-value="0">0</span></span>
+                                                  </p>
+                                              </li>
+                                              </ul>
+
+
+                                          </div>
+
+                                      </div>
+                                  </div>
+
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+
+                                  <div class="row">
+                                    <div class="input-daterange" data-date-format="MM d, D">
+
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                        <label>Check In</label>
+                                        <input class="form-control" name="start" type="text" id="checkin-{{forloop.counter}}"/>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                        <label>Check Out</label>
+                                        <input class="form-control" name="end" type="text" id="checkout-{{forloop.counter}}"/>
+
+                                    </div>
+
+                                  </div>
+
+                                </div>
+
+
+                                </div>
+                              </div>
+                                <div class="row" style="margin-top: 0px;">
+                                  <div class="col-md-6 col-xs-12">
+                                    No. of People:
+                                    <button id='button2' value= "-" class='minus-{{forloop.counter}}' />-</button>
+                                    <input type='text2' size='10' class='value' value='0' id="num-{{forloop.counter}}" oninput="calc_{{forloop.counter}}()"/>
+                                    <button id='button2' value='+' class='plus-{{forloop.counter}}' />+</button>
+                                    <p class="hide">Subtotal : <b>Rs.<span id="total-{{forloop.counter}}">0</span></b></p>
+
+                                  </div>
+                                  <div class="col-md-6 col-xs-12">
+                                    No. of Rooms:
+                                    <button id='button2' value= "-" class='minus2-{{forloop.counter}}' />-</button>
+                                    <input type='text2' size='10' class='value' value='0' id="num2-{{forloop.counter}}"/>
+                                    <button id='button2' value='+' class='plus2-{{forloop.counter}}' />+</button>
+
+
+
+
+                                  </div>
+                                </div>
+                                  <div class="row" style="margin-top: 0px;">
+                                    <div class="col-md-12 col-xs-12">
+                                  <h5>Plan Type</h5>
+                                  <div class="col-xs-6">
+                                  <label class="toggle radio-inline"><input type="radio" name="toggle" class="radio1-{{forloop.counter}}" value="{{single_item.ep_per_person}}" id="rd1" checked><span class="label-text">EP - Rs. {{single_item.ep_per_person}}</span></label>
+                                </div>
+                                <div class="col-xs-6">
+                                  <label class="toggle radio-inline"><input type="radio" name="toggle" class="radio1-{{forloop.counter}}" value="{{single_item.cp_per_person}}" id="rd1"><span class="label-text">CP - Rs. {{single_item.cp_per_person}}</span></label>
+                                </div>
+                                <div class="col-xs-6">
+                                  <label class="toggle radio-inline"><input type="radio" name="toggle" class="radio1-{{forloop.counter}}" value="{{single_item.ap_per_person}}" id="rd1"><span class="label-text">AP - Rs. {{single_item.ap_per_person}}</span></label>
+                                </div>
+                                <div class="col-xs-6">
+                                  <label class="toggle radio-inline"><input type="radio" name="toggle" class="radio1-{{forloop.counter}}" value="{{single_item.mapai_per_person}}" id="rd1"><span class="label-text">MAPAI  - Rs. {{single_item.mapai_per_person}}</span></label>
+                                </div>
+                                  <p style="margin-top: 15px;"><b>Base Room Rent : Rs.<span id="total2-{{forloop.counter}}">0</span> /night</b></p>
+                                  <p><b>Plan extra : Rs.<span id="price-{{forloop.counter}}">0</span></b> /night</p>
+                                  <p><b>Room Grand Total :  Rs.<span id="pricetotal-{{forloop.counter}}">0</span> /night</p>
+                                  <p><b>Equipment Total :  Rs.<span id="equipmentprice-{{forloop.counter}}">0</span></p>
+
+
+
+                                  <div class="row" style="text-align:right;">
+                                    <span class="btn btn-primary" style="background-color:#orange; border-color:#orange;">Book Now<i class="fa fa-send-o"></i></span> <span class="btn btn- primary">
+                                      <p><b>Booking Total :  Rs.<span id="bookingtotalprice-{{forloop.counter}}">0</span></p>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                        </form>
+                        <strong> Note : </strong>Drop Us your booking query and our team will contact you back.
+                      </div>
+
+                  </div>
+              </div>
+
+                </div>
+            <br>
+
+
+
+        </div>
+
+        </div>
+      </div>
+</li>
+
+                                        <!-- ModalForm Sendenquiry-->
+
+                                        <div class="modal fade" id="myModal22{{single_item.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                          <div class="modal-dialog">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Enquire for {{single_item.title|title}}
+
+
+                                                </h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                <h4>Just fill in the following details and we'll get back to you.</h4>
+                                                <form method= "POST" action="">
+                                                  {% csrf_token %}
+                                                    <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                                        <label>Full Name</label>
+                                                        <input class="form-control" name="user_activity" placeholder="e.g. John Doe" type="text" required/>
+                                                    </div>
+                                                    <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                                        <label>Email</label>
+                                                        <input class="form-control" name="email_activity" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                                                    </div>
+                                                    <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                                        <label>Phone Number</label>
+                                                        <input class="form-control" name="phone_activity" placeholder="e.g. 88888885555-" type="text"/>
+                                                    </div>
+                                                    <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                                        <label>Your Query</label>
+
+                                                        <textarea class="form-control" name ="query_activity" rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                                        </textarea>
+                                                    </div>
+                                                    <input class="btn btn-primary" type="submit" value="Submit Query" />
+                                                </form>
+
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <!-- ModalForm -->
+
+{% endfor %}
+</div>
+                        <script type="text/javascript">
+                        $(document).ready(function () {
+
+                          $('#checkin-1').datepicker({
+                              format: "dd/mm/yyyy"
+                          }).on('change', function () {
+                              $('.datepicker').hide();
+                          });
+
+    $('#checkout-1').datepicker({
+        format: "dd/mm/yyyy"
+    }).on('change', function () {
+        $('.datepicker').hide();
+    });
+});
+                        $(document).ready(function () {
+
+    $('#checkin-1').datepicker({
+        format: "dd/mm/yyyy",
+        autoclose: true
+    });
+
+    $('#checkout-1').datepicker({
+        format: "dd/mm/yyyy"
+    }).on('change', function () {
+        $('.datepicker').hide();
+    });
+});
+                        $('#car-equipment-total').on('DOMSubtreeModified',function(){
+                          var noTickets = document.getElementById("num-1").value;
+                          var equipment_total = document.getElementById("car-equipment-total").innerHTML.trim().split(' ')[0].toUpperCase();
+                          var equipment_count_total = parseFloat(noTickets) * parseFloat(equipment_total);
+                          document.getElementById("equipmentprice-1").innerHTML = equipment_count_total;
+                          })
+
+                        $(document).ready(function () {
+       $('.radio1-1').click(function () {
+         var noTickets = document.getElementById("num-1").value;
+         var priceperperson = $(this).val();
+         var total = parseFloat(noTickets)*parseFloat(priceperperson);
+         document.getElementById('price-1').innerHTML = total;
+         var room_rent = document.getElementById("total2-1").innerHTML;
+         var grand_total = parseFloat(room_rent) + parseFloat(total);
+         document.getElementById("pricetotal-1").innerHTML = grand_total;
+         calc_grand_room_total();
+       });
+
+       $('.radio1-2').click(function (){
+         var noTickets = document.getElementById("num-2").value;
+         var priceperperson = document.getElementById("num-1").value;;
+         var total = parseFloat(noTickets)*parseFloat(priceperperson);
+         document.getElementById('price-2').innerHTML = total;
+       });
+
+   });
+
+                        $('.minus-1, .plus-1').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-1') ? -1 : 1));
+                        });
+                        $('.minus-2, .plus-2').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-2') ? -1 : 1));
+                        });
+                        $('.minus-3, .plus-3').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-3') ? -1 : 1));
+                        });
+                        $('.minus-4, .plus-4').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-4') ? -1 : 1));
+                        });
+                        $('.minus-5, .plus-5').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-5') ? -1 : 1));
+                        });
+
+                        $('.minus2-1, .plus2-1').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus2-1') ? -1 : 1));
+                        });
+                        $('.minus2-2, .plus2-2').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus2-2') ? -1 : 1));
+                        });
+                      </script>
+                      <script type="text/javascript">
+
+                        $(".plus-1").mouseup(function() {
+                          calcadd_1();
+                          var noTickets = document.getElementById("num-1").value;
+                          var priceperperson = $("input:radio[name=toggle]:checked").val();
+                          var incr = 1;
+                          var no_count = parseFloat(noTickets) + parseFloat(incr);
+                          var total = parseFloat(priceperperson)*parseFloat(no_count);
+
+                          var room_rent = document.getElementById("total2-1").innerHTML;
+                          var grand_total = parseFloat(room_rent) + parseFloat(total);
+                          var equipment_total = document.getElementById("car-equipment-total").innerHTML.trim().split(' ')[0].toUpperCase();
+                          var equipment_count_total = parseFloat(no_count) * parseFloat(equipment_total);
+
+                            if (!isNaN(total)) {
+                              document.getElementById('price-1').innerHTML = total;
+                          document.getElementById("pricetotal-1").innerHTML = grand_total;
+                          document.getElementById("equipmentprice-1").innerHTML = equipment_count_total;
+                          calc_grand_room_total();
+                        }
+                           else
+                           {
+                             document.getElementById('price-1').innerHTML = "0";
+                             document.getElementById("pricetotal-1").innerHTML = "0";
+                             document.getElementById("equipmentprice-1").innerHTML = equipment_count_total;
+
+                           }
+                              });
+                        $(".minus-1").mouseup(function() {
+                          calcsub_1();
+                          var noTickets = document.getElementById("num-1").value;
+                          var priceperperson = $("input:radio[name=toggle]:checked").val();
+                          var incr = -1;
+                          var no_count = parseFloat(noTickets) + parseFloat(incr);
+                          var total = parseFloat(priceperperson)*parseFloat(no_count);
+
+                          var room_rent = document.getElementById("total2-1").innerHTML;
+                          var grand_total = parseFloat(room_rent) + parseFloat(total);
+                          var equipment_total = document.getElementById("car-equipment-total").innerHTML.trim().split(' ')[0].toUpperCase();
+                          var equipment_count_total = parseFloat(no_count) * parseFloat(equipment_total);
+                            if (!isNaN(total)) {
+                              document.getElementById('price-1').innerHTML = total;
+                          document.getElementById("pricetotal-1").innerHTML = grand_total;
+                          document.getElementById("equipmentprice-1").innerHTML = equipment_count_total;
+                          calc_grand_room_total();
+                        }
+                           else
+                           {
+                             document.getElementById('price-1').innerHTML = "0";
+                             document.getElementById("pricetotal-1").innerHTML = "0";
+                             document.getElementById("equipmentprice-1").innerHTML = equipment_count_total;
+
+                           }
+                        });
+                        $(".plus-2").mouseup(function() {
+                          calcadd_2();
+                              });
+                        $(".minus-2").mouseup(function() {
+                          calcsub_2();
+                              });
+                        $(".plus-3").mouseup(function() {
+                          calcadd_3();
+                              });
+                        $(".minus-3").mouseup(function() {
+                          calcsub_3();
+                              });
+                        $(".plus-4").mouseup(function() {
+                                calcadd_4();
+                                    });
+                        $(".minus-4").mouseup(function() {
+                          calcsub_4();
+                              });
+                                          $(".plus-5").mouseup(function() {
+                                            calcadd_5();
+                                                });
+                                          $(".minus-5").mouseup(function() {
+                                            calcsub_5();
+                                                });
+                                                $(".plus2-1").mouseup(function() {
+                                                  calcadd1_roomrentcount();
+                                                      });
+                                                $(".minus2-1").mouseup(function() {
+                                                  calcsub1_roomrentcount();
+                                                      });
+                        </script>
+
+                        <script type="text/javascript">
+                        function calc_grand_room_total()
+                        { var check_in = document.getElementById("checkin-1").value;
+                          var check_out = document.getElementById("checkout-1").value;
+                          var arr1 = check_in.split(/ (.*)/);
+                          arr1[1] = arr1[1].substring(0, arr1[1].indexOf(','));
+                          var arr = check_out.split(/ (.*)/);
+                          arr[1] = arr[1].substring(0, arr[1].indexOf(','));
+                          var timeDiff = Math.abs((parseFloat(arr[1])) - parseFloat(arr1[1]));
+                          var diffDays = Math.ceil(timeDiff);
+                          var per_night_total = document.getElementById("pricetotal-1").innerHTML;
+                          var equipment_total = document.getElementById("equipmentprice-1").innerHTML;
+                          var booking_total = parseFloat(diffDays) * parseFloat(per_night_total) + parseFloat(equipment_total);
+                          document.getElementById("bookingtotalprice-1").innerHTML = booking_total;
+
+                        }
+
+
+                        function calc_1()
+                        {
+  var price = document.getElementById("ticket_price-1").innerHTML;
+  var noTickets = document.getElementById("num-1").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-1").innerHTML = total;
+                        }
+                        function calc_roomrentadd1(){
+                        var price = document.getElementById("ticket_price-1").innerHTML;
+                        var people_count = document.getElementById("num-1").value;
+                        var room_count = (parseFloat(people_count) + 1)/3;
+                        var room_countround = Math.ceil(room_count);
+                        var roomrent_total = parseFloat(price) * room_countround;
+                          document.getElementById("num2-1").value = room_countround;
+                          document.getElementById("total2-1").innerHTML = roomrent_total;
+                        }
+                        function calcadd1_roomrentcount(){
+                          var room_count = document.getElementById("num2-1").value;
+                          var incr = 1;
+                          var room_count2 = parseFloat(room_count) + parseFloat(incr);
+                          var price = document.getElementById("ticket_price-1").innerHTML;
+                          var room_rent_total = parseFloat(room_count2) * parseFloat(price);
+                          document.getElementById("total2-1").innerHTML = room_rent_total;
+                          var plan_extra = document.getElementById("price-1").innerHTML;
+                          var grand_total = parseFloat(plan_extra) + parseFloat(room_rent_total);
+                          document.getElementById("pricetotal-1").innerHTML = grand_total;
+
+                        }
+
+                        function calcsub1_roomrentcount(){
+                          var room_count = document.getElementById("num2-1").value;
+                          var incr = -1;
+                          var room_count2 = parseFloat(room_count) + parseFloat(incr);
+                          var price = document.getElementById("ticket_price-1").innerHTML;
+                          var room_rent_total = parseFloat(room_count2) * parseFloat(price);
+                          document.getElementById("total2-1").innerHTML = room_rent_total;
+                          var plan_extra = document.getElementById("price-1").innerHTML;
+                          var grand_total = parseFloat(plan_extra) + parseFloat(room_rent_total);
+                          document.getElementById("pricetotal-1").innerHTML = grand_total;
+
+                        }
+
+                        function calc_roomrentsub1(){
+                        var price = document.getElementById("ticket_price-1").innerHTML;
+                        var people_count = document.getElementById("num-1").value;
+                        var room_count = (parseFloat(people_count) - 1)/3;
+                        var room_countround = Math.ceil(room_count);
+                        var roomrent_total = parseFloat(price) * room_countround;
+                          document.getElementById("num2-1").value = room_countround;
+                          document.getElementById("total2-1").innerHTML = roomrent_total;
+                        }
+
+                        function calcadd_1()
+                        {
+
+  var price = document.getElementById("ticket_price-1").innerHTML;
+  var noTickets = document.getElementById("num-1").value;
+  var inc = 1;
+  var finalamount = parseFloat(inc) + parseFloat(noTickets);
+  var total = parseFloat(price) * finalamount;
+
+  if (!isNaN(total))
+    document.getElementById("total-1").innerHTML = total;
+    calc_roomrentadd1();
+                        }
+
+
+
+                        function calcsub_1()
+                        {
+                          var inc = -1;
+  var price = document.getElementById("ticket_price-1").innerHTML;
+  var noTickets = document.getElementById("num-1").value;
+  var finalamount = parseFloat(noTickets) + parseFloat(inc);
+  var total = parseFloat(price) * (finalamount);
+  if (!isNaN(total))
+    document.getElementById("total-1").innerHTML = total;
+    calc_roomrentsub1();
+                        }
+                        function calcadd_2()
+                        {
+
+  var price = document.getElementById("ticket_price-2").innerHTML;
+  var noTickets = document.getElementById("num-2").value;
+  var inc = 1;
+  var finalamount = parseFloat(inc) + parseFloat(noTickets);
+  var total = parseFloat(price) * finalamount;
+
+  if (!isNaN(total))
+    document.getElementById("total-2").innerHTML = total;
+                        }
+                        function calcsub_2()
+                        {
+                          var inc = -1;
+  var price = document.getElementById("ticket_price-2").innerHTML;
+  var noTickets = document.getElementById("num-2").value;
+  var finalamount = parseFloat(noTickets) + parseFloat(inc);
+  var total = parseFloat(price) * (finalamount);
+  if (!isNaN(total))
+    document.getElementById("total-2").innerHTML = total;
+                        }
+                        function calcadd_3()
+                        {
+
+  var price = document.getElementById("ticket_price-3").innerHTML;
+  var noTickets = document.getElementById("num-3").value;
+  var inc = 1;
+  var finalamount = parseFloat(inc) + parseFloat(noTickets);
+  var total = parseFloat(price) * finalamount;
+
+  if (!isNaN(total))
+    document.getElementById("total-3").innerHTML = total;
+                        }
+                        function calcsub_3()
+                        {
+                          var inc = -1;
+  var price = document.getElementById("ticket_price-3").innerHTML;
+  var noTickets = document.getElementById("num-3").value;
+  var finalamount = parseFloat(noTickets) + parseFloat(inc);
+  var total = parseFloat(price) * (finalamount);
+  if (!isNaN(total))
+    document.getElementById("total-3").innerHTML = total;
+                        }
+                        function calcadd_4()
+                        {
+
+  var price = document.getElementById("ticket_price-4").innerHTML;
+  var noTickets = document.getElementById("num-4").value;
+  var inc = 1;
+  var finalamount = parseFloat(inc) + parseFloat(noTickets);
+  var total = parseFloat(price) * finalamount;
+
+  if (!isNaN(total))
+    document.getElementById("total-4").innerHTML = total;
+                        }
+                        function calcsub_4()
+                        {
+                          var inc = -1;
+  var price = document.getElementById("ticket_price-4").innerHTML;
+  var noTickets = document.getElementById("num-4").value;
+  var finalamount = parseFloat(noTickets) + parseFloat(inc);
+  var total = parseFloat(price) * (finalamount);
+  if (!isNaN(total))
+    document.getElementById("total-4").innerHTML = total;
+                        }
+
+
+
+
+
+
+
+
+
+
+
+                        function calc_1()
+                        {
+  var price = document.getElementById("ticket_price-1").innerHTML;
+  var noTickets = document.getElementById("num-1").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-1").innerHTML = total;
+                        }
+
+                        function calc_2()
+                        {
+  var price = document.getElementById("ticket_price-2").innerHTML;
+  var noTickets = document.getElementById("num-2").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-2").innerHTML = total;
+                        }
+
+                        function calc_3()
+                        {
+  var price = document.getElementById("ticket_price-3").innerHTML;
+  var noTickets = document.getElementById("num-3").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-3").innerHTML = total;
+                        }
+                        function calc_4()
+                        {
+  var price = document.getElementById("ticket_price-1").innerHTML;
+  var noTickets = document.getElementById("num-1").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-4").innerHTML = total;
+                        }
+                        function calc_5()
+                        {
+  var price = document.getElementById("ticket_price-5").innerHTML;
+  var noTickets = document.getElementById("num-5").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-5").innerHTML = total;
+                        }
+
+                        </script>
+</div>
+<footer id="main-footer">
+    <div class="container">
+        <div class="row row-wrap">
+            <div class="col-md-3">
+                <a class="logo" href="index.html">
+                    <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
+                </a>
+                <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
+                <ul class="list list-horizontal list-space">
+                    <li>
+                        <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                    </li>
+                    <li>
+                        <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                    </li>
+                    <li>
+                        <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                    </li>
+                    <li>
+                        <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                    </li>
+                    <li>
+                        <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h4>Newsletter</h4>
+                <form>
+                    <label>Enter your E-mail Address</label>
+                    <input type="text" class="form-control">
+                    <p class="mt5"><small>*We Never Send Spam</small>
+                    </p>
+                    <input type="submit" class="btn btn-primary" value="Subscribe">
+                </form>
+            </div>
+            <div class="col-md-2">
+                <ul class="list list-footer">
+                    <li><a href="#">About US</a>
+                    </li>
+                    <li><a href="#">Press Centre</a>
+                    </li>
+                    <li><a href="#">Best Price Guarantee</a>
+                    </li>
+                    <li><a href="#">Travel News</a>
+                    </li>
+                    <li><a href="#">Jobs</a>
+                    </li>
+                    <li><a href="#">Privacy Policy</a>
+                    </li>
+                    <li><a href="#">Terms of Use</a>
+                    </li>
+                    <li><a href="#">Feedback</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Have Questions?</h4>
+                <h4 class="text-color">+1-202-555-0173</h4>
+                <h4><a href="#" class="text-color">support@traveler.com</a></h4>
+                <p>24/7 Dedicated Customer Support</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/slimmenu.js' %}"></script>
+<script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/bootstrap-timepicker.js' %}"></script>
+<script src="{% static 'js/nicescroll.js' %}"></script>
+<script src="{% static 'js/dropit.js' %}"></script>
+<script src="{% static 'js/ionrangeslider.js' %}"></script>
+<script src="{% static 'js/icheck.js' %}"></script>
+<script src="{% static 'js/fotorama.js' %}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="{% static 'js/typeahead.js' %}"></script>
+<script src="{% static 'js/card-payment.js' %}"></script>
+<script src="{% static 'js/magnific.js' %}"></script>
+<script src="{% static 'js/owl-carousel.js' %}"></script>
+<script src="{% static 'js/fitvids.js' %}"></script>
+<script src="{% static 'js/tweet.js' %}"></script>
+<script src="{% static 'js/countdown.js' %}"></script>
+<script src="{% static 'js/gridrotator.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+{% endblock %}

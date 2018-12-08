@@ -20,6 +20,7 @@
                         </div>
           </form>
                 <div class="gap gap-small"></div>
+
             <div class="row">
               <div class="col-md-12">
                 <h4 class="booking-title">{{count}} Adventure Package Found For {{querytwo}}</h4>
@@ -95,7 +96,10 @@
                                                     <h5 class="booking-item-title">{{activity.title}} </h5>
                                                     <p class="booking-item-address">Location: <b>{{activity.destination}}</b></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
 
-                                                    <span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 24px;">Rs.{{activity.price_per_person}}</span><br><span class="btn btn-primary" data-toggle="modal" data-target="#myModal32{{activity.id}}" style="margin-bottom: 4px;">Book Now<i class="fa fa-shopping-cart"></i></span>
+                                                    <span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 24px;">Rs.{{activity.price_per_person}}</span>
+
+
+                                                    <br><span class="btn btn-primary" data-toggle="modal" data-target="#myModal32{{activity.id}}" style="margin-bottom: 4px;">Book Now<i class="fa fa-shopping-cart"></i></span>
                                                     <span class="btn btn-primary" data-toggle="modal" data-target="#myModal22{{activity.id}}" style="background-color:#70209e; border-color:#70209e; ">Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary">
                                                 </div>
 
@@ -285,11 +289,41 @@
                                             </ul><span class="booking-item-rating-number"><b >{{activity.level_of_difficulty_on_5}}</b> of 5</span><small>(1199 reviews)</small>
                                         </div>
 
-                                        <h5 class="booking-item-title">{{activity.title}} </h5>
-                                        <p class="booking-item-address">Location: <b>{{activity.destination}}</b></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
+                                        <h5 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;">{{activity.group_prices}}</span></strong>
+                                           </h5>
+                                        <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#70209e; border-color:#70209e; float: right; overflow: hidden;">Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
+                                          <br>
+                                        <div class="row">
+                                        <div class="booking-item-dates-change" style="padding: 10px; margin: 0px; ">
+                                          <div class="row">
+                                            <div class="col-md-6 col-sm-6" style="margin: 0px;">
+                                            <div class="input-daterange" data-date-format="MM d, D" style="margin: 0px 0px;">
 
-                                        <span class="booking-item-price-from">from</span><span class="booking-item-price"  style="font-size: 24px;">Rs.{{activity.price_per_person}}</span><br><span class="btn btn-primary" data-toggle="modal" data-target="#myModal3{{activity.id}}" style="margin-bottom: 4px;">Book Now<i class="fa fa-shopping-cart"></i></span>
-                                        <span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#70209e; border-color:#70209e;" >Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary">
+                                            <div class="form-group form-group-icon-left" style="margin: 0px;"><i class="fa fa-calendar input-icon input-icon-hightlight" style="margin: 0px;"></i>
+                                                <label>Date For Activity : </label>
+                                                <input class="form-control" name="start" type="text" style="margin: 0px;"/>
+                                            </div>
+
+                                          </div>
+
+                                          <br><span class="btn btn-primary" style="margin-bottom: 4px;">Book Now<i class="fa fa-shopping-cart"></i></span>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-6" style="margin: 0px;">
+
+                                       <p style="font-size: 15px;">No. of Persons: </p>
+                                       <button id='button2' value= "-" class="minus-{{forloop.counter}}" />- </button>
+
+                                        <input type='text2' size='10' class='value' value='0' id="num-{{forloop.counter}}" oninput="calc_{{forloop.counter}}()" />
+                                        <button id='button2' value='+' class="plus-{{forloop.counter}}"/>+</button>
+                                          <p><span style="font-size: 15px;">Subtotal : </span><b> Rs.<span id="total-{{forloop.counter}}">0</span></b></p>
+
+
+
+                                      </div>
+                                    </div>
+                                      </div>
+                                    </div>
                                     </div>
 
                                     <div class="col-md-4">
@@ -332,15 +366,19 @@
                         <!-- ModalForm Sendenquiry-->
 
                         <div class="modal fade" id="myModal2{{activity.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-dialog">
+                          <div class="modal-dialog" style="width: 50%;">
                             <div class="modal-content">
-                              <div class="modal-header">
+                              <div class="modal-header" style="padding: 0px;">
                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Enquire for {{activity.title|title}}
+
+                                <img src="http://www.uznewmax.com/fileadmin/templates/01/images/banner01.jpg" style="max-width: 100%; max-height: 300px; margin: 0px;" />
+
+                                <h4 >{{activity.title|title}}</h4>
 
 
-                                </h4>
                               </div>
+                              <div class="row">
+                                <div class="col-md-7">
                               <div class="modal-body">
                                 <h4>Just fill in the following details and we'll get back to you.</h4>
                                 <form method= "POST" action="{% url 'adventurepackagequery' id=activity.id %}">
@@ -368,9 +406,31 @@
 
                               </div>
                             </div>
+                            <div class="col-md-5">
+
+                              <h3>New To Traveler?</h3>
+                              <form>
+                                  <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                      <label>Full Name</label>
+                                      <input class="form-control" placeholder="e.g. John Doe" type="text" />
+                                  </div>
+                                  <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                      <label>Emai</label>
+                                      <input class="form-control" placeholder="e.g. johndoe@gmail.com" type="text" />
+                                  </div>
+                                  <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                      <label>Password</label>
+                                      <input class="form-control" type="password" placeholder="my secret password" />
+                                  </div>
+                                  <input class="btn btn-primary" type="submit" value="Sign up for Traveler" />
+                              </form>
+                            </div>
+                            </div>
+                            </div>
                           </div>
                         </div>
                         <!-- ModalForm -->
+
                         <!-- ModalForm booknow-->
 
                         <div class="modal fade" id="myModal3{{activity.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -414,6 +474,274 @@
                         </div>
                         <!-- ModalFormbooknow -->
                         {% endfor %}
+
+                        <script type="text/javascript">
+                        $('.minus-1, .plus-1').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-1') ? -1 : 1));
+                        });
+                        $('.minus-2, .plus-2').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-2') ? -1 : 1));
+                        });
+                        $('.minus-3, .plus-3').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-3') ? -1 : 1));
+                        });
+                        $('.minus-4, .plus-4').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-4') ? -1 : 1));
+                        });
+                        $('.minus-5, .plus-5').click(function (e) {
+                            e.preventDefault();
+                            var $input = $(this).siblings('.value');
+                            var val = parseInt($input.val(), 10);
+                            $input.val(val + ($(this).hasClass('minus-5') ? -1 : 1));
+                        });
+
+                        </script>
+                          <script type="text/javascript">
+
+                        $(".plus-1").mouseup(function() {
+                          calcadd_1();
+                              });
+                        $(".minus-1").mouseup(function() {
+                          calcsub_1();
+                              });
+                              $(".plus-2").mouseup(function() {
+                                calcadd_2();
+                                    });
+                              $(".minus-2").mouseup(function() {
+                                calcsub_2();
+                                    });
+                                    $(".plus-3").mouseup(function() {
+                                      calcadd_3();
+                                          });
+                                    $(".minus-3").mouseup(function() {
+                                      calcsub_3();
+                                          });
+                                          $(".plus-4").mouseup(function() {
+                                            calcadd_4();
+                                                });
+                                          $(".minus-4").mouseup(function() {
+                                            calcsub_4();
+                                                });
+                                                $(".plus-5").mouseup(function() {
+                                                  calcadd_5();
+                                                      });
+                                                $(".minus-5").mouseup(function() {
+                                                  calcsub_5();
+                                                      });
+                        </script>
+
+                        <script type="text/javascript">
+
+                        function calc_1()
+                        {
+  var price = document.getElementById("ticket_price-1").innerHTML;
+  var noTickets = document.getElementById("num-1").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-1").innerHTML = total;
+                        }
+
+                        function calcadd_1()
+                        {
+  var total = 0;
+  var noTickets = document.getElementById("num-1").value;
+  var inc = 1;
+  var finalamount = parseFloat(inc) + parseFloat(noTickets);
+  var counter = 0;
+  if (!isNaN(total)){
+      if (parseFloat(finalamount) < 5){
+    var price = document.getElementById("ticket_price-1").innerHTML;
+    document.getElementById("ticket_price-1").innerHTML = parseFloat(price);
+    var total = parseFloat(price) * finalamount;
+    document.getElementById("total-1").innerHTML = total;
+  }
+   else if (parseFloat(finalamount) == 5){
+      counter += 1;
+      if(counter == 1){
+      var price2 = document.getElementById("ticket_price-1").innerHTML;
+      var discount = parseFloat(price2) * 0.9;
+      document.getElementById("ticket_price-1").innerHTML = parseFloat(discount);
+      var total = parseFloat(discount) * finalamount;
+      document.getElementById("total-1").innerHTML = total;
+    }
+    else{
+      var price = document.getElementById("ticket_price-1").innerHTML;
+      var total = parseFloat(price) * finalamount;
+      document.getElementById("total-1").innerHTML = total;
+    }
+   }
+   else{
+     var price = document.getElementById("ticket_price-1").innerHTML;
+     var total = parseFloat(price) * finalamount;
+     document.getElementById("total-1").innerHTML = total;
+   }
+  }
+  }
+
+                        function calcsub_1()
+                        {
+                          var inc = -1;
+  var price = document.getElementById("ticket_price-1").innerHTML;
+  var noTickets = document.getElementById("num-1").value;
+  var finalamount = parseFloat(noTickets) + parseFloat(inc);
+  var total = parseFloat(price) * (finalamount);
+  if (!isNaN(total)){
+    if (parseFloat(finalamount) > 4){
+    var price = document.getElementById("ticket_price-1").innerHTML;
+    document.getElementById("ticket_price-1").innerHTML = parseFloat(price);
+    var total = parseFloat(price) * finalamount;
+    document.getElementById("total-1").innerHTML = total;
+    }
+    else if (parseFloat(finalamount) == 4){
+    var price2 = document.getElementById("ticket_price-1").innerHTML;
+    var discount = parseFloat(price2)/ 0.9;
+    document.getElementById("ticket_price-1").innerHTML = parseFloat(discount);
+    var total = parseFloat(discount) * finalamount;
+    document.getElementById("total-1").innerHTML = total;
+    }
+    else{
+    var price = document.getElementById("ticket_price-1").innerHTML;
+    var total = parseFloat(price) * finalamount;
+    document.getElementById("total-1").innerHTML = total;
+    }
+
+
+    }
+                        }
+
+                        function calcadd_2()
+                        {
+
+  var price = document.getElementById("ticket_price-2").innerHTML;
+  var noTickets = document.getElementById("num-2").value;
+  var inc = 1;
+  var finalamount = parseFloat(inc) + parseFloat(noTickets);
+  var total = parseFloat(price) * finalamount;
+
+  if (!isNaN(total))
+    document.getElementById("total-2").innerHTML = total;
+                        }
+                        function calcsub_2()
+                        {
+                          var inc = -1;
+  var price = document.getElementById("ticket_price-2").innerHTML;
+  var noTickets = document.getElementById("num-2").value;
+  var finalamount = parseFloat(noTickets) + parseFloat(inc);
+  var total = parseFloat(price) * (finalamount);
+  if (!isNaN(total))
+    document.getElementById("total-2").innerHTML = total;
+                        }
+                        function calcadd_3()
+                        {
+
+  var price = document.getElementById("ticket_price-3").innerHTML;
+  var noTickets = document.getElementById("num-3").value;
+  var inc = 1;
+  var finalamount = parseFloat(inc) + parseFloat(noTickets);
+  var total = parseFloat(price) * finalamount;
+
+  if (!isNaN(total))
+    document.getElementById("total-3").innerHTML = total;
+                        }
+                        function calcsub_3()
+                        {
+                          var inc = -1;
+  var price = document.getElementById("ticket_price-3").innerHTML;
+  var noTickets = document.getElementById("num-3").value;
+  var finalamount = parseFloat(noTickets) + parseFloat(inc);
+  var total = parseFloat(price) * (finalamount);
+  if (!isNaN(total))
+    document.getElementById("total-3").innerHTML = total;
+                        }
+                        function calcadd_4()
+                        {
+
+  var price = document.getElementById("ticket_price-4").innerHTML;
+  var noTickets = document.getElementById("num-4").value;
+  var inc = 1;
+  var finalamount = parseFloat(inc) + parseFloat(noTickets);
+  var total = parseFloat(price) * finalamount;
+
+  if (!isNaN(total))
+    document.getElementById("total-4").innerHTML = total;
+                        }
+                        function calcsub_4()
+                        {
+                          var inc = -1;
+  var price = document.getElementById("ticket_price-4").innerHTML;
+  var noTickets = document.getElementById("num-4").value;
+  var finalamount = parseFloat(noTickets) + parseFloat(inc);
+  var total = parseFloat(price) * (finalamount);
+  if (!isNaN(total))
+    document.getElementById("total-4").innerHTML = total;
+                        }
+
+
+
+
+
+
+
+
+
+
+
+                        function calc_1()
+                        {
+  var price = document.getElementById("ticket_price-1").innerHTML;
+  var noTickets = document.getElementById("num-1").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-1").innerHTML = total;
+                        }
+
+                        function calc_2()
+                        {
+  var price = document.getElementById("ticket_price-2").innerHTML;
+  var noTickets = document.getElementById("num-2").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-2").innerHTML = total;
+                        }
+
+                        function calc_3()
+                        {
+  var price = document.getElementById("ticket_price-3").innerHTML;
+  var noTickets = document.getElementById("num-3").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-3").innerHTML = total;
+                        }
+                        function calc_4()
+                        {
+  var price = document.getElementById("ticket_price-1").innerHTML;
+  var noTickets = document.getElementById("num-1").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-4").innerHTML = total;
+                        }
+                        function calc_5()
+                        {
+  var price = document.getElementById("ticket_price-5").innerHTML;
+  var noTickets = document.getElementById("num-5").value;
+  var total = parseFloat(price) * noTickets;
+  if (!isNaN(total))
+    document.getElementById("total-5").innerHTML = total;
+                        }
+
+                        </script>
                     </ul>
                     <h3 class="mb20">Rent Adventure related items</h3>
                     <div class="row row-wrap">

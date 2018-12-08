@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base5.html' %}
 {% load staticfiles %}
 {% block title %} Upcoming Trip Detail {% endblock %}
 {% block body %}
@@ -111,7 +111,9 @@
               <!-- ModalFormbooknow -->
           </div>
   <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
+            <div class="row">
+
               <div class="tabbable booking-details-tabbable" style="font-family: 'Alegreya Sans SC', sans-serif; font-size: 16px;">
                   <ul class="nav nav-tabs" id="myTab">
                       <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-camera"></i><b>Photos</b></a>
@@ -529,38 +531,67 @@
 
                   </div>
               </div>
+
+
+          </div>
               <br>
+
               <div class="row" >
 
-                  <div class="col-md-12 col-sm-12" style="background-color: #ffb24587; ">
-                <br>
+                  <div class="col-md-12 col-sm-12" >
+
                   <h3>Group Itinerary :</h3>
-                  <span class="booking-item-feature-title" style = "font-family: 'Roboto Condensed', sans-serif; color: ; font-size: 15px;">{{upcoming_tripdetail.itenary.details|safe}}</span>
+                      {% for i in upcoming_trip_itinerary %}
+                      <button class="accordion">Day {{forloop.counter}} </button>
+                      <div class="panel22">
+                        <p>{{i.day_detail | safe}}</p>
+                      </div>
+                      {% endfor %}
+
+
+  <script>
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active2");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight){
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+  </script>
                 </div>
 
               </div>
           </div>
 
-          <div class="col-md-6">
-
+          <div class="col-md-4">
+            <div class="col-md-12">
               <div class="booking-item-meta">
                     <h3 class="lh1em mt40" style="font-family: 'Acme', sans-serif;">About Property</h3>
                 </div>
                 <span class ="booking-item-feature-title" style= "font-family: 'Roboto', arial, helvetica, sans-serif; color: #131313d6;">
                 {{ upcoming_tripdetail.head_description|safe }}
               </span>
-              <h3>Inclusions</h3>
+                <h3 class="lh1em mt40" style="font-family: 'Acme', sans-serif;">Inclusions</h3>
 
               <ul class="booking-item-features booking-item-features-expand mb30 clearfix">
                 {% for included in inclusions %}
-                <div class = "col-sm-6" style="text-align: left;">
-                  <li><h5>{{included.icon.as_html}}<span class="booking-item-feature-title">{{included.title}}</span></h5>
+                <div class = "col-sm-12" style="text-align: left;">
+                  <li style="font-family: 'Permanent Marker', cursive; font-size: 14px;">  {{included.icon.as_html}} - <span class="booking-item-feature-title"> {{included.title}}</span>
                   </li>
                 </div>
                 {% endfor %}
               </ul>
-
+            </div>
               <div class="col-md-12">
+                <br>
+
                 <h4>Our Upcoming Trips</h4>
                 <ul class="booking-list">
                   {% for upcoming_departure in upcoming_departures %}
@@ -596,6 +627,207 @@
 
                 </ul>
               </div>
+              <div class="col-md-12">
+
+                  <h3>Hot Selling Packages</h3>
+              <div class="container2" style="padding:20px; margin-top:0px;">
+                  {% for trip in best_destinations %}
+
+                <div class="mySlides">
+
+                  <div class="card profile-card-5" style="border:2px solid orange; border-color: #345c70;">
+                      <div class="card-img-block" style="margin-bottom: 0px;">
+                          <img class="card-img-top" src="{{trip.logo}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
+
+                      </div>
+                          <div class="card-body pt-0" style="text-align:center;">
+                          <p style="margin-top: 0px; font-family: 'Anton', sans-serif; letter-spacing:1px; font-size: 20px; color:#345c70;">{{trip.title}} <small><a href="{% url 'searchdestinationpage' id=trip.destination.id %}">view all</a></small></p>
+                          <p><small>Starting from </small> ₹ {{trip.price_for_one}}
+                          </p>
+                          <a href="#" class="btn btn-primary btn-sm" style="margin-right: 5px; margin-bottom:5px;" data-toggle="modal" data-target="#myModal3{{trip.id}}">Book Now<i class="fa fa-shopping-cart"></i></a>
+                          <a href="#" class="btn btn-primary btn-sm" style="background-color:#345c70; border-color: #345c70;" data-toggle="modal" data-target="#myModal2{{trip.id}}">Send Enquiry<i class="fa fa-send-o"></i></a>
+                        </div>
+                  </div>
+                </div>
+
+                    <!-- ModalForm Sendenquiry-->
+
+                    <div class="modal fade" id="myModal2{{trip.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Enquire for {{trip.title|title}}
+                            </h4>
+                          </div>
+                          <div class="modal-body">
+                            <h4>Just fill in the following details and we'll get back to you.</h4>
+                            <form method= "POST" action="{% url 'hotsellingquery' id=trip.id %}">
+                              {% csrf_token %}
+                                <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                    <label>Full Name</label>
+                                    <input class="form-control" name="user_hotsell" placeholder="e.g. John Doe" type="text" required/>
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                    <label>Email</label>
+                                    <input class="form-control" name="email_hotsell" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                    <label>Phone Number</label>
+                                    <input class="form-control" name="phone_hotsellbook" placeholder="e.g. 88888885555-" type="text"/>
+                                </div>
+
+
+                                  <div class="input-daterange" data-date-format="MM d, D">
+                                      <div class="row">
+                                          <div class="col-xs-6">
+
+                                              <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                                  <label>Check In</label>
+                                                  <input class="form-control" name="start" type="text" />
+                                              </div>
+                                          </div>
+
+                                          <div class="col-xs-6">
+                                              <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                                  <label>Check Out</label>
+                                                  <input class="form-control" name="end" type="text" />
+                                              </div>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                    <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                        <label>Number of People</label>
+                                        <input class="form-control" name="num_people_hotselling" placeholder="e.g. 8" type="text"/>
+                                    </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                    <label>Your Query</label>
+
+                                    <textarea class="form-control" name ="query_hotsell"rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                    </textarea>
+                                </div>
+                                <input class="btn btn-primary" type="submit" value="Submit Query" />
+                            </form>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ModalForm -->
+
+
+                    <!-- ModalForm booknow-->
+
+                    <div class="modal fade" id="myModal3{{trip.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Submit Booking Query for {{trip.title|title}}
+
+
+                            </h4>
+                          </div>
+                          <div class="modal-body">
+                            <h4>Just fill in the following details and we'll get back to you.</h4>
+                            <form method= "POST" action="{% url 'hotsellingbook' id=trip.id %}">
+                              {% csrf_token %}
+                                <div class="form-group form-group-icon-left"><i class="fa fa-user input-icon input-icon-show"></i>
+                                    <label>Full Name</label>
+                                    <input class="form-control" name="user_hotsellbook" placeholder="e.g. John Doe" type="text" required/>
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-envelope input-icon input-icon-show"></i>
+                                    <label>Email</label>
+                                    <input class="form-control" name="email_hotsellbook" placeholder="e.g. johndoe@gmail.com" type="email" required/>
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                    <label>Phone Number</label>
+                                    <input class="form-control" name="phone_hotsellbook" placeholder="e.g. 88888885555-" type="text" required/>
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-phone input-icon input-icon-show"></i>
+                                    <label>Number of People</label>
+                                    <input class="form-control" name="num_people_hotselling" placeholder="e.g. 8" type="text" required/>
+                                </div>
+                                <div class="input-daterange" data-date-format="MM d, D">
+                                    <div class="row">
+                                        <div class="col-xs-6">
+
+                                            <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                                <label>Check In</label>
+                                                <input class="form-control" name="start" type="text" required/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-6">
+                                            <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
+                                                <label>Check Out</label>
+                                                <input class="form-control" name="end" type="text" required/>
+
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                </div>
+                                <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
+                                    <label>Your Query</label>
+
+                                    <textarea class="form-control" name ="query_hotsellbook"rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                    </textarea>
+                                </div>
+                                <input class="btn btn-primary" type="submit" value="Submit Query" />
+                            </form>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ModalFormbooknow -->
+                {% endfor %}
+
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <a class="next" onclick="plusSlides(1)">❯</a>
+
+                <div class="row">
+                  {% for i in best_destinations %}
+                  <div class="column">
+                    <img class="demo cursor" src="{{i.logo}}" style="max-height: 55px; max-width: auto; font-family: 'Anton', sans-serif;" onclick="currentSlide({{forloop.counter}})" alt="{{i.title}}">
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+              <script>
+              var slideIndex = 1;
+              showSlides(slideIndex);
+
+              function plusSlides(n) {
+                showSlides(slideIndex += n);
+              }
+
+              function currentSlide(n) {
+                showSlides(slideIndex = n);
+              }
+
+              function showSlides(n) {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                var dots = document.getElementsByClassName("demo");
+                var captionText = document.getElementById("caption");
+                if (n > slides.length) {slideIndex = 1}
+                if (n < 1) {slideIndex = slides.length}
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                for (i = 0; i < dots.length; i++) {
+                    dots[i].className = dots[i].className.replace(" active", "");
+                }
+                slides[slideIndex-1].style.display = "block";
+                dots[slideIndex-1].className += " active";
+                captionText.innerHTML = dots[slideIndex-1].alt;
+              }
+              </script>
+
         </div>
       </div>
       <div class="row">
@@ -635,6 +867,73 @@
     </div>
 
   </div>
+  <footer id="main-footer">
+      <div class="container">
+          <div class="row row-wrap">
+              <div class="col-md-3">
+                  <a class="logo" href="index.html">
+                      <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
+                  </a>
+                  <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
+                  <ul class="list list-horizontal list-space">
+                      <li>
+                          <a class="fa fa-facebook box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                      </li>
+                      <li>
+                          <a class="fa fa-twitter box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                      </li>
+                      <li>
+                          <a class="fa fa-google-plus box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                      </li>
+                      <li>
+                          <a class="fa fa-linkedin box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                      </li>
+                      <li>
+                          <a class="fa fa-pinterest box-icon-normal round animate-icon-bottom-to-top" href="#"></a>
+                      </li>
+                  </ul>
+              </div>
+
+              <div class="col-md-3">
+                  <h4>Newsletter</h4>
+                  <form>
+                      <label>Enter your E-mail Address</label>
+                      <input type="text" class="form-control">
+                      <p class="mt5"><small>*We Never Send Spam</small>
+                      </p>
+                      <input type="submit" class="btn btn-primary" value="Subscribe">
+                  </form>
+              </div>
+              <div class="col-md-2">
+                  <ul class="list list-footer">
+                      <li><a href="#">About US</a>
+                      </li>
+                      <li><a href="#">Press Centre</a>
+                      </li>
+                      <li><a href="#">Best Price Guarantee</a>
+                      </li>
+                      <li><a href="#">Travel News</a>
+                      </li>
+                      <li><a href="#">Jobs</a>
+                      </li>
+                      <li><a href="#">Privacy Policy</a>
+                      </li>
+                      <li><a href="#">Terms of Use</a>
+                      </li>
+                      <li><a href="#">Feedback</a>
+                      </li>
+                  </ul>
+              </div>
+              <div class="col-md-4">
+                  <h4>Have Questions?</h4>
+                  <h4 class="text-color">+1-202-555-0173</h4>
+                  <h4><a href="#" class="text-color">support@traveler.com</a></h4>
+                  <p>24/7 Dedicated Customer Support</p>
+              </div>
+
+          </div>
+      </div>
+  </footer>
   <script src="{% static 'js/jquery.js' %}"></script>
   <script src="{% static 'js/bootstrap.js' %}"></script>
   <script src="{% static 'js/slimmenu.js' %}"></script>

@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from .models import Destinationpackage, UpcomingTrip, Adventurepackage, Rental, Gallery, Post, Article, ThingsToDo
+from .models import Destinationpackage, UpcomingTrip, Adventurepackage, Rental, Gallery, Post, Article, ThingsToDo, Howdystays
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response, get_object_or_404, redirect
 from django.template.context_processors import csrf
@@ -59,10 +59,15 @@ def hotsellingquery(request, id=None):
         queryfor_package = Destinationpackage.objects.get(id= id)
         package_title = queryfor_package.title
         subject = 'Message from MYSITE.COM'
-        message = '%s \n %s \n %s \n %s \n %s \n %s \n'%(query_username, query_user_email, query_hotsell, package_title, query_startdate, query_enddate)
+        subject2 = 'Message from HowdyHighlands'
+        regard_text = "Thanks for submitting your query to HowdyHighlands for " + package_title + ". Our team will get back shortly to you."
+        message = '%s \n %s \n %s \n %s \n %s \n %s \n %s \n'%(query_username, query_user_email, query_numberofpeople, query_hotsell, package_title, query_startdate, query_enddate)
         emailFrom = query_user_email
         emailTo = ['tusharblogger12@gmail.com']
+        emailFrom2 = 'howdyhighlands@gmail.com'
+        email_client = [query_user_email]
         send_mail(subject, message, emailFrom, emailTo, fail_silently=True)
+        send_mail(subject2, regard_text, emailFrom2, email_client, fail_silently= True)
         title = "Thanks!"
         confirm_message = "Thanks for the message. We will get right back to you."
         success_text = "Query for "+package_title +"submitted!!"
@@ -83,11 +88,16 @@ def adventurepackagequery(request, id=None):
         query_numberofpeople = request.POST.get('numpeople_upcomingtrip')
         queryfor_package = Adventurepackage.objects.get(id= id)
         package_title = queryfor_package.title
-        subject = package_title +' query for activity.'
+        subject = package_title + ' query for activity.'
+        subject2 = 'Message from HowdyHighlands'
+        regard_text = "Thanks for submitting your query to HowdyHighlands for " + package_title + ". Our team will get back shortly to you."
         message = '%s \n %s \n %s \n %s \n'%(query_username, query_user_email, query_hotsell, package_title)
         emailFrom = query_user_email
+        emailFrom2 = 'howdyhighlands@gmail.com'
         emailTo = ['tusharblogger12@gmail.com']
+        email_client = [query_user_email]
         send_mail(subject, message, emailFrom, emailTo, fail_silently=True)
+        send_mail(subject2, regard_text, emailFrom2, email_client, fail_silently= True)
         title = "Thanks!"
         confirm_message = "Thanks for the message. We will get right back to you."
         success_text = "Query for "+package_title +"submitted!!"
@@ -111,7 +121,7 @@ def upcomingtripquery(request, id=None):
         subject = package_title +' query for activity.'
         message = '%s \n %s \n %s \n %s \n'%(query_username, query_user_email, query_hotsell, package_title)
         emailFrom = query_user_email
-        emailTo = ['tusharblogger12@gmail.com']
+        emailTo = ['howdyhighlands@gmail.com']
         send_mail(subject, message, emailFrom, emailTo, fail_silently=True)
         title = "Thanks!"
         confirm_message = "Thanks for the message. We will get right back to you."
@@ -136,7 +146,7 @@ def adventurepackagebook(request, id=None):
         subject = package_title +' book for activity.'
         message = '%s \n %s \n %s \n %s \n'%(query_username, query_user_email, query_hotsell, package_title)
         emailFrom = query_user_email
-        emailTo = ['tusharblogger12@gmail.com']
+        emailTo = ['howdyhighlands@gmail.com']
         send_mail(subject, message, emailFrom, emailTo, fail_silently=True)
         title = "Thanks!"
         confirm_message = "Thanks for the message. We will get right back to you."
@@ -163,7 +173,7 @@ def hotsellingbook(request, id=None):
         subject2 = 'Confirmation on receving your query'
         message = '%s \n %s \n %s \n %s \n'%(query_username, query_user_email, query_hotsell, package_title)
         emailFrom = query_user_email
-        emailTo = ['tusharblogger12@gmail.com']
+        emailTo = ['howdyhighlands@gmail.com']
         send_mail(subject, message, emailFrom, emailTo, fail_silently=True)
         title = "Thanks!"
         confirm_message = "Thanks for the message. We will get right back to you."
@@ -219,7 +229,7 @@ def destinationpackagebook(request, id=None):
         subject2 = 'Confirmation on receving your query'
         message = '%s \n %s \n %s \n %s \n %s \n %s \n'%(add_on_query, query_user_email, query_user_phone, query_startdate, query_enddate, package_title)
         emailFrom = query_user_email
-        emailTo = ['tusharblogger12@gmail.com']
+        emailTo = ['howdyhighlands@gmail.com']
         send_mail(subject, message, emailFrom, emailTo, fail_silently=True)
         title = "Thanks!"
         confirm_message = "Thanks for the message. We will get right back to you."
@@ -341,15 +351,31 @@ def searchactivitylist(request):
 
 
 def activity_singlepackage_all(request, pk1):
-    result = Adventurepackage.objects.filter(associated_adventure__id = pk1)
+    activity = Adventurepackage.objects.get(id = pk1)
+    associated_adventure_id = activity.associated_adventure.id
+    result = Adventurepackage.objects.filter(associated_adventure__id = associated_adventure_id)
+    result = result.exclude(id = activity.id)
+    result2 = Adventurepackage.objects.filter(associated_adventure__id = associated_adventure_id)
     rentalitem = Rental.objects.filter(associated_adventure__id= pk1).distinct()
     count = len(result)
     context = {
+        'activity' : activity,
+        'result2' : result2,
         'result':result,
         'count' : count,
         'rentalitem': rentalitem,
     }
     return render(request, "adventuresingle_package.html", context)
+
+def singleadventure(request, pk1):
+    result = Adventurepackage.objects.filter(associated_adventure__id = pk1)
+    count = len(result)
+    context = {
+        'result' : result,
+        'count' : count,
+    }
+    return render(request, "activityform_base.html", context)
+
 
 def destinationmore(request, id=None):
     destination_look = get_object_or_404(Destination, id=id)
@@ -386,6 +412,7 @@ def destinationdetails(request, pk):
     detail_package = Destinationpackage.objects.get(pk= pk)
     template = 'destinationdetails.html'
     destination_images = detail_package.destinationimages.all()
+    itinerary_day_detail = detail_package.destinationitinerary.all()
     destination_add_ons = detail_package.addons.all()
     inclusions = detail_package.inclusions.all()
     adventurethings_to_do = Adventurepackage.objects.filter(destination= detail_package.destination)
@@ -397,6 +424,7 @@ def destinationdetails(request, pk):
         'inclusions' : inclusions,
         'adventurethings_to_do': adventurethings_to_do,
         'things_to_do' : things_to_do,
+        'itinerary_day_detail':itinerary_day_detail,
     }
     return render(request, template, context)
 
@@ -409,10 +437,12 @@ def destinationdetails(request, pk):
 def upcomingtripdetail(request, pk=None):
     upcoming_tripdetail = UpcomingTrip.objects.get(id= pk)
     upcoming_trip_images = upcoming_tripdetail.upcomingtripimages.all()
+    upcoming_trip_itinerary = upcoming_tripdetail.upcoming_trip_itinerary.all()
     inclusions = upcoming_tripdetail.inclusions.all()
     upcoming_departures = UpcomingTrip.objects.all()
     article_similar = Article.objects.filter(destination__id= pk)
     destinationtitle = upcoming_tripdetail.destination.first()
+    best_destinations = Destinationpackage.objects.all()[:3]
     template = 'upcomingtripdetail.html'
     context = {
         'upcoming_tripdetail' : upcoming_tripdetail,
@@ -421,15 +451,21 @@ def upcomingtripdetail(request, pk=None):
         'upcoming_departures':upcoming_departures,
         'article_similar' : article_similar,
         'destinationtitle' : destinationtitle,
+        'upcoming_trip_itinerary' : upcoming_trip_itinerary,
+        'best_destinations' : best_destinations
     }
     return render(request, template, context)
 
 
 def gallery(request):
     collection = Gallery.objects.all()
+    collection2 = collection
+    collection3 = collection
     template = 'gallery.html'
     context = {
         'collection': collection,
+        'collection2' : collection2,
+        'collection3' : collection3,
     }
     return render(request, template, context)
 
@@ -510,5 +546,14 @@ def destinationabout(request, id):
     template = 'aboutdestination.html'
     context = {
         'package_destination':package_destination,
+    }
+    return render(request, template, context)
+
+
+def howdystayslist(request):
+    property_list = Howdystays.objects.all()
+    template = 'howdystayslist.html'
+    context = {
+        'property_list' : property_list,
     }
     return render(request, template, context)

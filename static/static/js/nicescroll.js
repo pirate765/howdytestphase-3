@@ -260,7 +260,7 @@
 
         this.canshowonmouseevent = (self.opt.autohidemode != "scroll");
 
-        // Events jump table    
+        // Events jump table
         this.onmousedown = false;
         this.onmouseup = false;
         this.onmousemove = false;
@@ -277,7 +277,7 @@
         this.onzoomin = false;
         this.onzoomout = false;
 
-        // Let's start!  
+        // Let's start!
         this.view = false;
         this.page = false;
 
@@ -498,7 +498,7 @@
             };
 
             //this one can help to enable hw accel on ios6 http://indiegamr.com/ios6-html-hardware-acceleration-changes-and-how-to-fix-them/
-            if (cap.hastranslate3d && cap.isios) this.doc.css("-webkit-backface-visibility", "hidden"); // prevent flickering http://stackoverflow.com/questions/3461441/      
+            if (cap.hastranslate3d && cap.isios) this.doc.css("-webkit-backface-visibility", "hidden"); // prevent flickering http://stackoverflow.com/questions/3461441/
 
             //derived from http://stackoverflow.com/questions/11236090/
             function getMatrixValues() {
@@ -712,7 +712,7 @@
             if (self.locked) return;
             //      if (self.rail.drag) return;
 
-            //      self.cancelScroll();       
+            //      self.cancelScroll();
 
             self.cancelEvent(e);
 
@@ -768,7 +768,7 @@
                 self.zindex = "auto";
             }
 
-            /*      
+            /*
       self.ispage = true;
       self.haswrapper = true;
 //      self.win = $(window);
@@ -920,7 +920,7 @@
 
                 }
 
-                //        
+                //
 
                 if (self.ispage) {
                     rail.css({
@@ -1121,7 +1121,7 @@
 
                             if (ds > 2) {
                                 self.mangotouch.lazy = setTimeout(function() {
-                                    //                  trace('END:'+ds+'+'+gap);                  
+                                    //                  trace('END:'+ds+'+'+gap);
                                     self.mangotouch.lazy = false;
                                     self.mangotouch.dry = 0;
                                     self.mangotouch.drx = 0;
@@ -1496,7 +1496,7 @@
 
                             return self.cancelEvent(e);
                         }
-                        /*              
+                        /*
             else {
               self.checkarea = true;
             }
@@ -1513,7 +1513,7 @@
                             }
                         }
 
-                        //            self.onmousedown = self.ontouchstart;            
+                        //            self.onmousedown = self.ontouchstart;
                         //            self.onmouseup = self.ontouchend;
                         //            self.onmousemove = self.ontouchmove;
 
@@ -1628,7 +1628,7 @@
                         self.bind(self.cursorh, "mouseup", self.onmouseup);
 
 
-                        /*						
+                        /*
             self.bind(self.cursorh,"mouseup",function(e){
               if (self.rail.drag&&self.rail.drag.pt==2) return;
               self.rail.drag = false;
@@ -1841,7 +1841,7 @@
                                 ret = true;
                                 break;
                             case 36:
-                            case 63273: // safari                
+                            case 63273: // safari
                                 (self.railh && ctrl) ? self.doScrollPos(0, 0) : self.doScrollTo(0);
                                 ret = true;
                                 break;
@@ -1960,7 +1960,7 @@
 
                     if (self.iframexd) {
                         if ("console" in window) console.log('NiceScroll error: policy restriced iframe');
-                        return true; //cross-domain - I can't manage this        
+                        return true; //cross-domain - I can't manage this
                     }
 
                     self.forcescreen = true;
@@ -2161,12 +2161,12 @@
             self.page.maxw = Math.max(0, self.page.w - self.view.w);
 
             if ((self.page.maxh == premaxh) && (self.page.maxw == premaxw) && (self.view.w == preview.w)) {
-                // test position        
+                // test position
                 if (!self.ispage) {
                     var pos = self.win.offset();
                     if (self.lastposition) {
                         var lst = self.lastposition;
-                        if ((lst.top == pos.top) && (lst.left == pos.left)) return self; //nothing to do            
+                        if ((lst.top == pos.top) && (lst.left == pos.left)) return self; //nothing to do
                     }
                     self.lastposition = pos;
                 } else {
@@ -2223,7 +2223,7 @@
                 self.scrollvaluemaxw = self.railh.width - self.cursorwidth - self.cursorh.wborder;
             }
 
-            /*			
+            /*
       if (self.checkrtlmode&&self.railh) {
         self.checkrtlmode = false;
         if (self.opt.rtlmode&&self.scroll.x==0) self.setScrollLeft(self.page.maxw);
@@ -2584,7 +2584,7 @@
                 py = -Math.floor(e.deltaY * self.opt.mousescrollstep);
             }
 
-            if (hr && self.opt.oneaxismousemode && (px == 0) && py) { // classic vertical-only mousewheel + browser with x/y support 
+            if (hr && self.opt.oneaxismousemode && (px == 0) && py) { // classic vertical-only mousewheel + browser with x/y support
                 px = py;
                 py = 0;
             }
@@ -2743,7 +2743,7 @@
                 var py = self.getScrollTop();
                 var px = self.getScrollLeft();
 
-                if (((self.newscrolly - py) * (y - py) < 0) || ((self.newscrollx - px) * (x - px) < 0)) self.cancelScroll(); //inverted movement detection      
+                if (((self.newscrolly - py) * (y - py) < 0) || ((self.newscrollx - px) * (x - px) < 0)) self.cancelScroll(); //inverted movement detection
 
                 if (self.opt.bouncescroll == false) {
                     if (y < 0) y = 0;
@@ -2868,7 +2868,7 @@
                 self.timerscroll = false;
                 var py = self.getScrollTop();
                 var px = self.getScrollLeft();
-                self.setScrollTop(py); // fire event onscroll        
+                self.setScrollTop(py); // fire event onscroll
                 if (self.railh) self.setScrollLeft(px); // fire event onscroll left
 
                 self.noticeCursor(false, py, px);
@@ -3017,7 +3017,7 @@
                         if ((scx != self.newscrollx) || (sc != self.newscrolly)) self.doScrollPos(scx, sc);
                         else {
                             if (self.onscrollend) {
-                                /*							
+                                /*
                 var info = {"type":"scrollend","current":{"x":sx,"y":sy},"end":{"x":self.newscrollx,"y":self.newscrolly}};
                 self.onscrollend.call(self,info);
 */
@@ -3240,7 +3240,7 @@
     };
 
     // Inspired by the work of Kin Blas
-    // http://webpro.host.adobe.com/people/jblas/momentum/includes/jquery.momentum.0.7.js  
+    // http://webpro.host.adobe.com/people/jblas/momentum/includes/jquery.momentum.0.7.js
 
 
     var ScrollMomentumClass2D = function(nc) {
@@ -3447,8 +3447,8 @@
         }
     };
 
-    /*  
-  $.fx.step["scrollTop"] = function(fx){    
+    /*
+  $.fx.step["scrollTop"] = function(fx){
     $.cssHooks["scrollTop"].set( fx.elem, fx.now + fx.unit );
   };
 */
@@ -3481,10 +3481,10 @@
         }
     };
 
-    /*  
+    /*
   $.fx.step["scrollLeft"] = function(fx){
     $.cssHooks["scrollLeft"].set( fx.elem, fx.now + fx.unit );
-  };  
+  };
 */
 
     jQuery.fn.scrollLeft = function(value) {

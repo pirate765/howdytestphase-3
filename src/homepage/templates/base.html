@@ -56,7 +56,6 @@
 }
 .carousel .item {
     text-align: center;
-	   overflow: hidden;
 }
 .carousel .item h4 {
 	font-family: 'Varela Round', sans-serif;
@@ -288,6 +287,10 @@
   display: none;
 }
 
+.mySlides3 {
+  display: none;
+}
+
 /* Add a pointer when hovering over the thumbnail images */
 .cursor {
   cursor: pointer;
@@ -376,13 +379,13 @@
 </style>
 </head>
 <body>
-
+  <div class="container-fluid">
     {% include 'navbar.html' %}
 
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script src= "{% static 'js/ajax.js' %}"></script>
     {% block body %}
     {% endblock %}
-
+</div>
 </body>
 </html>

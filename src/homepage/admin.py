@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from homepage.models import Destination, Itenary, Adventure, Destinationpackage, UpcomingTrip, Destinationimage, Adventurepackage, Rental, Gallery, Article, Post, Addon, Inclusion, ThingsToDo, Month
-from homepage.models import  Months, Adventuredestination, Adventuregear, Adventurevendor, Adventurepackage, UpcomingTripImage
+from homepage.models import  Months, Adventuredestination, Adventuregear, Adventurevendor, Adventurepackage, UpcomingTripImage, Howdystays, StayAddon, Stayimage, GroupPackageitenerary, UpcomingTripItinerary
 
 # Register your models here.
 class DestinationImageInline(admin.TabularInline):
@@ -19,6 +19,18 @@ class PostInline(admin.TabularInline):
 class AddonInline(admin.TabularInline):
     model = Addon
 
+class GroupPackageiteneraryInline(admin.TabularInline):
+    model = GroupPackageitenerary
+
+class UpcomingTripItineraryInline(admin.TabularInline):
+    model = UpcomingTripItinerary
+
+class StayAddonInline(admin.TabularInline):
+    model = StayAddon
+
+class StayimageInline(admin.TabularInline):
+    model = Stayimage
+
 class MonthAdmin(admin.ModelAdmin):
     class Meta:
         model = Month
@@ -26,6 +38,13 @@ admin.site.register(Month, MonthAdmin)
 
 class UpcomingTripImageInline(admin.TabularInline):
     model = UpcomingTripImage
+
+
+class HowdystaysAdmin(admin.ModelAdmin):
+    inlines = [StayAddonInline, StayimageInline]
+    class Meta:
+        model = Howdystays
+admin.site.register(Howdystays, HowdystaysAdmin)
 
 
 class AdventuregearAdmin(admin.ModelAdmin):
@@ -59,13 +78,13 @@ class ThingsToDoAdmin(admin.ModelAdmin):
 admin.site.register(ThingsToDo, ThingsToDoAdmin)
 
 class DestinationpackageAdmin(admin.ModelAdmin):
-    inlines = [DestinationImageInline, AddonInline,]
+    inlines = [DestinationImageInline, AddonInline, GroupPackageiteneraryInline,]
     class Meta:
         model = Destinationpackage
 admin.site.register(Destinationpackage, DestinationpackageAdmin)
 
 class UpcomingTripAdmin(admin.ModelAdmin):
-    inlines = [UpcomingTripImageInline,]
+    inlines = [UpcomingTripImageInline, UpcomingTripItineraryInline]
     class Meta:
 		model = UpcomingTrip
 admin.site.register(UpcomingTrip, UpcomingTripAdmin)

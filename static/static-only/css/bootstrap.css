@@ -87,7 +87,6 @@ img {
   border: 0;
 }
 svg:not(:root) {
-  overflow: hidden;
 }
 figure {
   margin: 1em 40px;
@@ -1584,7 +1583,6 @@ table th[class*="col-"] {
   .table-responsive {
     width: 100%;
     margin-bottom: 15px;
-    overflow-y: hidden;
     overflow-x: scroll;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     border: 1px solid #dddddd;
@@ -2367,7 +2365,6 @@ input[type="button"].btn-block {
 .collapsing {
   position: relative;
   height: 0;
-  overflow: hidden;
   -webkit-transition: height 0.35s ease;
   transition: height 0.35s ease;
 }
@@ -3957,7 +3954,7 @@ a.thumbnail.active {
 }
 .media,
 .media-body {
-  overflow: hidden;
+  
   zoom: 1;
 }
 .media,
