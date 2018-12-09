@@ -316,7 +316,7 @@ def searchdestinationlist(request):
 
 def searchdestinationpage(request, id=None):
     destination_search = Destinationpackage.objects.filter(destination__id=id)
-    destinationtitle = destination_search[0].destination
+    #destinationtitle = destination_search[0].destination
     count = len(destination_search)
     activity_related = Adventurepackage.objects.filter(destination__id=id)
     article_destination = Article.objects.filter(destination__id=id)
@@ -325,7 +325,7 @@ def searchdestinationpage(request, id=None):
         'activity_related' : activity_related,
         'count' : count,
         'article_destination':article_destination,
-        'destinationtitle' : destinationtitle,
+        #'destinationtitle' : destinationtitle,
     }
     template = 'homepage/searchdestinationpage.html'
     return render(request, template, context)
