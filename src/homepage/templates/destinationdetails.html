@@ -24,6 +24,16 @@
     <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Acme" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Reem+Kufi" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet">
     <!-- /GOOGLE FONTS -->
 
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -106,7 +116,7 @@
 .carousel .carousel-control {
 	height: 46px;
 	width: 44px;
-	background: #fe9330;
+	background: #4d4d4d;
   margin: auto 0;
   border-radius: 4px;
 	opacity: 0.95;
@@ -192,7 +202,8 @@
     cursor: pointer;
     display: inline-block;
     vertical-align: top;
-    background-color: orange;
+    background-color: #6481a8;
+    color: white;
     width: 30px;
     height: 30px;
     font: 30px/1 Arial,sans-serif;
@@ -203,7 +214,8 @@
     cursor: pointer;
     display: inline-block;
     vertical-align: top;
-    background-color: orange;
+    background-color: #6481a8;
+    color: white;
     width: 30px;
     height: 30px;
     font: 30px/1 Arial,sans-serif;
@@ -236,8 +248,8 @@ input:disabled{
     background-color:white;
 }
 .accordion {
-    background-color: #ffa72f;
-    color: #6a6a6a;
+    background-color: #496a97;
+    color: white;
     cursor: pointer;
     padding: 18px;
     width: 100%;
@@ -251,7 +263,7 @@ input:disabled{
 }
 
 .active2, .accordion:hover {
-    background-color: #ed8323;
+    background-color:#324968;
     color: white;
 }
 
@@ -395,11 +407,11 @@ $(document).ready(function(){
 
                                             <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                                 <label>Check In</label>
-                                                <input class="form-control" name="start" type="text" />
+                                                <input class="form-control" name="start" type="text" id="checkin-1" />
                                             </div>
                                             <div class="form-group form-group-icon-left"><i class="fa fa-calendar input-icon input-icon-hightlight"></i>
                                                 <label>Check Out</label>
-                                                <input class="form-control" name="end" type="text" />
+                                                <input class="form-control" name="end" type="text" id="checkout-1"/>
 
                                             </div>
                                           </div>
@@ -587,10 +599,10 @@ $(document).ready(function(){
 			</div>
 
 			<!-- Carousel controls -->
-			<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev" style="background: #ed8323">
+			<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev" style="background: #4d4d4d">
 				<i class="fa fa-angle-left"></i>
 			</a>
-			<a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next" style="background: #ed8323">
+			<a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next" style="background: #4d4d4d">
 				<i class="fa fa-angle-right"></i>
 			</a>
 		</div>
@@ -720,10 +732,10 @@ $(document).ready(function(){
   				</div>
   			</div>
   			<!-- Carousel controls -->
-  			<a class="carousel-control left carousel-control-prev" href="#myCarousel2" data-slide="prev" style="background: #ed8323">
+  			<a class="carousel-control left carousel-control-prev" href="#myCarousel2" data-slide="prev" style="background: #4d4d4d">
   				<i class="fa fa-angle-left"></i>
   			</a>
-  			<a class="carousel-control right carousel-control-next" href="#myCarousel2" data-slide="next" style="background: #ed8323">
+  			<a class="carousel-control right carousel-control-next" href="#myCarousel2" data-slide="next" style="background: #4d4d4d">
   				<i class="fa fa-angle-right"></i>
   			</a>
   		</div>
@@ -757,23 +769,23 @@ $(document).ready(function(){
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="success">
+                        <tr class="success" style="background-color:#97baf2;">
                           <td>4+</td>
                           <td>Rs. {{detail_package.price_for_four}}</td>
                           <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
                         </tr>
 
-                        <tr class="danger">
+                        <tr class="warning" style="background-color: #b4c8e9;">
                           <td>7+</td>
                           <td>Rs. {{detail_package.price_for_seven}}</td>
                           <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
                         </tr>
-                        <tr class="info">
+                        <tr class="success" style="background-color:#97baf2;">
                           <td>12+</td>
                           <td>Rs. {{detail_package.price_for_twelve}}</td>
                           <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
                         </tr>
-                        <tr class="warning">
+                        <tr class="warning" style="background-color: #b4c8e9;">
                           <td>18+</td>
                           <td>Rs. {{detail_package.price_for_eighteen}}</td>
                           <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
