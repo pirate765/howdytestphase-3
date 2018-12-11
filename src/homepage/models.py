@@ -12,7 +12,7 @@ class Adventure(models.Model):
         ('airbased', 'Airbased'),
     )
     title = models.CharField(max_length = 50)
-    logo = models.CharField(max_length= 200, blank= True)
+    logo = models.FileField(upload_to='documents/adventure')
     adventureform_choice = models.CharField(choices= ADVENTUREFORM_CHOICES, max_length= 250, blank= True, null= True)
 
     def __str__(self):
@@ -75,7 +75,7 @@ class Adventuregear(models.Model):
 class Adventurevendor(models.Model):
     name = models.CharField(max_length= 20, blank= True)
     associated_adventure = models.ForeignKey(Adventure, blank= True, null= True)
-    contact_number = models.IntegerField()
+    contact_number = models.BigIntegerField()
     location = models.CharField(max_length=100)
     destination = models.ForeignKey(Destination, blank = True)
 
@@ -93,7 +93,7 @@ class Destinationpackage(models.Model):
     )
     snoi = models.IntegerField(null=True, blank= True)
     title = models.CharField(max_length=250)
-    logo = models.CharField(max_length= 200, null= True, blank= True)
+    logo = models.FileField(upload_to='documents/destinationpackage')
     destination = models.ForeignKey(Destination, blank=True, null= True)
     head_description = models.TextField()
     property_description = HTMLField(null = True, blank = True)
@@ -199,7 +199,7 @@ class Adventurepackage(models.Model):
     required_gear = models.ManyToManyField(Adventuregear, blank= True)
     months_of_year = models.ManyToManyField(Month, blank = True)
     vendor = models.ForeignKey(Adventurevendor, blank= True, null= True)
-    logo = models.CharField(blank= True, max_length=200)
+    logo = models.FileField(upload_to='documents/adventurepackage')
 
     def __str__(self):
         return self.title
