@@ -637,7 +637,7 @@
 
                   <div class="card profile-card-5" style="border:2px solid orange; border-color: #345c70;">
                       <div class="card-img-block" style="margin-bottom: 0px;">
-                          <img class="card-img-top" src="{{trip.logo}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
+                          <img class="card-img-top" src="{{trip.logo.url}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
 
                       </div>
                           <div class="card-body pt-0" style="text-align:center;">
@@ -791,7 +791,7 @@
                 <div class="row">
                   {% for i in best_destinations %}
                   <div class="column">
-                    <img class="demo cursor" src="{{i.logo}}" style="max-height: 55px; max-width: auto; font-family: 'Anton', sans-serif;" onclick="currentSlide({{forloop.counter}})" alt="{{i.title}}">
+                    <img class="demo cursor" src="{{i.logo.url}}" style="max-height: 55px; max-width: auto; font-family: 'Anton', sans-serif;" onclick="currentSlide({{forloop.counter}})" alt="{{i.title}}">
                   </div>
                   {% endfor %}
                 </div>
