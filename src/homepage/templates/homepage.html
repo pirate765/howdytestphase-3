@@ -169,7 +169,7 @@
               <div class="row row-wrap">
               {% for trips in upcoming_trips %}
               <div class="col-md-4 mt-4">
-              <div class="card profile-card-5">
+              <div class="card profile-card-5"  style="border:1px solid orange; border-color: #c5c7c7;">
                   <div class="card-img-block" style="margin-bottom: 0px;">
                       <img class="card-img-top" src="{{trips.logo.url}}" alt="Card image cap" style="max-height: 220px; margin-bottom: 0px;">
                       <div class="top-right">  <span class="tag" style="font-family: 'Kaushan Script', cursive; font-size: 24px;"> ₹ {{trips.price}} /-</span></div>
@@ -335,11 +335,11 @@ for (i = 0; i < acc.length; i++) {
 
     <h3>Hot Selling Packages <small ><a href="#">view all</a></small></h3>
 <div class="container2" style="padding:20px; margin-top:0px;">
-    {% for trip in best_destinations %}
+    {% for trip  in best_destinations %}
 
   <div class="mySlides">
 
-    <div class="card profile-card-5" style="border:0px solid orange; border-color: #345c70;">
+    <div class="card profile-card-5" style="border:1px solid orange; border-color: #c5c7c7;">
         <div class="card-img-block" style="margin-bottom: 0px;">
             <img class="card-img-top" src="{{trip.logo.url}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
 
@@ -509,7 +509,7 @@ for (i = 0; i < acc.length; i++) {
   {% for activity in adventure_package %}
   <div class="mySlides2">
 
-    <div class="card profile-card-5" style="border:0px solid orange; border-color: #345c70;">
+    <div class="card profile-card-5" style="border:1px solid orange; border-color: #c5c7c7;">
       <div class="card-img-block" style="margin-bottom: 0px;">
           <img class="card-img-top" src="{{activity.logo.url}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
 
