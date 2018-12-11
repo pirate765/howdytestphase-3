@@ -28,10 +28,10 @@
                 {% if forloop.first %}<div class="row">{% endif %}
                 <div class="col-md-3">
                     <div class="thumb">
-                        <header class="thumb-header" >
+                        <header class="thumb-header" style="font-family: 'Reem Kufi', sans-serif;">
                             <a class="hover-img curved" href="#" >
                                 <img src="{{city.logo}}" alt="Image Alternative text" title="Find More Adventures in {{city.destination}}" style="height: 200px; width:auto;" />
-                                <h5 class="hover-title-bottom-left hover-hold">{{city.destination}}</h5>
+                                <h5 class="hover-title-bottom-left hover-hold" style="font-family: 'Reem Kufi', sans-serif;">{{city.destination}}</h5>
                                 <i class="fa fa-plus box-icon-white box-icon-border hover-icon-bottom-right round" data-toggle="modal" data-target="#myModal{{city.destination.id}}"></i>
                             </a>
                         </header>
@@ -265,8 +265,8 @@
                     </div>
                     <ul class="booking-list">
                       {% for activity in result %}
-                        <li style="border: 1.2px solid #ed8323; border-radius: 5px; padding: 7px 7px;">
-
+                        <li>
+                          <div class="card" style="padding: 4px; border: 1px solid #e6e5e5; background-color: #ececea6e;">
 
                                 <div class="row">
                                     <div class="col-md-4">
@@ -289,9 +289,9 @@
                                             </ul><span class="booking-item-rating-number"><b >{{activity.level_of_difficulty_on_5}}</b> of 5</span><small>(1199 reviews)</small>
                                         </div>
 
-                                        <h5 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;">{{activity.group_prices}}</span></strong>
+                                        <h5 class="booking-item-title" style="font-family: 'Reem Kufi', sans-serif;">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;">{{activity.group_prices}}</span></strong>
                                            </h5>
-                                        <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#70209e; border-color:#70209e; float: right; overflow: hidden;">Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
+                                        <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#ec5252; border-color:#ec5252; float: right; overflow: hidden;">Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
                                           <br>
                                         <div class="row">
                                         <div class="booking-item-dates-change" style="padding: 10px; margin: 0px; ">
@@ -330,7 +330,7 @@
                                       <div class="panel-group" id="accordion{{forloop.counter}}">
                                         <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-1{{forloop.counter}}" style="background-color:#776e66; color: white; text-decoration: bold;">Required Gear</a></h4>
+                                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-1{{forloop.counter}}" style="background-color:#6481a8; color: white; text-decoration: bold;">Required Gear</a></h4>
                                     </div>
                                     <div class="panel-collapse collapse in" id="collapse-1{{forloop.counter}}">
                                         <div class="panel-body">There is much to bring along the hardware. Spirit is needed.</div>
@@ -359,7 +359,7 @@
                                   </div>
 
                                 </div>
-
+                              </div>
                         </li>
 
 
