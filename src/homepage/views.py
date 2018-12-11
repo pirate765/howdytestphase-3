@@ -244,7 +244,7 @@ def destinationpackagebook(request, id=None):
 
 def home(request):
     upcoming_trips = UpcomingTrip.objects.all().order_by('start_date')
-    best_destinations = Destinationpackage.objects.all()[:3]
+    best_destinations = Destinationpackage.objects.all()[:4]
     rental_items = Rental.objects.all()[:3]
     template = 'homepage.html'
     args = {}
