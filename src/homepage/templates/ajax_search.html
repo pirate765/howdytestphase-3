@@ -1,7 +1,7 @@
 {% if destination_list.count > 0 %}
 
 {% for destination_single in destination_list %}
-  <li> <a href="{% url 'searchdestinationpage' id=destination_single.destination.id %}"> <img src="{{destination_single.logo}}" alt="Image Alternative text" title="{{destination_single.title}} - {{destination_single.destination}}" style="max-height: 40px; width:auto;"/> {{destination_single.destination}} - <small style="text-align: center; font-size: 14px;">Starting from Rs.{{destination_single.price_for_one}}</small></a>
+  <li> <a href="{% url 'searchdestinationpage' id=destination_single.destination.id %}"> <img src="{{destination_single.logo.url}}" alt="Image Alternative text" title="{{destination_single.title}} - {{destination_single.destination}}" style="max-height: 40px; width:auto;"/> {{destination_single.destination}} - <small style="text-align: center; font-size: 14px;">Starting from Rs.{{destination_single.price_for_one}}</small></a>
   </li>
 {% endfor %}
 
