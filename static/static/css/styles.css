@@ -1,12 +1,12 @@
 body {
   color: #3f3f3f;
-  font-family: 'Open Sans', Tahoma, Arial, helvetica, sans-serif;
-  font-size: 14px;
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 16px;
   line-height: 1.6em;
   font-weight: 400;
 }
 a {
-  color: #ed8323;
+  color:#394aaa;
   text-decoration: none;
 }
 a:hover {
@@ -19,7 +19,7 @@ h3,
 h4,
 h5,
 .text-hero {
-  font-family: 'Roboto', arial, helvetica, sans-serif;
+  font-family: 'Reem Kufi', sans-serif;
   margin-top: 0;
   font-weight: 300;
   color: #565656;
@@ -286,12 +286,15 @@ blockquote:before {
   margin: 0 5px;
 }
 .btn-primary {
-  background: #ed8323;
-  border-color: #e27513;
+  background: #6481a8;
+  border-color: #6481a8;
+  font-family: 'Reem Kufi', sans-serif;
+  font-size: 17px;
+  font-weight: bold;
 }
 .btn-primary:hover {
-  background: #e27513;
-  border-color: #c96810;
+  background: #0c9cd2;
+  border-color: #0c9cd2;
 }
 .btn-primary-invert {
   background: #127cdc;
@@ -769,7 +772,7 @@ label {
 .form-control:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
-  border: 1px solid #ed8323;
+  border: 1px solid #1a77d4;
 }
 .help-block {
   font-size: 12px;
@@ -1001,11 +1004,11 @@ ul.slimmenu li {
 ul.slimmenu li a {
   display: block;
   padding: 12px 20px;
-  font-size: 15px;
+  font-size: 17px;
   text-transform: uppercase;
-  font-family: 'Roboto', arial, helvetica, sans-serif;
-  color: #737373;
-  -webkit-transition: background-color 0.17s ease-out;
+  font-family: 'Reem Kufi', sans-serif;
+  color: #5b5959;
+  -webkit-trans737373ition: background-color 0.17s ease-out;
   -moz-transition: background-color 0.17s ease-out;
   -o-transition: background-color 0.17s ease-out;
   -ms-transition: background-color 0.17s ease-out;
@@ -1016,7 +1019,7 @@ ul.slimmenu li.slimmenu-sub-menu a {
 }
 ul.slimmenu li.active > a,
 ul.slimmenu li:hover > a {
-  background: #ed8323;
+  background: #0c9cd2;
   color: #fff;
 }
 ul.slimmenu li.active .slimmenu-sub-collapser > i,
@@ -1243,7 +1246,7 @@ ul.slimmenu.slimmenu-collapsed li .slimmenu-sub-collapser > i {
   text-align: center;
 }
 .search-tabs-bg > .tabbable > .nav-tabs > li.active > a {
-  background: #ed8323;
+  background: #1a77d4;
   color: #fff;
   padding-top: 15px;
   margin-top: -5px;
@@ -1401,7 +1404,7 @@ ul.slimmenu.slimmenu-collapsed li .slimmenu-sub-collapser > i {
   bottom: 0;
   left: 0;
   margin: 0;
-  background: rgba(237,131,35,0.75);
+  background: #ec5252;
   color: #fff;
   width: 100%;
   padding: 0 7px;
@@ -4200,14 +4203,14 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
 [class^="box-icon-border"],
 [class*=" box-icon-border"] {
   background: none;
-  border: 1px solid #ed8323;
-  color: #ed8323;
+  border: 1px solid #5770a5;
+  color: #5770a5;
 }
 .box-icon-border:hover,
 [class^="box-icon-border"]:hover,
 [class*=" box-icon-border"]:hover {
-  background: #ed8323;
-  color: #fff !important;
+  background: #5770a5;
+  color: white !important;
 }
 .box-icon-border.box-icon-black,
 [class^="box-icon-border"].box-icon-black,
@@ -6616,7 +6619,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
   display: inline-block;
   margin-right: 17px;
   margin-bottom: -5px;
-  color: #ed8323;
+  color: #94887c;
 }
 .booking-item-rating .booking-item-rating-stars .fa {
   margin-right: 0;
@@ -7310,7 +7313,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.active {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   padding: 15px 20px;
-  border: 1px solid #ed8323;
+  border: 1px solid #c9c5c2;
   -webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.15);
   box-shadow: 0 2px 1px rgba(0,0,0,0.15);
 }
