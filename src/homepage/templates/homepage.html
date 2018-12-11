@@ -255,7 +255,7 @@
       <div class="thumb">
           <header class="thumb-header">
               <a href="{% url 'singleadventure' pk1=activity.id %}" class="hover-img" >
-                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <img src="{{activity.logo.url}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;"> {{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore More</h5>
               </a>
@@ -277,7 +277,7 @@
       <div class="thumb">
           <header class="thumb-header">
               <a class="hover-img" href="{% url 'singleadventure' pk1=activity.id %}">
-                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <img src="{{activity.logo.url}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;"> {{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore All</h5>
               </a>
@@ -299,7 +299,7 @@
       <div class="thumb">
           <header class="thumb-header">
               <a class="hover-img" href="{% url 'singleadventure' pk1=activity.id %}">
-                  <img src="{{activity.logo}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
+                  <img src="{{activity.logo.url}}" alt="Image Alternative text" title="hotel PORTO BAY SERRA GOLF library" style="max-height: 200px; max-width:auto;"/>
                   <h4 class="hover-title-bottom-right hover-hold" style= "background-color: #ed8323; font-family: 'Anton', sans-serif;">{{activity.title|title}}</h4>
                   <h5 class="hover-title-center">Explore More</h5>
               </a>
@@ -341,7 +341,7 @@ for (i = 0; i < acc.length; i++) {
 
     <div class="card profile-card-5" style="border:0px solid orange; border-color: #345c70;">
         <div class="card-img-block" style="margin-bottom: 0px;">
-            <img class="card-img-top" src="{{trip.logo}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
+            <img class="card-img-top" src="{{trip.logo.url}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
 
         </div>
             <div class="card-body pt-0" style="text-align:center;">
@@ -495,7 +495,7 @@ for (i = 0; i < acc.length; i++) {
   <div class="row">
     {% for i in best_destinations %}
     <div class="column">
-      <img class="demo cursor" src="{{i.logo}}"style="max-height: 55px; max-width:auto%; font-family: 'Anton', sans-serif;" onclick="currentSlide({{forloop.counter}})" alt="{{i.title}}">
+      <img class="demo cursor" src="{{i.logo.url}}"style="max-height: 55px; max-width:auto%; font-family: 'Anton', sans-serif;" onclick="currentSlide({{forloop.counter}})" alt="{{i.title}}">
     </div>
     {% endfor %}
   </div>
@@ -511,7 +511,7 @@ for (i = 0; i < acc.length; i++) {
 
     <div class="card profile-card-5" style="border:0px solid orange; border-color: #345c70;">
       <div class="card-img-block" style="margin-bottom: 0px;">
-          <img class="card-img-top" src="{{activity.logo}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
+          <img class="card-img-top" src="{{activity.logo.url}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
 
       </div>
           <div class="card-body pt-0" style="text-align:center;">
@@ -665,7 +665,7 @@ for (i = 0; i < acc.length; i++) {
 <div class="row">
   {% for i in adventure_package %}
   <div class="column">
-    <img class="demo2 cursor" src="{{i.logo}}"style="max-height: 60px; max-width:auto;  font-family: 'Anton', sans-serif;" onclick="currentSlide1({{forloop.counter}})" alt="{{i.title}}">
+    <img class="demo2 cursor" src="{{i.logo.url}}"style="max-height: 60px; max-width:auto;  font-family: 'Anton', sans-serif;" onclick="currentSlide1({{forloop.counter}})" alt="{{i.title}}">
   </div>
   {% endfor %}
 </div>
