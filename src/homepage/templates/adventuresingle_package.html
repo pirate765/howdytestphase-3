@@ -23,9 +23,9 @@
                 <div class="gap gap-small"></div>
                 <h4>{{activity}}</h4>
                 <ul class="booking-list">
-                  <li style="border: 1.2px solid #ed8323; border-radius: 5px; padding: 7px 7px;">
+                  <li>
 
-
+                      <div class="card" style="padding: 4px; border: 1px solid #e6e5e5; background-color: #ececea6e;">
                           <div class="row">
                               <div class="col-md-4">
                                   <div class="booking-item-img-wrap">
@@ -50,7 +50,7 @@
                                   <h5 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price" style="font-size: 22px;" >{{activity.price_per_person}}</span></strong>
                                      </h5>
 
-                                  <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal25{{activity.id}}" style="background-color:#70209e; border-color:#70209e; float: right; overflow: hidden;" >Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
+                                  <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal25{{activity.id}}" style="background-color:#ec5252; border-color:#ec5252; float: right; overflow: hidden;" >Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
                                     <br>
 
                                   <div class="row">
@@ -90,7 +90,7 @@
                                 <div class="panel-group" id="accordion{{forloop.counter}}">
                                   <div class="panel panel-default">
                               <div class="panel-heading">
-                                  <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-1{{forloop.counter}}" style="background-color:#776e66; color: white; text-decoration: bold;">Required Gear</a></h4>
+                                  <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-1{{forloop.counter}}" style="background-color:#6481a8; color: white; text-decoration: bold;">Required Gear</a></h4>
                               </div>
                               <div class="panel-collapse collapse in" id="collapse-1{{forloop.counter}}">
                                   <div class="panel-body">There is much to bring along the hardware. Spirit is needed.</div>
@@ -119,7 +119,7 @@
                             </div>
 
                           </div>
-
+                        </div>
                   </li>
 
                                         <!-- ModalForm Sendenquiry-->
@@ -301,8 +301,8 @@
                                 <h4 class="modal-title"> Other Activities to Explore in {{city.destination}}</h4>
                                   <ul class="booking-list">
                                   {% for activity in city.destination.destinations.all %}
-                                    <li style="border: 1.2px solid #ed8323; border-radius: 5px; padding: 7px 7px;">
-
+                                    <li>
+                                      <div class="card" style="padding: 4px; border: 1px solid #e6e5e5; background-color: #ececea6e;">
 
                                             <div class="row">
                                                 <div class="col-md-4">
@@ -329,14 +329,14 @@
                                                     <p class="booking-item-address">Location: <b>{{activity.destination}}</b></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
 
                                                     <span class="booking-item-price-from">from</span><span class="booking-item-price" style="font-size: 24px;">Rs.{{activity.price_per_person}}</span><br><span class="btn btn-primary" data-toggle="modal" data-target="#myModal32{{activity.id}}" style="margin-bottom: 4px;">Book Now<i class="fa fa-shopping-cart"></i></span>
-                                                    <span class="btn btn-primary" data-toggle="modal" data-target="#myModal22{{activity.id}}" style="background-color:#70209e; border-color:#70209e; ">Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary">
+                                                    <span class="btn btn-primary" data-toggle="modal" data-target="#myModal22{{activity.id}}" style="background-color:#ec5252; border-color:#ec5252; ">Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary">
                                                 </div>
 
                                                 <div class="col-md-4">
                                                   <div class="panel-group" id="accordion2{{forloop.counter}}">
                                                     <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion2{{forloop.counter}}" href="#collapse-11{{forloop.counter}}" style="background-color:#776e66; color: white; text-decoration: bold;">Required Gear</a></h4>
+                                                    <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion2{{forloop.counter}}" href="#collapse-11{{forloop.counter}}" style="background-color:#6481a8; color: white; text-decoration: bold;">Required Gear</a></h4>
                                                 </div>
                                                 <div class="panel-collapse collapse in" id="collapse-11{{forloop.counter}}">
                                                     <div class="panel-body">There is much to bring along the hardware. Spirit is needed.</div>
@@ -365,7 +365,7 @@
                                               </div>
 
                                             </div>
-
+                                          </div>
                                     </li>
                                     <!-- ModalForm Sendenquiry-->
 
@@ -483,7 +483,8 @@
                     <ul class="booking-list">
 
                       {% for activity in result %}
-                      <li style="border: 1.2px solid #ed8323; border-radius: 5px; padding: 7px 7px;">
+                      <li>
+                          <div class="card" style="padding: 4px; border: 1px solid #e6e5e5; background-color: #ececea6e;">
 
 
                               <div class="row">
@@ -509,7 +510,7 @@
 
                                       <h5 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;" >{{activity.price_per_person}}</span></strong>
                                          </h5>
-                                         <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#70209e; border-color:#70209e; float: right; overflow: hidden;" >Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
+                                         <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#ec5252; border-color:#ec5252; float: right; overflow: hidden;" >Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
                                            <br>
 
 
@@ -550,7 +551,7 @@
                                     <div class="panel-group" id="accordion{{forloop.counter}}">
                                       <div class="panel panel-default">
                                   <div class="panel-heading">
-                                      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-1{{forloop.counter}}" style="background-color:#776e66; color: white; text-decoration: bold;">Required Gear</a></h4>
+                                      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion{{forloop.counter}}" href="#collapse-1{{forloop.counter}}" style="background-color:#6481a8; color: white; text-decoration: bold;">Required Gear</a></h4>
                                   </div>
                                   <div class="panel-collapse collapse in" id="collapse-1{{forloop.counter}}">
                                       <div class="panel-body">There is much to bring along the hardware. Spirit is needed.</div>
@@ -579,7 +580,7 @@
                                 </div>
 
                               </div>
-
+                            </div>
                       </li>
 
 
