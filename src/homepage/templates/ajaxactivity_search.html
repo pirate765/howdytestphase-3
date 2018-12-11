@@ -2,7 +2,7 @@
 {% for activity in result %}
   <li>
 
-    <a href="{% url 'activitysinglepackage' pk1=activity.id%}"><img src="{{activity.logo}}" alt="Image Alternative text" title="{{activity.title}} - {{activity.destination}}" style="max-height: 40px; width:auto;"/> {{activity.title}} - <small style="text-align: center; font-size: 14px;">Starting from Rs.{{activity.price_per_person}}</small></a>
+    <a href="{% url 'activitysinglepackage' pk1=activity.id%}"><img src="{{activity.logo.url}}" alt="Image Alternative text" title="{{activity.title}} - {{activity.destination}}" style="max-height: 40px; width:auto;"/> {{activity.title}} - <small style="text-align: center; font-size: 14px;">Starting from Rs.{{activity.price_per_person}}</small></a>
 
 </li>
 
