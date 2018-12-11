@@ -7,7 +7,7 @@
             <!-- TOP AREA -->
 
             <div class="top-area show-onload" >
-                <div class="bg-holder full" style="background-image:url({% static 'img/rajasthanbackground.jpg' %});">
+                <div class="bg-holder full">
                     <div class="bg-front full-height bg-front-mob-rel"  >
 
                         <div class="container full-height">
@@ -28,51 +28,51 @@
 
                                 <div class="tabbable" style="color: orange;">
                                     <ul class="nav nav-tabs" id="myTab">
-                                        <li class="active"><a href="#tab-1" data-toggle="tab"><i class="fa fa-building-o"></i>Destinations<span> </span></a>
+                                        <li class="active" style="font-family: 'Kanit', sans-serif; font-size: 16px;"><a href="#tab-1" data-toggle="tab"><i class="fa fa-building-o"></i>Destinations<span> </span></a>
                                           <div class="form-group col-sm-4 col-md-3">
 
                                           </div>
 
                                         </li>
-                                        <li><a href="#tab-2" data-toggle="tab"><i class="fa fa-bolt"></i>Activities <span></span></a>
+                                        <li style="font-family: 'Kanit', sans-serif; font-size: 16px;"><a href="#tab-2" data-toggle="tab"><i class="fa fa-bolt"></i>Activities <span></span></a>
 
                                         </li>
                                     </ul>
                                     <div class="tab-content">
-                                        <div class="tab-pane fade in active" id="tab-1">
-                                            <h2>E'X'plore Destination Packages</h2>
+                                        <div class="tab-pane fade in active" id="tab-1" style="font-family:Open Sans', Tahoma, Arial, helvetica, sans-serif;">
+                                            <h2 style="font-family: 'Reem Kufi', sans-serif;">E'X'plore Destination Packages</h2>
 
                                             <form method = "GET" action = "{% url 'searchdestinationlist' %}" autocomplete="off">
                                               {% csrf_token %}
 
                                                 <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
-                                                    <label for="searchdestination" style="font-size: 20px;">Where are you going?</label>
+                                                    <label for="searchdestination" style="font-family: 'Reem Kufi', sans-serif;font-size: 20px; color: #044d67;">Where are you going?</label>
 
 
-                                            <input type="text" class="form-control" id="searchdestination" name="searchdestination"  placeholder="Type in destination name" value="{{request.GET.searchdestination}}" style="background-color:#ffffff;"/>
+                                            <input type="text" class="form-control" id="searchdestination" name="searchdestination"  placeholder="Type in destination name" value="{{request.GET.searchdestination}}"/>
                                             <ul id = "search-results">
                                             </ul>
 
                                         </div>
-                                        <button class="btn btn-primary btn-lg" type="submit">Go Tripping</button>
+                                        <button class="btn btn-primary btn-lg" type="submit" style="font-size: 22px;">Go Tripping</button>
                                           </form>
                                       </div>
 
 
                                         <div class="tab-pane fade" id="tab-2">
-                                            <h2>Search for Activities</h2>
+                                            <h2 style="font-family: 'Reem Kufi', sans-serif;">Search for Activities</h2>
 
                                             <form method = "GET" action = "{% url 'searchactivitylist' %}" autocomplete="off">
                                                             {% csrf_token %}
 
                                                             <div class="form-group form-group-lg form-group-icon-left"><i class="fa fa-map-marker input-icon"></i>
 
-                                                                <label for="searchactivity" style="font-size: 20px;">Type Adventure and explore.</label>
+                                                                <label for="searchactivity" style="font-size: 20px; color: #044d67;">Type Adventure and explore.</label>
                                                                 <input  type="text" id="searchactivity" name = "searchactivity" class="form-control" value = "{{request.GET.searchactivity}}"  placeholder="Type in activity or adventure of your interest"  style="background-color:#ffffff;" required/>
                                                                 <ul id="search-resultsactivity">
                                                                 </ul>
                                                             </div>
-                                                            <button class="btn btn-primary btn-lg" type="submit">Go Thrilling</button>
+                                                            <button class="btn btn-primary btn-lg" type="submit" style="font-size: 22px;">Go Thrilling</button>
                                             </form>
 
 
@@ -86,7 +86,7 @@
                     <div class="owl-carousel owl-slider owl-carousel-area visible-lg" id="owl-carousel-slider">
                         <div class="bg-holder full">
                             <div class="bg-mask"></div>
-                            <div class="bg-blur" style="background-image:url({% static 'img/front_background.jpg' %});"></div>
+                            <div class="bg-blur" style="background-image:url({% static 'img/d163a74fbf063ade79deeffd73194a3f.jpg' %});"></div>
                             <div class="bg-content">
                                 <div class="container">
                                     <div class="loc-info text-right hidden-xs hidden-sm">
@@ -109,7 +109,7 @@
                         </div>
                         <div class="bg-holder full">
                             <div class="bg-mask"></div>
-                            <div class="bg-blur" style="background-image:url({% static 'img/rajasthanbackground.jpg' %});"></div>
+                            <div class="bg-blur" style="background-image:url({% static 'img/43563hd.jpg' %});"></div>
                             <div class="bg-content">
                                 <div class="container">
                                     <div class="loc-info text-right hidden-xs hidden-sm">
@@ -132,7 +132,7 @@
                         </div>
                         <div class="bg-holder full">
                             <div class="bg-mask"></div>
-                            <div class="bg-blur" style="background-image:url({% static 'img/background_three.jpg' %});"></div>
+                            <div class="bg-blur" style="background-image:url({% static 'img/scuba-diving-phuket-with-aussie-divers.jpg' %});"></div>
                             <div class="bg-content">
                                 <div class="container">
                                     <div class="loc-info text-right hidden-xs hidden-sm">
@@ -172,11 +172,13 @@
               <div class="card profile-card-5">
                   <div class="card-img-block" style="margin-bottom: 0px;">
                       <img class="card-img-top" src="{{trips.logo.url}}" alt="Card image cap" style="max-height: 220px; margin-bottom: 0px;">
+                      <div class="top-right">  <span class="tag" style="font-family: 'Kaushan Script', cursive; font-size: 24px;"> ₹ {{trips.price}} /-</span></div>
                       <p style="color: white; text-align: center; padding: 5px 5px 5px 5px; margin-bottom: 0px; font-family: 'Spicy Rice', cursive; font-size: 20px;"><i class="fa fa-clock-o" style="margin-right: 5px;"></i>  {{trips.start_date|date:"d M"}} - {{trips.end_date|date:"d M Y"}}</p>
                   </div>
                       <div class="card-body pt-0" style="text-align:center;">
-                      <p style="color: #2F2727; font-size: 15px; font-family: 'Roboto', sans-serif;"> <i class="fa fa-map-marker input-icon"></i> Departure: {{trips.departure}}  -  <b>{% if user.is_authenticated %} ₹ {{trips.discount_price}} <strike>₹ {{trips.price}}</strike> {% else %} ₹ {{trips.price}} {% endif %}</b></p>
-                      <p style="margin-top: 0px; font-family: 'Anton', sans-serif; letter-spacing:1px; font-size: 20px; color:#345c70;">{{trips.title}}</p>
+                      <p style="color: #2F2727; font-size: 17px;  font-family:'Reem Kufi', sans-serif;"> <i class="fa fa-map-marker input-icon"></i> Departure: <b>{{trips.departure}} </b>
+                      </p>
+                      <p style="margin-top: 0px; font-size: 26px; font-family: 'Bangers', cursive;">{{trips.title}}</p>
 
                       <p class="card-text">
                         <p class="">
@@ -184,7 +186,7 @@
 
                         </p>
                       <a href="{% url 'upcomingtripdetail' pk=trips.id %}" class="btn btn-primary btn-md" style="margin-right: 5px;">View Details<i class="fa fa-info-circle"></i></a>
-                      <a href="#" class="btn btn-primary btn-md" style="background-color:#345c70; border-color: #345c70;" data-toggle="modal" data-target="#myModal42{{trips.id}}">Send Enquiry<i class="fa fa-send-o"></i></a>
+                      <a href="#" class="btn btn-primary btn-md" style="background-color:#268aaf; border-color:#268aaf;" data-toggle="modal" data-target="#myModal42{{trips.id}}">Send Enquiry<i class="fa fa-send-o"></i></a>
                     </div>
                   </div>
                 </div>
@@ -242,7 +244,7 @@
 
 
             <h2 class="text-center mb20">Adventure Activities Around You</h2>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+<p></p>
 
 <button class="accordion" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1.5px; font-size: 22px;">Landbased Activities</button>
 <div class="panelhome2">
@@ -266,7 +268,7 @@
 </div>
   </div>
 
-<button class="accordion" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1px; font-size: 22px; background-color:#ed8323;">Waterbased Activities</button>
+<button class="accordion" style="font-family: 'Spicy Rice' , cursive; letter-spacing: 1px; font-size: 22px; background-color:#79797b;">Waterbased Activities</button>
 <div class="panelhome2">
   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
   <div class="row row-wrap">
@@ -308,7 +310,8 @@
   {% endfor %}
 </div>
 </div>
-
+<div class="gap gap-small"></div>
+<br>
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
@@ -325,7 +328,7 @@ for (i = 0; i < acc.length; i++) {
   });
 }
 </script>
-          <div class="gap gap-small"></div>
+
 
 <div class="row">
   <div class="col-md-4">
@@ -336,7 +339,7 @@ for (i = 0; i < acc.length; i++) {
 
   <div class="mySlides">
 
-    <div class="card profile-card-5" style="border:2px solid orange; border-color: #345c70;">
+    <div class="card profile-card-5" style="border:0px solid orange; border-color: #345c70;">
         <div class="card-img-block" style="margin-bottom: 0px;">
             <img class="card-img-top" src="{{trip.logo}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
 
@@ -346,7 +349,7 @@ for (i = 0; i < acc.length; i++) {
             <p><small>Starting from </small> ₹ {{trip.price_for_one}}
             </p>
             <a href="#" class="btn btn-primary btn-sm" style="margin-right: 5px; margin-bottom:5px;" data-toggle="modal" data-target="#myModal3{{trip.id}}">Book Now<i class="fa fa-shopping-cart"></i></a>
-            <a href="#" class="btn btn-primary btn-sm" style="background-color:#345c70; border-color: #345c70;" data-toggle="modal" data-target="#myModal2{{trip.id}}">Send Enquiry<i class="fa fa-send-o"></i></a>
+            <a href="#" class="btn btn-primary btn-sm" style="background-color:#268aaf; border-color:#268aaf;" data-toggle="modal" data-target="#myModal2{{trip.id}}">Send Enquiry<i class="fa fa-send-o"></i></a>
           </div>
     </div>
   </div>
@@ -501,12 +504,12 @@ for (i = 0; i < acc.length; i++) {
 
 <div class="col-md-4">
 
-  <h3>Adventure Packages<small><a href="{%  url 'adventureactivity_list' %}">view all</a></small></h3>
+  <h3>Adventure Packages<small><a href="{%  url 'adventureactivity_list' %}"> view all</a></small></h3>
   <div class="container2" style="padding:20px; margin-top:0px;">
   {% for activity in adventure_package %}
   <div class="mySlides2">
 
-    <div class="card profile-card-5" style="border:2px solid orange; border-color: #345c70;">
+    <div class="card profile-card-5" style="border:0px solid orange; border-color: #345c70;">
       <div class="card-img-block" style="margin-bottom: 0px;">
           <img class="card-img-top" src="{{activity.logo}}" alt="Card image cap" style="max-height: 180px; max-width:100%; margin-bottom: 0px;">
 
@@ -519,7 +522,7 @@ for (i = 0; i < acc.length; i++) {
 
 
           <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal32{{activity.id}}" style="margin-right: 5px; margin-bottom: 5px;">Book Now<i class="fa fa-shopping-cart"></i></a>
-          <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal12{{activity.id}}" style="background-color:#345c70; border-color: #345c70;">Send Enquiry<i class="fa fa-send-o"></i></a>
+          <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal12{{activity.id}}" style="background-color:#268aaf; border-color:#268aaf;">Send Enquiry<i class="fa fa-send-o"></i></a>
         </div>
       </div>
     </div>
@@ -672,7 +675,7 @@ for (i = 0; i < acc.length; i++) {
 </div>
 
 <div class="col-md-4">
-    <h3>Adventure Rentals<small ><a href="#">view all</a></small></h3>
+    <h3>Adventure Rentals<small><a href="#"> view all</a></small></h3>
     <br>
     <ul class="booking-list">
       {% for rental_item in rental_items %}
@@ -687,7 +690,7 @@ for (i = 0; i < acc.length; i++) {
                       <p style="font-size:17px;">{{rental_item.title}}</p>
                       <span class="booking-item-price-from">from</span><span class="booking-item-price">₹ {{rental_item.price_per_day}}</span>
                       <div class="gap gap-small"></div>
-                      <a href="#" class="btn btn-primary btn-sm" style="background: #ed8323; border-color:#ed8323;"><b>Book Now</b></a>
+                      <a href="#" class="btn btn-primary btn-sm" style="background: #0c9cd2; border-color:#0c9cd2;"><b>Book Now <i class="fa fa-shopping-cart"></i></b></a>
                     </div>
                 </div>
             </div>
@@ -953,6 +956,8 @@ function showSlides2(n) {
                                     </div>
                                 </div>
                             </div>
+                          </div>
+                          <div class="row row-wrap" data-gutter="120">
                             <div class="col-md-6">
                                 <div class="mb30 thumb"><i class="fa fa-thumbs-o-up box-icon-left round box-icon-big box-icon-border animate-icon-top-to-bottom"></i>
                                     <div class="thumb-caption">
@@ -966,9 +971,8 @@ function showSlides2(n) {
                                     <div class="thumb-caption">
                                         <h4 class="thumb-title">Nature's Exlporer Hub</h4>
                                         <p class="thumb-desc">Quisque porta dolor scelerisque gravida commodo in accumsan ullamcorper laoreet nam litora senectus diam sapien hac turpis</p>
-                                    </div>
-
-</div>
+                                  </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
