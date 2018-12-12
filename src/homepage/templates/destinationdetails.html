@@ -317,6 +317,7 @@ $(document).ready(function(){
   {% include 'navbar.html' %}
   <div class="container" style="background-color: white; padding: 2px auto; overflow: hidden;">
     <div class="gap gap-small"></div>
+    <div class="gap gap-small"></div>
 
       <div class="booking-item-details">
 
@@ -371,6 +372,20 @@ $(document).ready(function(){
 
 
                       </div>
+                  </div>
+                  <div class="row">
+                    <br>
+                    <div class="col-md-12">
+
+                  <h4>Inclusions</h4>
+                    <ul class="booking-item-features booking-item-features-rentals booking-item-features-sign">
+                      {% for included in inclusions %}
+                      <li rel="tooltip" data-placement="top" title="{{included.title}}"><img src="{{included.icon.url}}" style="max-width: 50px; max-height: 50px; margin:10px 10px;"><span class="booking-item-feature-sign" style="font-size: 15px;">{{included.title}}</span>
+                      </li>
+                      {% endfor %}
+
+                    </ul>
+                  </div>
                   </div>
               </div>
 
@@ -460,6 +475,17 @@ $(document).ready(function(){
                         </form>
                         <strong> Note : </strong>Drop Us your booking query and our team will contact you back.
                       </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                    <div class="booking-item-meta">
+                          <h3 class="lh1em mt40" style="font-family: 'Acme', sans-serif;">About {{detail_package.destination}}</h3>
+                      </div>
+                      <p style = "font-family: 'Roboto', arial, helvetica, sans-serif; color: #000000d6; font-size: 15px;">
+                      {{ detail_package.package_description }}
+                    </p>
+                  </div>
+                  </div>
+
                   </div>
                 </div>
             </div>
@@ -468,18 +494,81 @@ $(document).ready(function(){
           <div class="row">
 
             <div class="col-md-12">
-              <div class="booking-item-meta">
-                    <h3 class="lh1em mt40" style="font-family: 'Acme', sans-serif;">About Property</h3>
+              <div class="col-md-6">
+
+
+            <br>
+                          <div class="row">
+                          <h3>Deals and details for <span style="color: #2fa595;">Group Trip.</span></h3>
+
+                                <table class="table" style="text-align: center; font-size: 15px;">
+                                  <thead>
+                                    <tr>
+                                      <th>No. Of Persons</th>
+                                      <th>Price per person</th>
+                                      <th></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr class="success" style="background-color:#97baf2;">
+                                      <td>4+</td>
+                                      <td>Rs. {{detail_package.price_for_four}}</td>
+                                      <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
+                                    </tr>
+
+                                    <tr class="warning" style="background-color: #b4c8e9;">
+                                      <td>7+</td>
+                                      <td>Rs. {{detail_package.price_for_seven}}</td>
+                                      <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
+                                    </tr>
+                                    <tr class="success" style="background-color:#97baf2;">
+                                      <td>12+</td>
+                                      <td>Rs. {{detail_package.price_for_twelve}}</td>
+                                      <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
+                                    </tr>
+                                    <tr class="warning" style="background-color: #b4c8e9;">
+                                      <td>18+</td>
+                                      <td>Rs. {{detail_package.price_for_eighteen}}</td>
+                                      <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+            </div>
+          </div>
+              <div class="col-md-6">
+                <div class="row" style="margin-right: 4px;">
+                  <div class="col-md-12 col-sm-12">
+                <br>
+                  <h3>Group Itinerary :</h3>
+                      {% for i in itinerary_day_detail %}
+                      <button class="accordion">Day {{forloop.counter}} </button>
+                      <div class="panel22">
+                        <p>{{i.day_detail | safe}}</p>
+                      </div>
+                      {% endfor %}
+
+  <script>
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active2");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight){
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+  </script>
+                  <span class="booking-item-feature-title" style = "font-family: 'Roboto Condensed', sans-serif; color: ; font-size: 15px;">{{detail_package.itenary.details|safe}}</span>
                 </div>
-                <span class ="booking-item-feature-title" style= "font-family: 'Roboto', arial, helvetica, sans-serif; color: #131313d6;">
-                {{ detail_package.property_description|safe }}
-              </span>
-              <div class="booking-item-meta">
-                    <h3 class="lh1em mt40" style="font-family: 'Acme', sans-serif;">About {{detail_package.destination}}</h3>
                 </div>
-                <p style = "font-family: 'Roboto', arial, helvetica, sans-serif; color: #000000d6; font-size: 15px;">
-                {{ detail_package.destination_description }}
-              </p>
+              </div>
+
   <div class="gap gap-small"></div>
 
   {% if adventurethings_to_do %}
@@ -755,207 +844,6 @@ $(document).ready(function(){
           <div class="gap"></div>
           <div class="gap gap-small"></div>
           <div class="row">
-
-            <div class="col-md-6">
-
-              <h3>Deals and details for <span style="color: #2fa595;">Group Trip.</span></h3>
-
-                    <table class="table" style="text-align: center; font-size: 15px;">
-                      <thead>
-                        <tr>
-                          <th>No. Of Persons</th>
-                          <th>Price per person</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr class="success" style="background-color:#97baf2;">
-                          <td>4+</td>
-                          <td>Rs. {{detail_package.price_for_four}}</td>
-                          <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
-                        </tr>
-
-                        <tr class="warning" style="background-color: #b4c8e9;">
-                          <td>7+</td>
-                          <td>Rs. {{detail_package.price_for_seven}}</td>
-                          <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
-                        </tr>
-                        <tr class="success" style="background-color:#97baf2;">
-                          <td>12+</td>
-                          <td>Rs. {{detail_package.price_for_twelve}}</td>
-                          <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
-                        </tr>
-                        <tr class="warning" style="background-color: #b4c8e9;">
-                          <td>18+</td>
-                          <td>Rs. {{detail_package.price_for_eighteen}}</td>
-                          <td><a href="#" class="btn btn-primary btn-md">Book Now</a></td>
-                        </tr>
-
-                      </tbody>
-                    </table>
-                    <h3>Inclusions</h3>
-
-                    <ul class="booking-item-features booking-item-features-expand mb30 clearfix">
-                      {% for included in inclusions %}
-                      <div class = "col-sm-6" style="text-align: left;">
-                        <li><h5>{{included.icon.as_html}}<span class="booking-item-feature-title">{{included.title}}</span></h5>
-                        </li>
-                      </div>
-                      {% endfor %}
-                    </ul>
-
-                        <h4>Similar Trips</h4>
-                        <ul class="booking-list">
-                            <li>
-                                <div class="booking-item booking-item-small">
-                                    <div class="row">
-
-                                        <div class="col-xs-4">
-                                            <img src="http://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2016/09/countries-drive-from-india-cover2.jpg" alt="Image Alternative text" title="The pool" />
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <h5 class="booking-item-title">The Meatpacking Suites - Luxury Lofts, Hot Location</h5>
-                                            <ul class="icon-group booking-item-rating-stars">
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-3"><span class="booking-item-price">$391</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="booking-item booking-item-small">
-                                    <div class="row">
-
-                                        <div class="col-xs-4">
-                                            <img src="http://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2016/09/countries-drive-from-india-cover2.jpg" alt="Image Alternative text" title="The pool" />
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <h5 class="booking-item-title">The Meatpacking Suites - Luxury Lofts, Hot Location</h5>
-                                            <ul class="icon-group booking-item-rating-stars">
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-3"><span class="booking-item-price">$391</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="booking-item booking-item-small">
-                                    <div class="row">
-
-                                        <div class="col-xs-4">
-                                            <img src="http://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2016/09/countries-drive-from-india-cover2.jpg" alt="Image Alternative text" title="The pool" />
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <h5 class="booking-item-title">The Meatpacking Suites - Luxury Lofts, Hot Location</h5>
-                                            <ul class="icon-group booking-item-rating-stars">
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-3"><span class="booking-item-price">$391</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="booking-item booking-item-small">
-                                    <div class="row">
-
-                                        <div class="col-xs-4">
-                                            <img src="http://d27k8xmh3cuzik.cloudfront.net/wp-content/uploads/2016/09/countries-drive-from-india-cover2.jpg" alt="Image Alternative text" title="The pool" />
-                                        </div>
-                                        <div class="col-xs-5">
-                                            <h5 class="booking-item-title">The Meatpacking Suites - Luxury Lofts, Hot Location</h5>
-                                            <ul class="icon-group booking-item-rating-stars">
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                                <li><i class="fa fa-star"></i>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-xs-3"><span class="booking-item-price">$391</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-
-
-
-            </div>
-
-            <div class="col-md-6">
-              <div class="row" style="margin-right: 4px;">
-                <div class="col-md-12 col-sm-12">
-              <br>
-                <h3>Group Itinerary :</h3>
-                    {% for i in itinerary_day_detail %}
-                    <button class="accordion">Day {{forloop.counter}} </button>
-                    <div class="panel22">
-                      <p>{{i.day_detail | safe}}</p>
-                    </div>
-                    {% endfor %}
-
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active2");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-}
-</script>
-                <span class="booking-item-feature-title" style = "font-family: 'Roboto Condensed', sans-serif; color: ; font-size: 15px;">{{detail_package.itenary.details|safe}}</span>
-              </div>
-              </div>
-            </div>
 
           </div>
           </div>
