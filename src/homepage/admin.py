@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from homepage.models import Destination, Itenary, Adventure, Destinationpackage, UpcomingTrip, Destinationimage, Adventurepackage, Rental, Gallery, Article, Post, Addon, Inclusion, ThingsToDo, Month
-from homepage.models import  Months, Adventuredestination, Adventuregear, Adventurevendor, Adventurepackage, UpcomingTripImage, Howdystays, StayAddon, Stayimage, GroupPackageitenerary, UpcomingTripItinerary
+from homepage.models import  Months, Adventuredestination, Adventuregear, Adventurevendor, Adventurepackage, UpcomingTripImage, Howdystays, StayAddon, Stayimage, GroupPackageitenerary, UpcomingTripItinerary, Destinationpackagehighlights
 
 # Register your models here.
 class DestinationImageInline(admin.TabularInline):
@@ -18,6 +18,9 @@ class PostInline(admin.TabularInline):
 
 class AddonInline(admin.TabularInline):
     model = Addon
+
+class DestinationpackagehighlightsInline(admin.TabularInline):
+    model = Destinationpackagehighlights
 
 class GroupPackageiteneraryInline(admin.TabularInline):
     model = GroupPackageitenerary
@@ -78,7 +81,7 @@ class ThingsToDoAdmin(admin.ModelAdmin):
 admin.site.register(ThingsToDo, ThingsToDoAdmin)
 
 class DestinationpackageAdmin(admin.ModelAdmin):
-    inlines = [DestinationImageInline, AddonInline, GroupPackageiteneraryInline,]
+    inlines = [DestinationImageInline, AddonInline, GroupPackageiteneraryInline,DestinationpackagehighlightsInline,]
     class Meta:
         model = Destinationpackage
 admin.site.register(Destinationpackage, DestinationpackageAdmin)
