@@ -1,4 +1,4 @@
-{% extends 'base5.html' %}
+{% extends 'base6.html' %}
 {% load staticfiles %}
 {% block title %} Upcoming Trip Detail {% endblock %}
 {% block body %}
@@ -566,7 +566,35 @@
   }
   </script>
                 </div>
+                <div class="gap"></div>
+                <div class="col-md-12">
+                  <h3 class="card-title" style="text-align: center;">Read related blogs on {{destinationtitle}}</h3>
+                  {% for single_article in article_similar %}
 
+                    <div class="col-md-6">
+                      <div class="thumbnail" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-width: 0px; text-align:center;">
+                        <div class="thumb">
+                            <header class="thumb-header">
+                                <a class="hover-img" href="{% url 'postdetail' single_article.id %}">
+                                    <div class="imagepersonal" style="background-image:url('{{single_article.logo}}');"></div>
+                                    <h5 class="hover-title-bottom-left hover-hold" style= "background-color: #963c5d;">{{single_article.title}}</h5>
+                                    <h5 class="hover-title-center" style= "background-color: #963c5d;">Read More...</h5>
+                                </a>
+                            </header>
+                            <div class="thumb-caption">
+
+                                <h4 class="thumb-title" style="font-family: 'Roboto', sans-serif; text-align: center;"><a class="text-darken" href="#">{{single_article.title}}</a></h4>
+
+                                <p class="thumb-desc">{{single_article.head_description}}</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                  </div>
+                    {% endfor %}
+
+                </div>
               </div>
           </div>
 
@@ -583,7 +611,7 @@
               <ul class="booking-item-features booking-item-features-expand mb30 clearfix">
                 {% for included in inclusions %}
                 <div class = "col-sm-12" style="text-align: left;">
-                  <li style="font-family: 'Permanent Marker', cursive; font-size: 14px;">  {{included.icon.as_html}} - <span class="booking-item-feature-title"> {{included.title}}</span>
+                  <li style="font-family: 'Permanent Marker', cursive; font-size: 14px;">  <img src="{{included.icon.url}}" style="max-width: 50px; max-height: 50px;">- <span class="booking-item-feature-title"> {{included.title}}</span>
                   </li>
                 </div>
                 {% endfor %}
@@ -835,36 +863,7 @@
         {{upcoming_trip.itenary.details|safe}}
       </div>
     </div>
-    <br>
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="card-title" style="text-align: center;">Read related blogs on {{destinationtitle}}</h3>
-        {% for single_article in article_similar %}
 
-          <div class="col-md-4">
-            <div class="thumbnail" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-width: 0px; text-align:center;">
-              <div class="thumb">
-                  <header class="thumb-header">
-                      <a class="hover-img" href="{% url 'postdetail' single_article.id %}">
-                          <div class="imagepersonal" style="background-image:url('{{single_article.logo}}');"></div>
-                          <h5 class="hover-title-bottom-left hover-hold" style= "background-color: #963c5d;">{{single_article.title}}</h5>
-                          <h5 class="hover-title-center" style= "background-color: #963c5d;">Read More...</h5>
-                      </a>
-                  </header>
-                  <div class="thumb-caption">
-
-                      <h4 class="thumb-title" style="font-family: 'Roboto', sans-serif; text-align: center;"><a class="text-darken" href="#">{{single_article.title}}</a></h4>
-
-                      <p class="thumb-desc">{{single_article.head_description}}</p>
-
-                  </div>
-              </div>
-
-          </div>
-        </div>
-          {% endfor %}
-      </div>
-    </div>
 
   </div>
   <footer id="main-footer">
