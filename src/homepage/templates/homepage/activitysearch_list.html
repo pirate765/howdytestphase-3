@@ -2,7 +2,10 @@
 {% load staticfiles %}
 {% block body %}
 
-        <div class="container">
+        <div class="container" style="background-color: white;">
+          <div class="gap gap-small"></div>
+          <div class="gap gap-small"></div>
+
           <form method = "GET" action = "{% url 'searchactivitylist' %}" autocomplete="off">
                           {% csrf_token %}
                           <div class="col-md-9">
@@ -286,11 +289,11 @@
                                                 <li><i class="fa fa-star-o"></i>
                                                 </li>
 
-                                            </ul><span class="booking-item-rating-number"><b >{{activity.level_of_difficulty_on_5}}</b> of 5</span><small>(1199 reviews)</small>
+                                            </ul><span class="booking-item-rating-number"><b >{{activity.level_of_difficulty_on_5}}</b> of 5</span>
                                         </div>
 
-                                        <h5 class="booking-item-title" style="font-family: 'Reem Kufi', sans-serif;">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;">{{activity.group_prices}}</span></strong>
-                                           </h5>
+                                        <h4 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;">{{activity.group_prices}}</span></strong>
+                                        </h4>
                                         <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#ec5252; border-color:#ec5252; float: right; overflow: hidden;">Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
                                           <br>
                                         <div class="row">
