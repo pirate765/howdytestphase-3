@@ -21,7 +21,7 @@
           </form>
 
                 <div class="gap gap-small"></div>
-                <h4>{{activity}}</h4>
+                <h4 class="booking-item-title">{{activity}}</h4>
                 <ul class="booking-list">
                   <li>
 
@@ -47,7 +47,7 @@
                                       </ul><span class="booking-item-rating-number"><b >{{activity.level_of_difficulty_on_5}}</b> of 5</span><small>(1199 reviews)</small>
                                   </div>
 
-                                  <h5 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price" style="font-size: 22px;" >{{activity.price_per_person}}</span></strong>
+                                  <h4 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price" style="font-size: 22px;" >{{activity.price_per_person}}</span></strong>
                                      </h5>
 
                                   <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal25{{activity.id}}" style="background-color:#ec5252; border-color:#ec5252; float: right; overflow: hidden;" >Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
@@ -508,7 +508,7 @@
                                           </ul><span class="booking-item-rating-number"><b >{{activity.level_of_difficulty_on_5}}</b> of 5</span><small>(1199 reviews)</small>
                                       </div>
 
-                                      <h5 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;" >{{activity.price_per_person}}</span></strong>
+                                      <h4 class="booking-item-title">{{activity.title}} -  <span><small class="booking-item-last-booked">  from </small>Rs.</span><strong><span id="ticket_price-{{forloop.counter}}" style="font-size: 22px;" >{{activity.price_per_person}}</span></strong>
                                          </h5>
                                          <p class="booking-item-address">Location: <b>{{activity.destination}}</b><span class="btn btn-primary"  data-toggle="modal" data-target="#myModal2{{activity.id}}" style="background-color:#ec5252; border-color:#ec5252; float: right; overflow: hidden;" >Send Enquiry<i class="fa fa-send-o"></i></span> <span class="btn btn- primary"></p>
                                            <br>
@@ -947,7 +947,7 @@
                 <div class="row row-wrap">
                     <div class="col-md-3">
                         <a class="logo" href="index.html">
-                            <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
+                            <img src="img/logo-invert.png" alt="Image Alternative text" title="Image Title" />
                         </a>
                         <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
                         <ul class="list list-horizontal list-space">
