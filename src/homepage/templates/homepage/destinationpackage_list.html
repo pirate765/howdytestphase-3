@@ -20,7 +20,7 @@
                 <div class="gap gap-small"></div>
                 {% endif %}
 
-
+                <div class="gap gap-small"></div><div class="gap gap-small"></div>
           </div>
           <form method = "GET" action = "{% url 'searchdestinationlist' %}" autocomplete="off">
                           {% csrf_token %}
@@ -66,21 +66,58 @@
                             <div class="card" style="padding: 4px; border: 1px solid #e6e5e5;">
 
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="booking-item-img-wrap">
                                             <img src={{package.logo.url}} alt="Image Alternative text" title="LHOTEL PORTO BAY SAO PAULO suite lhotel living room" />
                                             <div class="booking-item-img-num"><i class="fa fa-picture-o"></i>28</div>
                                         </div>
                                     </div>
+
                                     <div class="col-md-5">
                                         <br>
-                                        <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif; margin-top: 5px;">{{package.title}}  <b>({{package.duration}} Days/Nights)</b></h5>
-                                        <p><span class ="booking-item-feature-title" style= "font-family: 'Open Sans', sans-serif; color: #000000d6;">{{package.head_description}}</span></p><small class="booking-item-last-booked">Latest booking: 58 minutes ago</small>
+                                        <div class="row">
+                                          <div class="col-xs-12">
+
+                                        <h4 class="booking-item-title" style="margin-top: 0px; color: #6c6c6d">{{package.title}} </h4>
+                                          <h5 class="booking-item-title"> <b>( {{package.duration}}</b> Days/ <b>{{package.duration_nights}}</b>Nights )</h5>
+                                      </div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col-xs-12">
+
+                                        <strong style="font-size: 18px;">Highlights:</strong>
+                                        <ul class="nav nav-pills" style="margin: 5px auto;">
+                                          {% for highlight in package.highlights.all %}
+                                          <li class="active"><a href="#" style="margin: 5px auto; padding: 2px 10px; border-radius: 8px; background-color: #5a7eaf; color: #f9f8f8; font-size: 18px;">{{highlight.title}}</a></li>
+                                          {% endfor %}
+
+                                        </ul>
+
+
+                                      </div>
+                                      </div>
+                                        <p><br><span class ="booking-item-feature-title" style= "font-size: 17px; color: #000000d6;">{{package.package_description|truncatewords:30 }}</span></p>
                                     </div>
                                     <div class="col-md-3">
+                                      <div class="row">
+
+
+                                      <strong>Inclusions:</strong><ul class="booking-item-features booking-item-features-rentals booking-item-features-sign" style="margin-bottom: 5px;">
+                                        {% for inclusion in package.inclusions.all %}
+                                        <li rel="tooltip" data-placement="top" title="{{inclusion.title}}"><img src="{{inclusion.icon.url}}" style="max-width: 50px; max-height: 50px;"><span class="booking-item-feature-sign">x 2</span>
+                                        </li>
+                                        {% endfor %}
+
+                                      </ul>
+                                    </div>
+                                    <div class="row">
                                       <br>
-                                      <span class="booking-item-price-from" style="margin-top:10px;">from</span><span class="booking-item-price">Rs.{{package.price_for_one}}</span>
-                                    <a href="{% url 'destinationdetails' package.id %}"> Hurry  <span class="btn btn-primary">Book Now</span></a>
+                                      <span class="booking-item-price-from" style="margin-top:0px 5px;">from</span><span class="booking-item-price">₹ {{package.price_for_one}}</span> per person
+                                    </div>
+                                    <div class="row">
+                                    <a href="{% url 'destinationdetails' package.id %}">  <span class="btn btn-primary" style="margin-bottom:5px;">Book Now</span></a>
+                                    <span class="btn btn-primary" style="background-color: #503e77c9; border-color: #503e77c9;">Send Enquiry</span></a>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -90,6 +127,7 @@
               <div class="row">
 
                 {% if activity_related %}
+                <div class="col-xs-12">
                   <ul class="booking-list">
                     <h3>Things To Do near {{query}}</h3>
 
@@ -133,6 +171,7 @@
                         </div>
                       {% endfor %}
                     </ul>
+                  </div>
                     {% endif %}
                   </div>
                   {% if article_destination %}
@@ -142,7 +181,7 @@
 
                       {% for items in article_destination %}
                       <div class="col-md-4">
-                        <h4>Articles related to {{query}}</h4>
+                        <h4>Articles related to {{query|title}}</h4>
                         <li>
                             <div class="card" style="padding: 4px;">
 
@@ -159,7 +198,7 @@
                                 <div class="row" style="margin-top: 5px;">
                                     <div class="col-md-9">
 
-                                        <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif; ">{{items.title}}  <b>({{items.duration}} Days)</b></h5>
+                                        <h5 class="booking-item-title" style="font-family: 'Acme', sans-serif;">{{items.title}}  <b>({{items.duration}} Days)</b></h5>
 
 
                                     </div>
@@ -189,13 +228,12 @@
         </div>
 
 
-
         <footer id="main-footer">
             <div class="container">
                 <div class="row row-wrap">
                     <div class="col-md-3">
                         <a class="logo" href="index.html">
-                            <img src="img/logo-invert.png" alt="Image Alternative text" title="Image Title" />
+                            <img src="{% static 'img/logo-invert.png' %}" alt="Image Alternative text" title="Image Title" />
                         </a>
                         <p class="mb20">Booking, reviews and advices on hotels, resorts, flights, vacation rentals, travel packages, and lots more!</p>
                         <ul class="list list-horizontal list-space">
