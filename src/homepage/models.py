@@ -42,7 +42,7 @@ class Itenary(models.Model):
 
 class Inclusion(models.Model):
     title = models.CharField(max_length = 150)
-    icon = IconField()
+    icon =  models.FileField(upload_to='documents/inclusions')
 
     def __str__(self):
         return self.title
