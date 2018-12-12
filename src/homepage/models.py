@@ -96,9 +96,8 @@ class Destinationpackage(models.Model):
     logo = models.FileField(upload_to='documents/destinationpackage')
     destination = models.ForeignKey(Destination, blank=True, null= True)
     head_description = models.TextField()
-    property_description = HTMLField(null = True, blank = True)
     property_rating = models.IntegerField(null= True)
-    destination_description = models.TextField(null= True, blank= True)
+    package_description = models.TextField(null= True, blank= True)
     included_adventure = models.ManyToManyField(Adventure, blank=True)
     price_for_one = models.IntegerField()
     price_for_four = models.IntegerField(null= True, blank= True)
@@ -106,6 +105,7 @@ class Destinationpackage(models.Model):
     price_for_twelve = models.IntegerField(null= True, blank= True)
     price_for_eighteen = models.IntegerField(null= True, blank= True)
     duration = models.IntegerField()
+    duration_nights = models.IntegerField(null= True, blank= True)
     best_seasons_to_visit = models.CharField(max_length = 10, choices = SEASON_CHOICES)
     inclusions = models.ManyToManyField(Inclusion, related_name='inclusions_packages')
 
@@ -143,7 +143,11 @@ class GroupPackageitenerary(models.Model):
 class Destinationimage(models.Model):
     destination = models.ForeignKey(Destinationpackage, related_name = 'destinationimages')
     image = models.CharField(max_length = 200)
-
+    
+    
+class Destinationpackagehighlights(models.Model):
+    destination = models.ForeignKey(Destinationpackage, related_name = 'highlights')
+    title = models.CharField(max_length = 200, null= True, blank= True)
 
 class UpcomingTripImage(models.Model):
     destination = models.ForeignKey(UpcomingTrip, related_name = 'upcomingtripimages')
