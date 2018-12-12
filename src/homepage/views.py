@@ -441,7 +441,7 @@ def upcomingtripdetail(request, pk=None):
     upcoming_departures = UpcomingTrip.objects.all()
     article_similar = Article.objects.filter(destination__id= pk)
     destinationtitle = upcoming_tripdetail.destination.first()
-    best_destinations = Destinationpackage.objects.all()[:3]
+    best_destinations = Destinationpackage.objects.all()[:4]
     template = 'upcomingtripdetail.html'
     context = {
         'upcoming_tripdetail' : upcoming_tripdetail,
