@@ -316,7 +316,7 @@ def searchdestinationlist(request):
 
 def searchdestinationpage(request, id=None):
     destination_search = Destinationpackage.objects.filter(destination__id=id)
-   if destination_search is not None:
+    if destination_search is not None:
         destination_obj = destination_search.first()
         destinationtitle = destination_obj.destination
     else:
