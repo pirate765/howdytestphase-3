@@ -95,9 +95,9 @@ class Destinationpackage(models.Model):
     title = models.CharField(max_length=250)
     logo = models.FileField(upload_to='documents/destinationpackage')
     destination = models.ForeignKey(Destination, blank=True, null= True)
-    head_description = models.TextField()
+    head_description = HTMLField()
     property_rating = models.IntegerField(null= True)
-    package_description = models.TextField(null= True, blank= True)
+    package_description = HTMLField(null= True, blank= True)
     included_adventure = models.ManyToManyField(Adventure, blank=True)
     price_for_one = models.IntegerField()
     price_for_four = models.IntegerField(null= True, blank= True)
@@ -192,7 +192,7 @@ class Adventurepackage(models.Model):
     )
 
     title = models.CharField(max_length= 200, blank= True, null= True)
-    short_description = models.TextField(blank= True, null= True)
+    short_description = HTMLField()
     adventure_form = models.CharField(choices= ADVENTURE_FORM_CHOICES, max_length = 15, null=True)
     destination = models.ForeignKey(Destination, blank= True, null= True, related_name='destinations')
     associated_adventure = models.ForeignKey(Adventure, blank= True, null= True, related_name='adventuresimilar')
@@ -200,7 +200,6 @@ class Adventurepackage(models.Model):
     group_prices = models.IntegerField(blank= True, null= True)
     notes_for_activity = HTMLField(blank= True, null= True)
     level_of_difficulty_on_5 = models.IntegerField(blank= True, null= True)
-    required_gear = models.ManyToManyField(Adventuregear, blank= True)
     months_of_year = models.ManyToManyField(Month, blank = True)
     vendor = models.ForeignKey(Adventurevendor, blank= True, null= True)
     logo = models.FileField(upload_to='documents/adventurepackage')
@@ -208,6 +207,9 @@ class Adventurepackage(models.Model):
     def __str__(self):
         return self.title
 
+class Requiredgear(models.Model):
+    required_gear = models.ForeignKey(Adventurepackage, blank= True, related_name='requiredgear')
+    title = HTMLField()
 
 class Adventureimage(models.Model):
     adventure_package = models.ForeignKey(Adventurepackage, related_name = 'adventureimages')
@@ -215,8 +217,7 @@ class Adventureimage(models.Model):
 
     def __str__(self):
         return self.adventure_package
-
-
+    
 class ThingsToDo(models.Model):
     title= models.CharField(max_length= 200)
     destination = models.ForeignKey(Destination, blank= True)
@@ -287,6 +288,7 @@ class Howdystays(models.Model):
     cp_per_person = models.IntegerField(blank= True, null= True)
     ap_per_person = models.IntegerField(blank= True, null= True)
     mapai_per_person = models.IntegerField(blank= True, null= True)
+    inclusions = models.ManyToManyField(Inclusion, blank = True, related_name='inclusions_howdystays')
 
     def __str__(self):
         return self.title
