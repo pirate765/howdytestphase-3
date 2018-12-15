@@ -4,23 +4,20 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from homepage.models import Destination, Itenary, Adventure, Destinationpackage, UpcomingTrip, Destinationimage, Adventurepackage, Rental, Gallery, Article, Post, Addon, Inclusion, ThingsToDo, Month
-from homepage.models import  Months, Adventuredestination, Adventuregear, Adventurevendor, Adventurepackage, UpcomingTripImage, Howdystays, StayAddon, Stayimage, GroupPackageitenerary, UpcomingTripItinerary, Destinationpackagehighlights
+from homepage.models import  Months, Adventuredestination, Adventuregear, Adventurevendor, Adventurepackage, UpcomingTripImage, Howdystays, StayAddon, Stayimage, GroupPackageitenerary, UpcomingTripItinerary, Destinationpackagehighlights, Requiredgear
 
 # Register your models here.
 class DestinationImageInline(admin.TabularInline):
     model = Destinationimage
 
-class AdventureImageInline(admin.TabularInline):
-    model = Adventurepackage
+class RequiredgearInline(admin.TabularInline):
+    model = Requiredgear
 
 class PostInline(admin.TabularInline):
     model = Post
 
 class AddonInline(admin.TabularInline):
     model = Addon
-
-class DestinationpackagehighlightsInline(admin.TabularInline):
-    model = Destinationpackagehighlights
 
 class GroupPackageiteneraryInline(admin.TabularInline):
     model = GroupPackageitenerary
@@ -33,6 +30,9 @@ class StayAddonInline(admin.TabularInline):
 
 class StayimageInline(admin.TabularInline):
     model = Stayimage
+
+class DestinationpackagehighlightsInline(admin.TabularInline):
+    model = Destinationpackagehighlights
 
 class MonthAdmin(admin.ModelAdmin):
     class Meta:
@@ -81,7 +81,7 @@ class ThingsToDoAdmin(admin.ModelAdmin):
 admin.site.register(ThingsToDo, ThingsToDoAdmin)
 
 class DestinationpackageAdmin(admin.ModelAdmin):
-    inlines = [DestinationImageInline, AddonInline, GroupPackageiteneraryInline,DestinationpackagehighlightsInline,]
+    inlines = [DestinationImageInline, AddonInline, GroupPackageiteneraryInline,  DestinationpackagehighlightsInline]
     class Meta:
         model = Destinationpackage
 admin.site.register(Destinationpackage, DestinationpackageAdmin)
@@ -103,7 +103,7 @@ class AddonAdmin(admin.ModelAdmin):
 admin.site.register(Addon, AddonAdmin)
 
 class AdventurepackageAdmin(admin.ModelAdmin):
-    inline = [AdventureImageInline,]
+    inlines = [RequiredgearInline,]
     class Meta:
         model = Adventurepackage
 admin.site.register(Adventurepackage, AdventurepackageAdmin)
