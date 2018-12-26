@@ -2,14 +2,14 @@
 {% load staticfiles %}
 {% block body %}
 <br>
-<div class="container">
-    <h4 class="page-title" style="font-family: 'Roboto', sans-serif; text-align: center; color: black;">Travel Diaries by Howdy</h4>
+<div class="container" style="background-color: white;">
+    <h4 class="page-title" style="margin-top: 10px; font-size: 40px; font-family: 'Bangers', cursive; text-align: center;">Travel Diaries by Howdy</h4>
     <div id="popup-gallery">
         <div class="row row-col-gap">
           {% for single_article in article_list %}
 
             <div class="col-md-4">
-              <div class="thumbnail" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-width: 0px; text-align:center;">
+              <div class="thumbnail" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); border-width: 0px; text-align:center; padding-bottom: 5px;">
                 <div class="thumb">
                     <header class="thumb-header">
                         <a class="hover-img" href="{% url 'postdetail' single_article.id %}">
@@ -22,7 +22,7 @@
 
                         <h4 class="thumb-title" style="font-family: 'Roboto', sans-serif; text-align: center;"><a class="text-darken" href="#">{{single_article.title}}</a></h4>
 
-                        <p class="thumb-desc">{{single_article.head_description|safe}}</p>
+                        <p class="thumb-desc" style="font-family: 'Roboto', arial, helvetica, sans-serif; font-size: 14px;">{{single_article.head_description|safe}}</p>
 
                     </div>
                 </div>
@@ -40,7 +40,6 @@
 
 
 
-<div class="gap"></div>
 <footer id="main-footer">
     <div class="container">
         <div class="row row-wrap">
