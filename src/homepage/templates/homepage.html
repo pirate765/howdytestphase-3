@@ -168,6 +168,7 @@
             <div class="container">
               <div class="row row-wrap">
               {% for trips in upcoming_trips %}
+
               <div class="col-md-4 mt-4">
               <div class="card profile-card-5"  style="border:1px solid orange; border-color: #c5c7c7;">
                   <div class="card-img-block" style="margin-bottom: 0px;">
@@ -180,11 +181,6 @@
                       </p>
                       <p style="margin-top: 0px; font-size: 26px; font-family: 'Bangers', cursive;">{{trips.title}}</p>
 
-                      <p class="card-text">
-                        <p class="">
-
-
-                        </p>
                       <a href="{% url 'upcomingtripdetail' pk=trips.id %}" class="btn btn-primary btn-md" style="margin-right: 5px;">View Details<i class="fa fa-info-circle"></i></a>
                       <a href="#" class="btn btn-primary btn-md" style="background-color:#268aaf; border-color:#268aaf;" data-toggle="modal" data-target="#myModal42{{trips.id}}">Send Enquiry<i class="fa fa-send-o"></i></a>
                     </div>
@@ -226,7 +222,7 @@
                             <div class="form-group form-group-icon-left"><i class="fa fa-lock input-icon input-icon-show"></i>
                                 <label>Your Query</label>
 
-                                <textarea class="form-control" name ="query_activity" rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required>
+                                <textarea class="form-control" name ="query_activity" rows="4" cols="65" placeholder="Ask anything and leave your tripping on us...." required />
                                 </textarea>
                             </div>
                             <input class="btn btn-primary" type="submit" value="Submit Query" />
@@ -1057,7 +1053,7 @@ function showSlides2(n) {
         <script src="{% static 'js/slimmenu.js' %}"></script>
         <script src="{% static 'js/bootstrap-datepicker.js' %}"></script>
         <script src="{% static 'js/bootstrap-timepicker.js' %}"></script>
-        <script src="{% static 'js/nicescroll.js' %}"></script>
+        <script src="{% static 'js/nicescroll.js' %}"  class="foo2" scrolling="no"></script>
         <script src="{% static 'js/dropit.js' %}"></script>
         <script src="{% static 'js/ionrangeslider.js' %}"></script>
         <script src="{% static 'js/icheck.js' %}"></script>
